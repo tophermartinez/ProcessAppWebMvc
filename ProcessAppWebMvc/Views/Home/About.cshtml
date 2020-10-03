@@ -1,0 +1,48 @@
+﻿@model List<ProcessAppWebMvc.Models.Usuario>
+
+@{
+    ViewBag.Title = "About";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>nombre</th>
+            <th>apellido</th>
+            <th>rut</th>
+            <th>telefono</th>
+            <th>usuario</th>
+            <th>pass</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var usuario in Model)
+        {
+        <tr>
+            <td>@usuario.Nombre </td>
+            <td>@usuario.apellido</td>
+            <td>@usuario.rut</td>
+            <td>@usuario.telefono</td>
+            <td>@usuario.usuario</td>
+            <td>@usuario.pass</td>
+
+        </tr>
+
+        }
+
+    </tbody>
+</table>
+
+
+
+@*<h4>nombre :@Model[0].Nombre</h4>
+<h4>apellido :@Model[1].apellido</h4>
+<h4>rut :@Model[2].rut </h4>
+<h4>telefono :@Model[3].telefono</h4>
+<h4>usuario :@Model[4].usuario</h4> 
+<h4>pass :@Model[5].pass</h4>*@
+
