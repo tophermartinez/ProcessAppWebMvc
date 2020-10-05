@@ -28,7 +28,7 @@ namespace ProcessAppWebMvc.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Contactanos y resolveremos tus dudas";
 
             return View();
         }
