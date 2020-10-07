@@ -39,6 +39,10 @@ namespace ProcessAppWebMvc.Controllers
             return View();
         }
 
+        public ActionResult Conexion()
+        {
+            return View();
+        }
 
         // GET: Mantenedor/Details/5
         public ActionResult Details(int id)

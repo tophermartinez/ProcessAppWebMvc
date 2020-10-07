@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessAppWebMvc", "Process
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessAppWebMvc.Tests", "ProcessAppWebMvc.Tests\ProcessAppWebMvc.Tests.csproj", "{3B3092CF-A68B-49D0-A17B-1974EDC9781D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAcces", "DataAcces\DataAcces.csproj", "{3D35F736-72B9-407C-8B8C-EFA66679B406}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entity_Layer", "Entity_Layer\Entity_Layer.csproj", "{478F66E1-3685-4D5B-9617-ADBDA400344B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{3B3092CF-A68B-49D0-A17B-1974EDC9781D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B3092CF-A68B-49D0-A17B-1974EDC9781D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B3092CF-A68B-49D0-A17B-1974EDC9781D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D35F736-72B9-407C-8B8C-EFA66679B406}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D35F736-72B9-407C-8B8C-EFA66679B406}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D35F736-72B9-407C-8B8C-EFA66679B406}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D35F736-72B9-407C-8B8C-EFA66679B406}.Release|Any CPU.Build.0 = Release|Any CPU
+		{478F66E1-3685-4D5B-9617-ADBDA400344B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{478F66E1-3685-4D5B-9617-ADBDA400344B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{478F66E1-3685-4D5B-9617-ADBDA400344B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{478F66E1-3685-4D5B-9617-ADBDA400344B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
