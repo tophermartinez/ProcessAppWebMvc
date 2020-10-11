@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAcces", "DataAcces\Data
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entity_Layer", "Entity_Layer\Entity_Layer.csproj", "{478F66E1-3685-4D5B-9617-ADBDA400344B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bussines_Layer", "Bussines_Layer\Bussines_Layer.csproj", "{C5C738A1-5493-415E-939D-CECA4B948BB1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{478F66E1-3685-4D5B-9617-ADBDA400344B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{478F66E1-3685-4D5B-9617-ADBDA400344B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{478F66E1-3685-4D5B-9617-ADBDA400344B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5C738A1-5493-415E-939D-CECA4B948BB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5C738A1-5493-415E-939D-CECA4B948BB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5C738A1-5493-415E-939D-CECA4B948BB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5C738A1-5493-415E-939D-CECA4B948BB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -374,6 +374,7 @@
     <Content Include="Views\Mantenedor\AsignarTareas - Copia.cshtml" />
     <Content Include="Views\Mantenedor\Conexion.cshtml" />
     <Content Include="Views\Mantenedor\_LayoutPage1.cshtml" />
+    <Content Include="Views\Mantenedor\Read.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -392,6 +393,16 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bussines_Layer\Bussines_Layer.csproj">
+      <Project>{c5c738a1-5493-415e-939d-ceca4b948bb1}</Project>
+      <Name>Bussines_Layer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entity_Layer\Entity_Layer.csproj">
+      <Project>{478f66e1-3685-4d5b-9617-adbda400344b}</Project>
+      <Name>Entity_Layer</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

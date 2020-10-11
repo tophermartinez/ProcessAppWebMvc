@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Bussines_Layer;
+using Entity_Layer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -115,5 +117,34 @@ namespace ProcessAppWebMvc.Controllers
                 return View();
             }
         }
+
+
+        public ActionResult Insert(Funcionario dto)
+        {
+            NegocioCliente neg = new NegocioCliente();
+            neg.insert(dto);
+            return RedirectToAction("Read");
+        }
+
+        public ActionResult Update(Funcionario dto)
+        {
+            NegocioCliente neg = new NegocioCliente();
+            neg.Update(dto);
+            return RedirectToAction("Read"); ;
+        }
+
+        public ActionResult Delete(String Rut)
+        {
+            NegocioCliente neg = new NegocioCliente();
+            neg.delete(Rut);
+            return RedirectToAction("Read"); ;
+        }
+
+        public ActionResult Read()
+        {
+            NegocioCliente neg = new NegocioCliente();
+            return View(neg.read());
+        }
+
     }
 }
