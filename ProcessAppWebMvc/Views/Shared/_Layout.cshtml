@@ -13,68 +13,89 @@
         padding-top: 0px;
         padding-bottom: 0px;
     }
+
+    #nav_processsa_logo {
+        width: 115px;
+    }
+
+    #nav_processsa_logo_2 {
+        width: 115px;
+        padding-top: 20px;
+    }
+
+@@media (max-width: 992px) {
+    #nav_processsa_logo_2 {
+        display: none;
+    }
+}
+
+    .btn-success ,
+    .btn-info{
+        width: 49%;
+    }
 </style>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-        <a>Process S.A</a>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarColor01">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Index", "Home")">Inicio</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("About", "Home")">Acerca de</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Contact", "Home")">Contacto</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Roles", "Mantenedor")">Roles</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Flujos", "Mantenedor")">Flujos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Tareas", "Mantenedor")">Tareas</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("TareasSubordinadas", "Mantenedor")">Tareas Subordinadas</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Usuarios", "Mantenedor")">Usuarios</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Conexion", "Mantenedor")">Conexion</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Read", "Mantenedor")">Lista usuarios</a>
-            </li>
-        </ul>
-      <div class="form-inline">
-          <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                  <a class="nav-link" href="@Url.Action("Register", "Account")">Registrarse</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="@Url.Action("Login", "Account")">Ingresar</a>
-              </li>
-          </ul>
-      </div>
-    </div>
-  </nav>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Process S.A</p>
-        </footer>
-    </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <img src="~/Imagenes/processsalogo.png" alt="Italian Trulli" id="nav_processsa_logo">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <img src="~/Imagenes/processsalogo.png" alt="Italian Trulli" id="nav_processsa_logo_2">
+            <ul class="navbar-nav mr-auto">
+                <!-- <li class="nav-item">-->
+                <!--  <a class="nav-link" href="@Url.Action("Index", "Home")">Inicio</a>-->
+                <!--   </li>-->
+                <!--   <li class="nav-item">-->
+                <!--         <a class="nav-link" href="@Url.Action("About", "Home")">Acerca de</a>-->
+                <!--      </li>-->
+                <!--  <li class="nav-item">-->
+                <!--       <a class="nav-link" href="@Url.Action("Contact", "Home")">Contacto</a>-->
+                <!--   </li>-->
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Roles", "Mantenedor")">Roles</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Flujos", "Mantenedor")">Flujos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Tareas", "Mantenedor")">Tareas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("TareasSubordinadas", "Mantenedor")">Tareas Subordinadas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Usuarios", "Mantenedor")">Usuarios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Conexion", "Mantenedor")">Conexion</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Read", "Mantenedor")">Lista usuarios</a>
+                </li>
+            </ul>
+                <div class="form-inline">
+                    <ul class="navbar-nav mr-auto">
+                        <!--<li class="nav-item">-->
+                        <!--<a class="nav-link" href="@Url.Action("Register", "Account")">Registrarse</a>-->
+                        <!--</li>-->
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Login", "Account")">Ingresar</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Process S.A</p>
+            </footer>
+        </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-</body>
-</html>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
+    </html>
