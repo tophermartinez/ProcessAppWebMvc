@@ -42,14 +42,14 @@ namespace ProcessAppWebMvc.Models
     public class ForgotViewModel
     {
         [Required]
-        [Display(Name = "Usuario")]
+        [Display(Name = "Correo electrónico")]
         public string Email { get; set; }
     }
 
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Usuario")]
+        [Display(Name = "Correo electrónico")]
         [EmailAddress]
         public string Email { get; set; }
 
