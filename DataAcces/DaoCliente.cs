@@ -194,5 +194,38 @@ namespace DataAcces
             }
             return result;
         }
+
+
+        public string Login(Funcionario dto)
+        {
+            string result = string.Empty;
+            try
+            {
+                using (OracleConnection cn = new OracleConnection(strOracle))
+                {
+                    cn.Open();
+                    using (OracleCommand cmd = new OracleCommand("SP_LOGIN", cn))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.Parameters.Add(new OracleParameter("NOMBRE", OracleType.VarChar)).Value = dto.NOMBRE;
+                        cmd.Parameters.Add(new OracleParameter("RUT", OracleType.Number)).Value = dto.RUT;
+                        cmd.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar)).Direction =
+                           System.Data.ParameterDirection.Output;
+
+                        cmd.ExecuteNonQuery();
+                        result = Convert.ToString(cmd.Parameters["P_RESULT"].Value);
+                    }
+
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                new Exception("Usuario o Contraseña incorrecta " + ex.Message);
+            }
+            return result;
+
+        }
     }
 }
