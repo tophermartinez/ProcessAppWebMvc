@@ -153,7 +153,7 @@ namespace ProcessAppWebMvc.Controllers
             using (OracleConnection ora = new OracleConnection())
             {
                 ora.Open();
-               var userDeta = ora.users.where
+               //var userDeta = ora.users.where
             }
             return View();
         }
