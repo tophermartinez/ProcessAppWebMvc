@@ -1,4 +1,5 @@
-﻿@{
+﻿ @model ProcessAppWebMvc.Models.Usuario    
+@{
     ViewBag.Title = "Login";
 }
 
@@ -14,8 +15,10 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
-                      <label>Usuario</label> 
+                        <label>Usuario</label>
                         <input class="form-control" required />
+                        <div class="col-md-10">  
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -27,8 +30,8 @@
                 <br />
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
+                        <button type="submit" class="btn btn-success">Ingresar</button>
                         <button type="reset" class="btn btn-info">Limpiar</button>
-                        <button type="submit" class="btn btn-success">Crear</button>
                     </div>
                 </div>
             </div>

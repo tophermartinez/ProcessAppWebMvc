@@ -2,6 +2,7 @@
 using Entity_Layer;
 using System;
 using System.Collections.Generic;
+using System.Data.OracleClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -146,5 +147,15 @@ namespace ProcessAppWebMvc.Controllers
             return View(neg.read());
         }
 
+        [HttpPost]
+        public ActionResult Login(ProcessAppWebMvc.Models.Usuario usuario)
+        {
+            using (OracleConnection ora = new OracleConnection())
+            {
+                ora.Open();
+               var userDeta = ora.users.where
+            }
+            return View();
+        }
     }
 }
