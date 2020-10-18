@@ -50,7 +50,7 @@ namespace ProcessAppWebMvc.Models
     {
         [Required]
         [Display(Name = "Usuario")]
-        [EmailAddress]
+        [DataType(DataType.Text)]
         public string Email { get; set; }
 
         [Required]

@@ -5,6 +5,18 @@
     input, select, textarea {
         max-width: 1200px;
     }
+
+    @@media (min-width: 992px) {
+        .select-mul {
+            height: 452px !important;
+        }    
+    }
+
+    .btn-eliminar {
+        width: 100%;
+    }
+
+   
 </style>
 <br />
 <div class="row">
@@ -19,45 +31,45 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-12 col-sm-12">
                         <label>RUT</label>
-                        <input class="form-control" required />
+                        <input class="form-control" placeholder="99.999.999-k" required/>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6 col-md-12 col-sm-12">
                         <label>Nombre</label>
-                        <input class="form-control" type="text" required />
+                        <input class="form-control" placeholder="Nombre" type="text" required />
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12">
                         <label>Segundo nombre</label>
-                        <input class="form-control" type="text" required />
+                        <input class="form-control" placeholder="Segundo nombre" type="text" required />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6 col-md-12 col-sm-12">
                         <label>Apellido paterno</label>
-                        <input class="form-control" type="text" required />
+                        <input class="form-control" placeholder="Apellido paterno" type="text" required />
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12">
                         <label>Apellido materno</label>
-                        <input class="form-control" type="text" required />
+                        <input class="form-control" type="text" placeholder="Apellido Materno" required />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <label>Nombre de usuario</label>
-                        <input class="form-control" type="text" required />
+                        <input class="form-control" type="text" placeholder="user" required />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <label>Email</label>
-                        <input class="form-control" type="email" required />
+                        <input class="form-control" type="email" placeholder="correo@processsa.cl" required />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <label>Tel&eacute;fono</label>
-                        <input class="form-control" type="text" required />
+                        <input class="form-control" type="text" placeholder="965874521" required />
                     </div>
                 </div>
                 <div class="row">
@@ -73,12 +85,25 @@
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <button type="reset" class="btn btn-info">Limpiar</button>
                         <button type="submit" class="btn btn-success">Crear</button>
-
                     </div>
                 </div>
             </div>
         </div>
     </form>
-  
-   
+    <div class="card">
+        <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <h4><b>Lista de usuarios</b></h4>   
+                        <select class="form-control select-mul" multiple></select>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <button type="reset" class="btn btn-danger btn-eliminar">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 </div>

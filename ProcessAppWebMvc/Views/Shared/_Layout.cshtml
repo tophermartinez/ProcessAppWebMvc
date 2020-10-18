@@ -28,11 +28,40 @@
         display: none;
     }
 }
-
     .btn-success ,
     .btn-info{
         width: 49%;
     }
+
+    @@media (min-width: 400px) {
+        .select-mul {
+            min-width: 400px;
+        }
+    }
+
+
+    @@media (max-width: 394px) {
+        .select-mul {
+            min-width: 350px;
+        }
+    }
+
+    @@media (min-width: 992px) {
+        .select-mul {
+            width: 500px;
+ 
+        }
+
+        .card {
+            margin-left: 5px;
+        }
+    }
+
+    .btn-eliminar {
+        width: 100%;
+    }
+
+
 </style>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">

@@ -5,6 +5,7 @@
     input, select, textarea {
         max-width: 1200px;
     }
+
 </style>
 <br />
 <div class="row">
@@ -19,13 +20,13 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <label>Jerarqu&iacute;a</label>
-                        <input class="form-control" required />
+                        <input class="form-control" type="number" placeholder="1"  min="1" required />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <label>Descripci&oacute;n</label>
-                        <input class="form-control" required />
+                        <input class="form-control" placeholder="Administrador" required />
                     </div>
                 </div>
                 <br />
@@ -38,4 +39,20 @@
             </div>
         </div>
     </form>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <h4><b>Lista de Roles</b></h4>
+                    <select class="form-control select-mul" multiple></select>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <button type="reset" class="btn btn-danger btn-eliminar">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

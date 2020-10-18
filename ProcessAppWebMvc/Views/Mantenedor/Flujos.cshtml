@@ -10,7 +10,14 @@
         .btn-warning{
             margin-left:20px;
         }
+
+        .select-mul {
+            height: 283px !important;
+        }
     }
+
+
+
 
 </style>
 <br />
@@ -26,7 +33,7 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <label>Nombre</label>
-                        <input type="text" class="form-control" required/>
+                        <input type="text" class="form-control" placeholder="Flujo Número 1" required />
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <label>Tarea</label>
@@ -34,9 +41,9 @@
                             <select class="form-control">
                                 <option>Seleccione...</option>
                             </select>
-                              <button class="btn btn-warning">Agregar</button>
+                            <button class="btn btn-warning">+</button>
                         </div>
-                   
+
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <label>Tarea Subordinada</label>
@@ -44,13 +51,13 @@
                             <select class="form-control">
                                 <option>Seleccione...</option>
                             </select>
-                            <button class="btn btn-warning">Agregar</button>
+                            <button class="btn btn-warning">+</button>
                         </div>
 
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <label>Flujo</label>
-                        <textarea class="form-control"></textarea>
+                        <textarea class="form-control" placeholder="Ingrese tareas..." readonly></textarea>
                     </div>
 
                 </div>
@@ -64,4 +71,20 @@
             </div>
         </div>
     </form>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <h4><b>Lista de Flujos</b></h4>
+                    <select class="form-control select-mul" multiple></select>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <button type="reset" class="btn btn-danger btn-eliminar">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
