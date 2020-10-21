@@ -52,10 +52,14 @@ namespace ProcessAppWebMvc.Models
         [Display(Name = "Usuario")]
         [DataType(DataType.Text)]
 
+        public string Email { get; set; }
+
         [Required]
-        [DataType(DataType.Password)]
         [Display(Name = "Contraseña")]
+        [DataType(DataType.Password)]
+
         public string Password { get; set; }
+  
 
         [Display(Name = "¿Recordar cuenta?")]
         public bool RememberMe { get; set; }
