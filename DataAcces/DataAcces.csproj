@@ -31,17 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.OracleClient" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,148 +46,13 @@
     <Compile Include="Cliente\ICrud.cs" />
     <Compile Include="Conexion\OracleConexion.cs" />
     <Compile Include="DaoCliente.cs" />
-    <Compile Include="EJECUCION.cs">
-      <DependentUpon>ModelEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EJECUCION_TAREA.cs">
-      <DependentUpon>ModelEDMPro.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EMPRESA.cs">
-      <DependentUpon>ModelEDMPro.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ESTADO_EJECUCION.cs">
-      <DependentUpon>ModelEDMPro.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ESTADO_SOLUCION.cs">
-      <DependentUpon>ModelEDMPro.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ESTADO_TAREA.cs">
-      <DependentUpon>ModelEDMPro.tt</DependentUpon>
-    </Compile>
-    <Compile Include="FLUJO.cs">
-      <DependentUpon>ModelEDMPro.tt</DependentUpon>
-    </Compile>
-    <Compile Include="FLUJO_ESTADO.cs">
-      <DependentUpon>ModelEDMPro.tt</DependentUpon>
-    </Compile>
-    <Compile Include="FLUJO_TAREA.cs">
-      <DependentUpon>ModelEDMPro.tt</DependentUpon>
-    </Compile>
-    <Compile Include="FUNCIONARIO.cs">
-      <DependentUpon>ModelEDMPro.tt</DependentUpon>
-    </Compile>
-    <Compile Include="FUNCIONARIO_TAREA.cs">
-      <DependentUpon>ModelEDMPro.tt</DependentUpon>
-    </Compile>
-    <Compile Include="INCIDENCIA.cs">
-      <DependentUpon>ModelEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="JUSTIFICACION_TAREA.cs">
-      <DependentUpon>ModelEDMPro.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelEDM.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelEDM.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelEDM.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelEDM.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelEDM.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="ModelEDMPro.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelEDMPro.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelEDMPro.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelEDMPro.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelEDMPro.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelEDMPro.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="PROBLEMA_EJECUCION.cs">
-      <DependentUpon>ModelEDMPro.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RESOLUCION_PROBLEMA.cs">
-      <DependentUpon>ModelEDMPro.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ROL.cs">
-      <DependentUpon>ModelEDMPro.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TAREA.cs">
-      <DependentUpon>ModelEDMPro.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UNIDAD.cs">
-      <DependentUpon>ModelEDMPro.tt</DependentUpon>
-    </Compile>
-    <Compile Include="USUARIO.cs">
-      <DependentUpon>ModelEDMPro.tt</DependentUpon>
-    </Compile>
-    <Compile Include="USUARIO_FUNCIONARIO.cs">
-      <DependentUpon>ModelEDMPro.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entity_Layer\Entity_Layer.csproj">
       <Project>{478f66e1-3685-4d5b-9617-adbda400344b}</Project>
       <Name>Entity_Layer</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="ModelEDM.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelEDM.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
-    <None Include="ModelEDM.edmx.diagram">
-      <DependentUpon>ModelEDM.edmx</DependentUpon>
-    </None>
-    <EntityDeploy Include="ModelEDMPro.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelEDMPro.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="ModelEDMPro.edmx.diagram">
-      <DependentUpon>ModelEDMPro.edmx</DependentUpon>
-    </None>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ModelEDM.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModelEDM.Context.cs</LastGenOutput>
-      <DependentUpon>ModelEDM.edmx</DependentUpon>
-    </Content>
-    <Content Include="ModelEDM.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelEDM.edmx</DependentUpon>
-      <LastGenOutput>ModelEDM.cs</LastGenOutput>
-    </Content>
-    <Content Include="ModelEDMPro.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelEDMPro.edmx</DependentUpon>
-      <LastGenOutput>ModelEDMPro.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="ModelEDMPro.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelEDMPro.edmx</DependentUpon>
-      <LastGenOutput>ModelEDMPro.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
