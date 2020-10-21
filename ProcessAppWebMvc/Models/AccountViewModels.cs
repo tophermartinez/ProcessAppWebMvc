@@ -42,7 +42,7 @@ namespace ProcessAppWebMvc.Models
     public class ForgotViewModel
     {
         [Required]
-        [Display(Name = "Usuario")]
+        [Display(Name = "Correo electrónico")]
         public string Email { get; set; }
     }
 
@@ -51,7 +51,6 @@ namespace ProcessAppWebMvc.Models
         [Required]
         [Display(Name = "Usuario")]
         [DataType(DataType.Text)]
-        public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

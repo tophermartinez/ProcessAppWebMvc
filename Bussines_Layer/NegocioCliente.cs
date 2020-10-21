@@ -34,5 +34,13 @@ namespace Bussines_Layer
             DaoCliente dao = new DaoCliente();
             return dao.Read();
         }
+
+
+        public string Login(Funcionario dto)
+        {
+            DaoCliente dao = new DaoCliente();
+            return dao.Login(dto);
+
+        }
     }
 }
