@@ -1,0 +1,46 @@
+﻿@model DataAcces.USUARIO
+
+@{
+ViewBag.Title =  "Iniciar sesión" ;
+}
+
+@using (Html.BeginForm("Login2", "Mantenedor", FormMethod.Post))
+{
+    <fieldset>
+        <legend>Mvc Simple Login Application Demo</legend>
+
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @if (@ViewBag.Message != null)
+        {
+            <div style="border: 1px solid red">
+                @ViewBag.Message
+            </div>
+        }
+        <table>
+            <tr>
+                <td>@Html.LabelFor(a => a.NOMBREUSUARIO)</td>
+                <td>@Html.TextBoxFor(a => a.NOMBREUSUARIO)</td>
+                <td>@Html.ValidationMessageFor(a => a.NOMBREUSUARIO)</td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(a => a.CONTRASEÑA)
+                </td>
+                <td>
+                    @Html.PasswordFor(a => a.CONTRASEÑA)
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(a => a.CONTRASEÑA)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Login" />
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    </fieldset>
+}   
