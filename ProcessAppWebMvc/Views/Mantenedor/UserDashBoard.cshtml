@@ -1,0 +1,15 @@
+﻿@model DataAcces.USUARIO
+@{
+    ViewBag.Title = "Mantenedor";
+}
+
+<fieldset>
+    <legend> Bienvenido   </legend>
+
+    @if (Session["NOMBREUSUARIO"] != null)
+    {<text>
+            Welcome @Session["NOMBREUSUARIO"].ToString() </text>
+}
+</fieldset>
+
+
