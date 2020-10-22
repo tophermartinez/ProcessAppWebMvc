@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entity_Layer
 {
-   public class USUARIO
+    public class USUARIO
     {
         public int ID { get; set; }
         public int RUT { get; set; }

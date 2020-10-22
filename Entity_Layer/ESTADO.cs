@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Entity_Layer
 {
-    public class ESTADO
+    public class estado
     {
         public int ID { get; set; }
         public string NOMBRE { get; set; }
         public string DESCRIPCION { get; set; }
-    
+
     }
 }

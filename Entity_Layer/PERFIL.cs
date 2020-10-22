@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entity_Layer
 {
-   public class PERFIL
+    public class PERFIL
     {
 
         public int ID_PERFIL { get; set; }

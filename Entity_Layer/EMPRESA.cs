@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entity_Layer
 {
-  public  class EMPRESA
+    public class empresa
     {
         public int ID { get; set; }
         public int RUT { get; set; }
