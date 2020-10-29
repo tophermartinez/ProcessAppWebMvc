@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace Entity_Layer
 {
-    class TAREA
+    public class TAREA
     {
-    }
+       public int IDTAREA { get; set; }
+       public string NOMBRETAREA { get; set; }
+       public DateTime FECHACREACION { get; set; }
+       public int ESTADO_TAREA { get; set; }
+
+
+     }
 }

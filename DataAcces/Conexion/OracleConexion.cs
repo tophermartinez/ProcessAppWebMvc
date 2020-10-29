@@ -12,7 +12,7 @@ namespace DataAcces.Conexion
         protected string strOracle = string.Empty;
         public OracleConexion()
         {
-            strOracle = ConfigurationManager.ConnectionStrings["OraConex"].ConnectionString;
+            strOracle = ConfigurationManager.ConnectionStrings["OraConexAmazon"].ConnectionString;
         }
     }
 }

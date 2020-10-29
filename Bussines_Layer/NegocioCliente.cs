@@ -10,37 +10,37 @@ namespace Bussines_Layer
 {
     public class NegocioCliente
     {
-        public string Update(Funcionario dto)
+        public string Update(USUARIO dto)
         {
             DaoCliente dao = new DaoCliente();
             return dao.Update(dto);
 
         }
 
-        public string delete(string dto)
+        public int delete(int dto)
         {
             DaoCliente dao = new DaoCliente();
             return dao.Delete(dto);
         }
 
-        public string insert(Funcionario dto)
+        public string insert(USUARIO dto)
         {
             DaoCliente dao = new DaoCliente();
             return dao.Insert(dto);
         }
 
-        public List<Funcionario> read()
+        public List<USUARIO> read()
         {
             DaoCliente dao = new DaoCliente();
             return dao.Read();
         }
 
 
-        public string Login(Funcionario dto)
-        {
-            DaoCliente dao = new DaoCliente();
-            return dao.Login(dto);
+        //public string Login(USUARIO dto)
+        //{
+        //    DaoCliente dao = new DaoCliente();
+        //    return dao.Login(dto);
 
-        }
+        //}
     }
 }

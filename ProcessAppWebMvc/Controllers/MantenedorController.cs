@@ -10,133 +10,28 @@ namespace ProcessAppWebMvc.Controllers
 {
     public class MantenedorController : Controller
     {
-        // GET: Mantenedor
-        public ActionResult Usuarios()
-        {
-            return View();
-        }
 
-        public ActionResult Roles()
-        {
-            return View();
-        }
 
-        public ActionResult Tareas()
-        {
-            return View();
-        }
-
-        public ActionResult TareasSubordinadas()
-        {
-            return View();
-        }
-
-        public ActionResult AsignarTareas()
-        {
-            return View();
-        }
-
-        public ActionResult Flujos()
-        {
-            return View();
-        }
-
-        public ActionResult Conexion()
-        {
-            return View();
-        }
-
-        // GET: Mantenedor/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Mantenedor/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Mantenedor/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Mantenedor/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Mantenedor/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Mantenedor/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Mantenedor/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-
-        public ActionResult Insert(Funcionario dto)
+        public ActionResult Insert(USUARIO dto)
         {
             NegocioCliente neg = new NegocioCliente();
             neg.insert(dto);
             return RedirectToAction("Read");
         }
 
-        public ActionResult Update(Funcionario dto)
+        [HttpPost]
+        public ActionResult Update(USUARIO dto)
         {
             NegocioCliente neg = new NegocioCliente();
             neg.Update(dto);
             return RedirectToAction("Read"); ;
         }
 
-        public ActionResult Delete(String Rut)
+        public ActionResult Delete(int id )
         {
             NegocioCliente neg = new NegocioCliente();
-            neg.delete(Rut);
+            neg.delete(id);
             return RedirectToAction("Read"); ;
         }
 
@@ -145,6 +40,138 @@ namespace ProcessAppWebMvc.Controllers
             NegocioCliente neg = new NegocioCliente();
             return View(neg.read());
         }
+
+
+        [HttpGet]
+        public ActionResult Update(int ID)
+        {
+            NegocioCliente neg = new NegocioCliente();
+            USUARIO usu = neg.read().FirstOrDefault(a => a.ID == ID);
+
+            return View("Update", usu);
+        }
+
+        public ActionResult Insert()
+        {
+            return View("Insert", new USUARIO());
+        }
+
+        public ActionResult Login(USUARIO usu)
+        {
+            NegocioCliente neg = new NegocioCliente();
+            // return View(neg.Login(usu));
+            return View("Conexion");// deberia redirigir a una mantenedor
+
+        }
+
+        // GET: Mantenedor
+        //public ActionResult Usuarios()
+        //{
+        //    return View();
+        //}
+
+        //public ActionResult Roles()
+        //{
+        //    return View();
+        //}
+
+        //public ActionResult Tareas()
+        //{
+        //    return View();
+        //}
+
+        //public ActionResult TareasSubordinadas()
+        //{
+        //    return View();
+        //}
+
+        //public ActionResult AsignarTareas()
+        //{
+        //    return View();
+        //}
+
+        //public ActionResult Flujos()
+        //{
+        //    return View();
+        //}
+
+        //public ActionResult Conexion()
+        //{
+        //    return View();
+        //}
+
+        //// GET: Mantenedor/Details/5
+        //public ActionResult Details(int id)
+        //{
+        //    return View();
+        //}
+
+        // GET: Mantenedor/Create
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
+
+        //// POST: Mantenedor/Create
+        //[HttpPost]
+        //public ActionResult Create(FormCollection collection)
+        //{
+        //    try
+        //    {
+        //        // TODO: Add insert logic here
+
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
+
+        //// GET: Mantenedor/Edit/5
+        //public ActionResult Edit(int id)
+        //{
+        //    return View();
+        //}
+
+        //// POST: Mantenedor/Edit/5
+        //[HttpPost]
+        //public ActionResult Edit(int id, FormCollection collection)
+        //{
+        //    try
+        //    {
+        //        // TODO: Add update logic here
+
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
+
+        //// GET: Mantenedor/Delete/5
+        //public ActionResult Delete(int id)
+        //{
+        //    return View();
+        //}
+
+        //// POST: Mantenedor/Delete/5
+        //[HttpPost]
+        //public ActionResult Delete(int id, FormCollection collection)
+        //{
+        //    try
+        //    {
+        //        // TODO: Add delete logic here
+
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
+
 
     }
 }
