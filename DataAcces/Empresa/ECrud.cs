@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Entity_Layer;
 
-namespace DataAcces.Cliente
+namespace DataAcces.Empresa
 {
-   public interface ICrud<T>
+    public interface ECrud<T>
     {
         string Insert(T dto);
         string Update(T dto);
-        int Delete(int dto);
+        string Delete(string dto);
         List<T> Read();
-        string Login(string user, string pass);
     }
 }

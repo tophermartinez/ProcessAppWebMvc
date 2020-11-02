@@ -178,9 +178,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\MantenedorTarea.cs" />
     <Compile Include="Controllers\MantenedorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -379,6 +379,9 @@
     <Content Include="Views\Mantenedor\Login.cshtml" />
     <Content Include="Views\Mantenedor\Insert.cshtml" />
     <Content Include="Views\Mantenedor\Update.cshtml" />
+    <Content Include="Views\Empresa\Insert.cshtml" />
+    <Content Include="Views\Empresa\Update.cshtml" />
+    <Content Include="Views\Empresa\Read.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

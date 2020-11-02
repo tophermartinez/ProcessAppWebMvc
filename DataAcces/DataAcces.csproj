@@ -46,7 +46,9 @@
     <Compile Include="Cliente\ICrud.cs" />
     <Compile Include="Conexion\OracleConexion.cs" />
     <Compile Include="DaoCliente.cs" />
+    <Compile Include="DaoEmpresa.cs" />
     <Compile Include="DaoTarea.cs" />
+    <Compile Include="Empresa\ECrud.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
