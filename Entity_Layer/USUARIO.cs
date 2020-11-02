@@ -8,7 +8,7 @@ namespace Entity_Layer
 {
     public class USUARIO
     {
-        public int ID_USUARIO { get; set; }
+        public int ID { get; set; }
         public int RUT { get; set; }
         public char DV { get; set; }
         public string NOMBRES { get; set; }
