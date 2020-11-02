@@ -46,6 +46,8 @@
     <Compile Include="PERFIL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TAREA.cs" />
+    <Compile Include="UNIDAD.cs" />
+    <Compile Include="UNIDAD_DETALLE.cs" />
     <Compile Include="USUARIO.cs" />
     <Compile Include="Usuario2.cs" />
   </ItemGroup>

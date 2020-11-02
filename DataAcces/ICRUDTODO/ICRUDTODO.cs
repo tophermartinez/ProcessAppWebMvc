@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAcces.Tarea
+namespace DataAcces.ICRUDTODO
 {
-    public interface ICRUDT<X>
+    public  interface ICRUDTODO<X>
     {
         string Insert(X dto);
         string Update(X dto);

@@ -1,6 +1,5 @@
 ﻿using DataAcces.Conexion;
-using DataAcces.Perfil;
-using DataAcces.Tarea;
+using DataAcces.ICRUDTODO;
 using Entity_Layer;
 using System;
 using System.Collections.Generic;
@@ -11,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataAcces
 {
-     public class DaoPerfil : OracleConexion, ICRUDP<PERFIL>
+     public class DaoPerfil : OracleConexion, ICRUDTODO<PERFIL>
     {
         public string Delete(string dto)
         {

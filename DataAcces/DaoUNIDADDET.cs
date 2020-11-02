@@ -1,18 +1,16 @@
-﻿
-using DataAcces.Conexion;
+﻿using Entity_Layer;
 using DataAcces.ICRUDTODO;
-using Entity_Layer;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.OracleClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataAcces.Conexion;
+using System.Data.OracleClient;
 
 namespace DataAcces
 {
-    public class DaoTarea : OracleConexion, ICRUDTODO<TAREA>
+   public  class DaoUNIDADDET : OracleConexion, ICRUDTODO<UNIDAD_DETALLE>
     {
 
         public string Delete(string dto)
@@ -23,10 +21,10 @@ namespace DataAcces
                 using (OracleConnection cn = new OracleConnection(strOracle))
                 {
                     cn.Open();
-                    using (OracleCommand command = new OracleCommand("SP_DELETE_TAREA", cn))
+                    using (OracleCommand command = new OracleCommand("SP_DELETE_UNIDADDET", cn))
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
-                        command.Parameters.Add(new OracleParameter("P_IDTAREA", OracleType.Number)).Value = dto;
+                        command.Parameters.Add(new OracleParameter("P_ID", OracleType.Number)).Value = dto;
                         command.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar, 50)).Direction =
                             System.Data.ParameterDirection.Output;
 
@@ -45,7 +43,7 @@ namespace DataAcces
             return result;
         }
 
-        public string Insert(TAREA dto)
+        public string Insert(UNIDAD_DETALLE dto)
         {
             string result = string.Empty;
             try
@@ -53,15 +51,15 @@ namespace DataAcces
                 using (OracleConnection cn = new OracleConnection(strOracle))
                 {
                     cn.Open();
-                    using (OracleCommand command = new OracleCommand("SP_CREATE_TAREA", cn))
+                    using (OracleCommand command = new OracleCommand("SP_CREATE_UNIDADDET", cn))
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
-                        // command.Parameters.Add(new OracleParameter("IDTAREA", OracleType.Number)).Value = dto.IDTAREA;
-                        command.Parameters.Add(new OracleParameter("NOMBRETAREA", OracleType.VarChar)).Value = dto.NOMBRETAREA;
-                        // command.Parameters.Add(new OracleParameter("FECHACREACION", OracleType.DateTime)).Value = dto.FECHACREACION;
-                        command.Parameters.Add(new OracleParameter("IDESTADO", OracleType.Number)).Value = dto.ESTADO_TAREA;
-                        //command.Parameters.Add(new OracleParameter("FECHA_ACTUAL", OracleType.Number)).Value = dto.FECHA_ACTUAL;
-                        command.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar)).Value = System.Data.ParameterDirection.Output;
+                        //command.Parameters.Add(new OracleParameter("ID", OracleType.Number)).Value = dto.ID;
+                        command.Parameters.Add(new OracleParameter("p_ID_UNIDAD", OracleType.Number)).Value = dto.ID_UNIDAD;
+                        command.Parameters.Add(new OracleParameter("NOMBRE_UNIDAD", OracleType.VarChar)).Value = dto.NOMBRE_UNIDAD;
+                        command.Parameters.Add(new OracleParameter("P_ID_TAREA", OracleType.Number)).Value = dto.ID_TAREA;
+                        command.Parameters.Add(new OracleParameter("NOMBRE_TAREA", OracleType.VarChar)).Value = dto.NOMBRE_TAREA;
+                        command.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar,50)).Value = System.Data.ParameterDirection.Output;
                         command.ExecuteNonQuery();
                         result = Convert.ToString(command.Parameters["P_RESULT"].Value);
                     }
@@ -78,16 +76,16 @@ namespace DataAcces
             return result;
         }
 
-        public List<TAREA> Read()
+        public List<UNIDAD_DETALLE> Read()
         {
-            List<TAREA> list = new List<TAREA>();
-            TAREA dto = null;
+            List<UNIDAD_DETALLE> list = new List<UNIDAD_DETALLE>();
+            UNIDAD_DETALLE dto = null;
             try
             {
                 using (OracleConnection cn = new OracleConnection(strOracle))
                 {
                     cn.Open();
-                    using (OracleCommand command = new OracleCommand("LIST_TAREA", cn))
+                    using (OracleCommand command = new OracleCommand("LIST_UNIDADDET", cn))
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
                         command.Parameters.Add(new OracleParameter("P_CURSOR", OracleType.Cursor)).Direction =
@@ -97,12 +95,12 @@ namespace DataAcces
                         {
                             while (dr.Read())
                             {
-                                dto = new TAREA();
-                                dto.IDTAREA = Convert.ToInt32(dr["IDTAREA"]);
-                                dto.NOMBRETAREA = Convert.ToString(dr["NOMBRETAREA"]);
-                                dto.FECHACREACION = Convert.ToDateTime(dr["FECHACREACION"]);
-                                dto.ESTADO_TAREA = Convert.ToInt32(dr["ESTADO_TAREA"]);
-                                dto.FECHA_ACTUAL = Convert.ToDateTime(dr["FECHA_ACTUAL"]);
+                                dto = new UNIDAD_DETALLE();
+                                dto.id = Convert.ToInt32(dr["id"]);
+                                dto.ID_UNIDAD = Convert.ToInt32(dr["ID_UNIDAD"]);
+                                dto.NOMBRE_UNIDAD = Convert.ToString(dr["NOMBRE_UNIDAD"]);
+                                dto.ID_TAREA = Convert.ToInt32(dr["ID_TAREA"]);
+                                dto.NOMBRE_TAREA = Convert.ToString(dr["NOMBRE_TAREA"]);
                                 list.Add(dto);
                             }
 
@@ -120,7 +118,7 @@ namespace DataAcces
             return list;
         }
 
-        public string Update(TAREA dto)
+        public string Update(UNIDAD_DETALLE dto)
         {
             string result = string.Empty;
             try
@@ -128,14 +126,14 @@ namespace DataAcces
                 using (OracleConnection cn = new OracleConnection(strOracle))
                 {
                     cn.Open();
-                    using (OracleCommand command = new OracleCommand("SP_UPDATE_TAREA", cn))
+                    using (OracleCommand command = new OracleCommand("SP_UPDATE_UNIDADDET", cn))
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
-                        command.Parameters.Add(new OracleParameter("P_IDTAREA", OracleType.Number)).Value = dto.IDTAREA;
-                        command.Parameters.Add(new OracleParameter("P_NOMBRETAREA", OracleType.VarChar)).Value = dto.NOMBRETAREA;
-                        command.Parameters.Add(new OracleParameter("P_FECHACREACION", OracleType.DateTime)).Value = dto.FECHACREACION;
-                        command.Parameters.Add(new OracleParameter("P_IDESTADO", OracleType.Number)).Value = dto.ESTADO_TAREA;
-                        command.Parameters.Add(new OracleParameter("p_FECHA_ACTUAL", OracleType.DateTime)).Value = dto.FECHA_ACTUAL;
+                        command.Parameters.Add(new OracleParameter("P_ID", OracleType.Number)).Value = dto.id;
+                        command.Parameters.Add(new OracleParameter("P_ID_UNIDAD", OracleType.Number)).Value = dto.ID_UNIDAD;
+                        command.Parameters.Add(new OracleParameter("P_NOMBRE_UNIDAD", OracleType.VarChar)).Value = dto.NOMBRE_UNIDAD;
+                        command.Parameters.Add(new OracleParameter("P_ID_TAREA", OracleType.Number)).Value = dto.ID_TAREA;
+                        command.Parameters.Add(new OracleParameter("P_NOMBRE_TAREA", OracleType.VarChar)).Value = dto.NOMBRE_TAREA;
                         command.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar, 50)).Value = System.Data.ParameterDirection.Output;
                         command.ExecuteNonQuery();
                         result = Convert.ToString(command.Parameters["P_RESULT"].Value);
@@ -150,5 +148,9 @@ namespace DataAcces
             }
             return result;
         }
+
+
+
+
     }
 }

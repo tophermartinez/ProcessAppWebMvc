@@ -43,16 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cliente2\ICRUDU.cs" />
     <Compile Include="Cliente\ICrud.cs" />
     <Compile Include="Conexion\OracleConexion.cs" />
     <Compile Include="DaoCliente.cs" />
     <Compile Include="DaoCliente2.cs" />
     <Compile Include="DaoPerfil.cs" />
     <Compile Include="DaoTarea.cs" />
-    <Compile Include="Perfil\ICRUDP.cs" />
+    <Compile Include="DaoUnidad.cs" />
+    <Compile Include="DaoUNIDADDET.cs" />
+    <Compile Include="ICRUDTODO\ICRUDTODO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tareas\ICRUDT.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entity_Layer\Entity_Layer.csproj">
@@ -60,5 +60,6 @@
       <Name>Entity_Layer</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

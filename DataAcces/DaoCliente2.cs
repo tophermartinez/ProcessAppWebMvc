@@ -1,5 +1,6 @@
-﻿using DataAcces.Cliente2;
+﻿
 using DataAcces.Conexion;
+using DataAcces.ICRUDTODO;
 using Entity_Layer;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DataAcces
 {
-    public class DaoCliente2 : OracleConexion, ICRUDU<Usuario2>
+    public class DaoCliente2 : OracleConexion, ICRUDTODO<Usuario2>
     {
 
         public string Delete(string dto)
