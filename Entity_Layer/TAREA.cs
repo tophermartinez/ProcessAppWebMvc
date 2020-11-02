@@ -13,6 +13,8 @@ namespace Entity_Layer
        public DateTime FECHACREACION { get; set; }
        public int ESTADO_TAREA { get; set; }
 
+        public DateTime FECHA_ACTUAL { get; set; }
 
-     }
+
+    }
 }

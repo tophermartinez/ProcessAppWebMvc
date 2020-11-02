@@ -163,7 +163,7 @@ namespace DataAcces
                             while (dr.Read())
                             {
                                 usu = new USUARIO();
-                                usu.ID = Convert.ToInt32(dr["ID_USUARIO"]);
+                                usu.ID_USUARIO = Convert.ToInt32(dr["ID_USUARIO"]);
                                 usu.RUT = Convert.ToInt32(dr["RUT"]);
                                 usu.DV = Convert.ToChar(dr["DV"]);
                                 usu.NOMBRES = Convert.ToString(dr["NOMBRES"]);
@@ -202,10 +202,10 @@ namespace DataAcces
                 using (OracleConnection cn = new OracleConnection(strOracle))
                 {
                     cn.Open();
-                    using (OracleCommand cmd = new OracleCommand("UPDATE_USUARIO", cn))
+                    using (OracleCommand cmd = new OracleCommand("SP_UPDATE_USUARIO", cn))
                     {
                         cmd.CommandType = System.Data.CommandType.StoredProcedure; 
-                        cmd.Parameters.Add(new OracleParameter("id_usu", OracleType.Number)).Value = dto.ID;
+                        cmd.Parameters.Add(new OracleParameter("ID_USUARIO", OracleType.Number)).Value = dto.ID_USUARIO;
                         cmd.Parameters.Add(new OracleParameter("RUT", OracleType.Number)).Value = dto.RUT;
                         cmd.Parameters.Add(new OracleParameter("DV", OracleType.VarChar)).Value = dto.DV;
                         cmd.Parameters.Add(new OracleParameter("NOMBRES", OracleType.VarChar)).Value = dto.NOMBRES;
