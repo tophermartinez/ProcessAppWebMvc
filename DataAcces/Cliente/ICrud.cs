@@ -14,6 +14,6 @@ namespace DataAcces.Cliente
         int Delete(int dto);
         List<T> Read();
 
-        string Login(string user, string pass);
+        //string Login(string user, string pass);
     }
 }

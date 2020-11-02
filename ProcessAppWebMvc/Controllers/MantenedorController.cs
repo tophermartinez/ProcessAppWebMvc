@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DataAcces;
 
 namespace ProcessAppWebMvc.Controllers
 {
@@ -56,13 +57,51 @@ namespace ProcessAppWebMvc.Controllers
             return View("Insert", new USUARIO());
         }
 
-        public ActionResult Login(USUARIO usu)
+
+
+
+        public ActionResult Login()
         {
-            NegocioCliente neg = new NegocioCliente();
-            // return View(neg.Login(usu));
-            return View("Conexion");// deberia redirigir a una mantenedor
+            
+            
+            return View("LoginProcess");// deberia redirigir a una mantenedor
 
         }
+
+        [HttpPost]
+        public ActionResult LoginPost(FormCollection fc)
+        {
+            string nombre = fc["usu"];
+
+            string pass =   fc["pass"];
+
+            //string Rol = fc["Rol"];
+
+            DaoCliente dao = new DaoCliente();
+           string result = dao.Login(nombre, pass);
+
+            if (result.Equals("Administrador"))
+            {
+                return RedirectToAction("Read");
+            }
+            else if (result.Equals("Funcionario"))
+            {
+
+                return RedirectToAction("Tareas");
+            }
+            else if (result.Equals("Diseñador"))
+            {
+                return RedirectToAction("Flujos");
+            }
+            else
+            {
+
+                return View("LoginProcess");// deberia redirigir a una mantenedor
+            }
+
+        }
+
+
 
         // GET: Mantenedor
         //public ActionResult Usuarios()
@@ -75,10 +114,10 @@ namespace ProcessAppWebMvc.Controllers
         //    return View();
         //}
 
-        //public ActionResult Tareas()
-        //{
-        //    return View();
-        //}
+        public ActionResult Tareas()
+        {
+            return View();
+        }
 
         //public ActionResult TareasSubordinadas()
         //{
@@ -90,10 +129,10 @@ namespace ProcessAppWebMvc.Controllers
         //    return View();
         //}
 
-        //public ActionResult Flujos()
-        //{
-        //    return View();
-        //}
+        public ActionResult Flujos()
+        {
+            return View();
+        }
 
         //public ActionResult Conexion()
         //{
