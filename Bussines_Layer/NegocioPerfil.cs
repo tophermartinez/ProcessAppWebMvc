@@ -1,40 +1,40 @@
-﻿using System;
+﻿using DataAcces;
+using Entity_Layer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataAcces;
-using Entity_Layer;
 
 namespace Bussines_Layer
 {
-    public class NegocioTarea
+    public class NegocioPerfil
     {
-
-        public string Update(TAREA dto)
+        public string Update(PERFIL dto)
         {
-            DaoTarea dao = new DaoTarea();
+            DaoPerfil dao = new DaoPerfil();
             return dao.Update(dto);
 
         }
 
         public string Delete(string dto)
         {
-            DaoTarea dao = new DaoTarea();
+            DaoPerfil dao = new DaoPerfil();
             return dao.Delete(dto);
         }
 
-        
-        public string Insert(TAREA dto)
+
+        public string Insert(PERFIL dto)
         {
-            DaoTarea dao = new DaoTarea();
+            DaoPerfil dao = new DaoPerfil();
             return dao.Insert(dto);
         }
 
-        public List<TAREA> Read()
+        public List<PERFIL> Read()
         {
-            DaoTarea dao = new DaoTarea();
+            DaoPerfil dao = new DaoPerfil();
             return dao.Read();
         }
+
     }
-    }
+}

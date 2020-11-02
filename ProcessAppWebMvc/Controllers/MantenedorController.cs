@@ -10,13 +10,11 @@ namespace ProcessAppWebMvc.Controllers
 {
     public class MantenedorController : Controller
     {
-
-
         [HttpPost]
         public ActionResult Insert(USUARIO dto)
         {
             NegocioCliente neg = new NegocioCliente();
-            neg.insert(dto);
+            neg.Insert(dto);
             return RedirectToAction("Read");
         }
 
@@ -26,29 +24,31 @@ namespace ProcessAppWebMvc.Controllers
             NegocioCliente neg = new NegocioCliente();
             neg.Update(dto);
             return RedirectToAction("Read"); ;
+
+
         }
 
-        public ActionResult Delete(int id )
+        public ActionResult Delete(int ID_USUARIO)
         {
             NegocioCliente neg = new NegocioCliente();
-            neg.delete(id);
+            neg.Delete(ID_USUARIO);
             return RedirectToAction("Read"); ;
         }
 
         public ActionResult Read()
         {
             NegocioCliente neg = new NegocioCliente();
-            return View(neg.read());
+            return View(neg.Read());
         }
 
 
         [HttpGet]
-        public ActionResult Update(int ID)
+        public ActionResult Update(int ID_USUARIO)
         {
             NegocioCliente neg = new NegocioCliente();
-            USUARIO usu = neg.read().FirstOrDefault(a => a.ID == ID);
-
+            USUARIO usu = neg.Read().FirstOrDefault(a => a.ID_USUARIO == ID_USUARIO);
             return View("Update", usu);
+
         }
 
         public ActionResult Insert()

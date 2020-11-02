@@ -1,4 +1,10 @@
-﻿@model Entity_Layer.USUARIO
+﻿@model Entity_Layer.Usuario2
+
+@{
+    ViewBag.Title = "Update";
+}
+
+<h2>Update</h2>
 
 
 @using (Html.BeginForm())
@@ -6,11 +12,10 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>USUARIO</h4>
+        <h4>Usuario2</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.ID_USUARIO)
-
+        
         <div class="form-group">
             @Html.LabelFor(model => model.RUT, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -124,7 +129,7 @@
 }
 
 <div>
-    @Html.ActionLink("Volver a Lista", "Read")
+    @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {
