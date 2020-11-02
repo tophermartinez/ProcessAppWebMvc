@@ -1,10 +1,9 @@
-﻿using DataAcces.Cliente;
-using DataAcces.Conexion;
+﻿using DataAcces.Conexion;
+using DataAcces.Perfil;
 using DataAcces.Tarea;
 using Entity_Layer;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.OracleClient;
 using System.Linq;
 using System.Text;
@@ -12,9 +11,8 @@ using System.Threading.Tasks;
 
 namespace DataAcces
 {
-    public class DaoTarea : OracleConexion, ICRUDT<TAREA>
+     public class DaoPerfil : OracleConexion, ICRUDP<PERFIL>
     {
-
         public string Delete(string dto)
         {
             string result = string.Empty;
@@ -23,10 +21,10 @@ namespace DataAcces
                 using (OracleConnection cn = new OracleConnection(strOracle))
                 {
                     cn.Open();
-                    using (OracleCommand command = new OracleCommand("SP_DELETE_TAREA", cn))
+                    using (OracleCommand command = new OracleCommand("SP_DELETE_PERFIL", cn))
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
-                        command.Parameters.Add(new OracleParameter("P_IDTAREA", OracleType.Number)).Value = dto;
+                        command.Parameters.Add(new OracleParameter("P_ID_PERFIL", OracleType.Number)).Value = dto;
                         command.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar, 50)).Direction =
                             System.Data.ParameterDirection.Output;
 
@@ -45,7 +43,7 @@ namespace DataAcces
             return result;
         }
 
-        public string Insert(TAREA dto)
+        public string Insert(PERFIL dto)
         {
             string result = string.Empty;
             try
@@ -53,14 +51,12 @@ namespace DataAcces
                 using (OracleConnection cn = new OracleConnection(strOracle))
                 {
                     cn.Open();
-                    using (OracleCommand command = new OracleCommand("SP_CREATE_TAREA", cn))
+                    using (OracleCommand command = new OracleCommand("SP_CREATE_PERFIL", cn))
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
-                        // command.Parameters.Add(new OracleParameter("IDTAREA", OracleType.Number)).Value = dto.IDTAREA;
-                        command.Parameters.Add(new OracleParameter("NOMBRETAREA", OracleType.VarChar)).Value = dto.NOMBRETAREA;
-                        // command.Parameters.Add(new OracleParameter("FECHACREACION", OracleType.DateTime)).Value = dto.FECHACREACION;
-                        command.Parameters.Add(new OracleParameter("IDESTADO", OracleType.Number)).Value = dto.ESTADO_TAREA;
-                        //command.Parameters.Add(new OracleParameter("FECHA_ACTUAL", OracleType.Number)).Value = dto.FECHA_ACTUAL;
+                        //command.Parameters.Add(new OracleParameter("ID_PERFIL", OracleType.Number)).Value = dto.ID_PERFIL;
+                        command.Parameters.Add(new OracleParameter("NOMBRE", OracleType.VarChar)).Value = dto.NOMBRE;
+                        command.Parameters.Add(new OracleParameter("DESCRIPCION", OracleType.VarChar)).Value = dto.DESCRIPCION;
                         command.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar)).Value = System.Data.ParameterDirection.Output;
                         command.ExecuteNonQuery();
                         result = Convert.ToString(command.Parameters["P_RESULT"].Value);
@@ -78,16 +74,16 @@ namespace DataAcces
             return result;
         }
 
-        public List<TAREA> Read()
+        public List<PERFIL> Read()
         {
-            List<TAREA> list = new List<TAREA>();
-            TAREA dto = null;
+            List<PERFIL> list = new List<PERFIL>();
+            PERFIL dto = null;
             try
             {
                 using (OracleConnection cn = new OracleConnection(strOracle))
                 {
                     cn.Open();
-                    using (OracleCommand command = new OracleCommand("LIST_TAREA", cn))
+                    using (OracleCommand command = new OracleCommand("LIST_PERFIL", cn))
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
                         command.Parameters.Add(new OracleParameter("P_CURSOR", OracleType.Cursor)).Direction =
@@ -97,12 +93,10 @@ namespace DataAcces
                         {
                             while (dr.Read())
                             {
-                                dto = new TAREA();
-                                dto.IDTAREA = Convert.ToInt32(dr["IDTAREA"]);
-                                dto.NOMBRETAREA = Convert.ToString(dr["NOMBRETAREA"]);
-                                dto.FECHACREACION = Convert.ToDateTime(dr["FECHACREACION"]);
-                                dto.ESTADO_TAREA = Convert.ToInt32(dr["ESTADO_TAREA"]);
-                                dto.FECHA_ACTUAL = Convert.ToDateTime(dr["FECHA_ACTUAL"]);
+                                dto = new PERFIL();
+                                dto.ID_PERFIL = Convert.ToInt32(dr["ID_PERFIL"]);
+                                dto.NOMBRE = Convert.ToString(dr["NOMBRE"]);
+                                dto.DESCRIPCION = Convert.ToString(dr["DESCRIPCION"]);
                                 list.Add(dto);
                             }
 
@@ -120,7 +114,7 @@ namespace DataAcces
             return list;
         }
 
-        public string Update(TAREA dto)
+        public string Update(PERFIL dto)
         {
             string result = string.Empty;
             try
@@ -128,14 +122,12 @@ namespace DataAcces
                 using (OracleConnection cn = new OracleConnection(strOracle))
                 {
                     cn.Open();
-                    using (OracleCommand command = new OracleCommand("SP_UPDATE_TAREA", cn))
+                    using (OracleCommand command = new OracleCommand("SP_UPDATE_PERFIL", cn))
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
-                        command.Parameters.Add(new OracleParameter("P_IDTAREA", OracleType.Number)).Value = dto.IDTAREA;
-                        command.Parameters.Add(new OracleParameter("P_NOMBRETAREA", OracleType.VarChar)).Value = dto.NOMBRETAREA;
-                        command.Parameters.Add(new OracleParameter("P_FECHACREACION", OracleType.DateTime)).Value = dto.FECHACREACION;
-                        command.Parameters.Add(new OracleParameter("P_IDESTADO", OracleType.Number)).Value = dto.ESTADO_TAREA;
-                        command.Parameters.Add(new OracleParameter("p_FECHA_ACTUAL", OracleType.DateTime)).Value = dto.FECHA_ACTUAL;
+                        command.Parameters.Add(new OracleParameter("P_ID_PERFIL", OracleType.Number)).Value = dto.ID_PERFIL;
+                        command.Parameters.Add(new OracleParameter("P_NOMBRE", OracleType.VarChar)).Value = dto.NOMBRE;
+                        command.Parameters.Add(new OracleParameter("P_DESCRIPCION", OracleType.VarChar)).Value = dto.DESCRIPCION;
                         command.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar, 50)).Value = System.Data.ParameterDirection.Output;
                         command.ExecuteNonQuery();
                         result = Convert.ToString(command.Parameters["P_RESULT"].Value);

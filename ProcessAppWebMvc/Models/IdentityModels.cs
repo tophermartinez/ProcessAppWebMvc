@@ -29,5 +29,7 @@ namespace ProcessAppWebMvc.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<Entity_Layer.EMPRESA> EMPRESAs { get; set; }
     }
 }

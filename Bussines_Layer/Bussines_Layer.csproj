@@ -20,7 +20,8 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>2</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -40,11 +41,14 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="NegocioCliente.cs" />
-    <Compile Include="NegocioTarea.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Include="NegocioCliente.cs" />
+		<Compile Include="NegocioEmpresa.cs" />
+		<Compile Include="NegocioCliente2.cs" />
+		<Compile Include="NegocioPerfil.cs" />
+		<Compile Include="NegocioTarea.cs" />
+		<Compile Include="Properties\AssemblyInfo.cs" />
+	</ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAcces\DataAcces.csproj">
       <Project>{3d35f736-72b9-407c-8b8c-efa66679b406}</Project>

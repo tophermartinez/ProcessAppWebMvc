@@ -17,19 +17,19 @@ namespace Bussines_Layer
 
         }
 
-        public int delete(int dto)
+        public int Delete(int dto)
         {
             DaoCliente dao = new DaoCliente();
             return dao.Delete(dto);
         }
 
-        public string insert(USUARIO dto)
+        public string Insert(USUARIO dto)
         {
             DaoCliente dao = new DaoCliente();
             return dao.Insert(dto);
         }
 
-        public List<USUARIO> read()
+        public List<USUARIO> Read()
         {
             DaoCliente dao = new DaoCliente();
             return dao.Read();
