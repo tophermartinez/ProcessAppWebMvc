@@ -12,6 +12,9 @@ namespace DataAcces.Cliente
         string Update(T dto);
         int Delete(int dto);
 
+
+        
+
         List<T> Read();
         string Login(string user, string pass);
     }

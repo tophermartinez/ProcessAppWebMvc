@@ -36,11 +36,12 @@ namespace Bussines_Layer
         }
 
 
-        //public string Login(USUARIO dto)
-        //{
-        //    DaoCliente dao = new DaoCliente();
-        //    return dao.Login(dto);
+        public string Login(string usu, string pass)
+        {
+            DaoCliente dao = new DaoCliente();
+            string log = dao.Login(usu, pass);
+            return log;
 
-        //}
+        }
     }
 }
