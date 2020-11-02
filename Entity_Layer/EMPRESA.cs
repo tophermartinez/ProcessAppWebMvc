@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Entity_Layer
 {
-    public class empresa
+    public class EMPRESA
     {
         public int ID { get; set; }
         public int RUT { get; set; }
         public string NOMBRE { get; set; }
         public string DIRECCION { get; set; }
         public string CORREO_CONTACTO { get; set; }
-        public int TELEFONO_CONTACTO { get; set; }
+        public long  TELEFONO_CONTACTO { get; set; }
         public int ESTADO { get; set; }
 
     }
