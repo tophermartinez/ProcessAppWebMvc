@@ -3,13 +3,47 @@
 @{
     ViewBag.Title = "Read";
 }
+<style>
+    table th {
+        text-align: center;
+        font-size: 13px;
+        background-color: #a7d2ca;
+        padding-left: 3px;
+        padding-right: 3px;
+    }
 
-<h2>Read</h2>
+    table td {
+        text-align: center;
+        font-size: 12px;
+        padding-left: 1px;
+        padding-right: 2px;
+    }
 
-<p>
-    @Html.ActionLink("Insertar Perfil", "Insert")
-</p>
-<table class="table">
+    a {
+        color: white;
+    }
+
+        a:hover {
+            color: white;
+            text-decoration: none;
+        }
+
+    .btn-mant {
+        width: 60px;
+        font-size: 10px;
+    }
+</style>
+<br />
+<h3>Mantenedor de Roles</h3>
+<hr />
+<br />
+<div class="col-lg-6">
+    <p class="btn btn-success btn-create">
+        @Html.ActionLink("Nuevo Rol", "Insert")
+    </p>
+</div>
+<br />
+<table class="table table-bordered table-hover">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.ID_PERFIL)
@@ -23,22 +57,23 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ID_PERFIL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NOMBRE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DESCRIPCION)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Update", new { ID_PERFIL = item.ID_PERFIL }) |
-            @Html.ActionLink("Delete", "Delete", new { ID_PERFIL = item.ID_PERFIL })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID_PERFIL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NOMBRE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DESCRIPCION)
+            </td>
+            <td>
+                <p class="btn btn-warning btn-mant">@Html.ActionLink("Editar", "Update", new { ID_PERFIL = item.ID_PERFIL })</p>
+                <p class="btn btn-danger btn-mant"> @Html.ActionLink("Delete", "Delete", new { ID_PERFIL = item.ID_PERFIL })</p>
+            </td>
+        </tr>
+    }
 
 </table>

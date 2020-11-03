@@ -24,13 +24,14 @@
         padding-top: 20px;
     }
 
-@@media (max-width: 992px) {
-    #nav_processsa_logo_2 {
-        display: none;
+    @@media (max-width: 992px) {
+        #nav_processsa_logo_2 {
+            display: none;
+        }
     }
-}
-    .btn-success ,
-    .btn-info{
+
+    .btn-success,
+    .btn-info {
         width: 49%;
     }
 
@@ -50,7 +51,6 @@
     @@media (min-width: 992px) {
         .select-mul {
             width: 500px;
- 
         }
 
         .card {
@@ -61,87 +61,93 @@
     .btn-eliminar {
         width: 100%;
     }
-
 </style>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-        <a>Process S.A</a>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarColor01">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Index", "Home")">Inicio</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Read", "Empresa")">Empresa</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Read", "Tarea")">Tareas</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Read", "Perfil")">Perfil</a>
-            </li>
-            @*<li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Index", "Home")">Inicio</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Index", "Home")">Inicio</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Index", "Home")">Inicio</a>
-            </li>*@
-            @*<li class="nav-item">
-            <a class="nav-link" href="@Url.Action("Login", "Mantenedor")">Login</a>
-        </li>*@
-            @*<li class="nav-item">
-            <a class="nav-link" href="@Url.Action("About", "Home")">Acerca de</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="@Url.Action("Contact", "Home")">Contacto</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="@Url.Action("Roles", "Mantenedor")">Roles</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="@Url.Action("Flujos", "Mantenedor")">Flujos</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="@Url.Action("Tareas", "Mantenedor")">Tareas</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="@Url.Action("TareasSubordinadas", "Mantenedor")">Tareas Subordinadas</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="@Url.Action("Usuarios", "Mantenedor")">Usuarios</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="@Url.Action("Conexion", "Mantenedor")">Conexion</a>
-        </li>*@
-            @*<li class="nav-item">
-            <a class="nav-link" href="@Url.Action("Delete", "Mantenedor")">eliminar usuarios</a>
-        </li>*@
-
-            @*<li class="nav-item">
-            <a class="nav-link" href="@Url.Action("Read", "Mantenedor")">Lista usuarios</a>
-        </li>*@
-            @*<li class="nav-item">
-            <a class="nav-link" href="@Url.Action("Insert", "Mantenedor")">Ingresar usuarios</a>
-        </li>*@
-        </ul>
-      @*<div class="form-inline">
-          <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                  <a class="nav-link" href="@Url.Action("Register", "Account")">Registrarse</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="@Url.Action("Login", "Account")">Ingresar</a>
-              </li>
-          </ul>
-      </div>*@
-    </div>
-  </nav>
+        <a href="@Url.Action("Index", "Home")"><img src="~/Imagenes/processsalogo.png" alt="Italian Trulli" id="nav_processsa_logo"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Empresa
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="@Url.Action("Insert", "Empresa")">Crear Empresa</a>
+                        <a class="dropdown-item" href="@Url.Action("Read", "Empresa")">Mantenedor Empresas</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Usuario
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="@Url.Action("Insert", "Mantenedor")">Crear Usuario</a>
+                        <a class="dropdown-item" href="@Url.Action("Read", "Mantenedor")">Mantenedor Usuarios</a>
+          
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Roles
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="@Url.Action("Insert", "Perfil")">Crear Rol</a>
+                        <a class="dropdown-item" href="@Url.Action("Read", "Perfil")">Mantenedor Roles</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Tarea
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="@Url.Action("Insert", "Tarea")">Crear Tarea</a>
+                        <a class="dropdown-item" href="@Url.Action("Read", "Tarea")">Mantenedor Tareas</a>
+                    </div>
+                </li>
+                @*<li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("About", "Home")">Acerca de</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Contact", "Home")">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Roles", "Mantenedor")">Roles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Flujos", "Mantenedor")">Flujos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Tareas", "Mantenedor")">Tareas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@U    rl.Action("TareasSubordinadas", "Mantenedor")">Tareas Subordinadas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Usuarios", "Mantenedor")">Usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Conexion", "Mantenedor")">Conexion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Read", "Mantenedor")">Lista usuarios</a>
+                    </li>*@
+            </ul>
+            <div class="form-inline">
+                <ul class="navbar-nav mr-auto">
+                    @*<li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Register", "Account")">Registrarse</a>
+                        </li>
+                    *@
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Login", "Mantenedor")">Ingresar</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <div class="container body-content">
         @RenderBody()
         <hr />
