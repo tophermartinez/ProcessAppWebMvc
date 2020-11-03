@@ -47,14 +47,14 @@ namespace DataAcces
                     using (OracleCommand command = new OracleCommand("SP_INSERT_EMPRESA", cn))
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
-                        command.Parameters.Add(new OracleParameter("P_IDEMPRESA", OracleType.Number)).Value = dto.ID;
+                        //command.Parameters.Add(new OracleParameter("P_IDEMPRESA", OracleType.Number)).Value = dto.ID;
                         command.Parameters.Add(new OracleParameter("P_RUT", OracleType.Number)).Value = dto.RUT;
                         command.Parameters.Add(new OracleParameter("P_NOMBRE", OracleType.VarChar)).Value = dto.NOMBRE;
                         command.Parameters.Add(new OracleParameter("P_DIRECCION", OracleType.VarChar)).Value = dto.DIRECCION;
                         command.Parameters.Add(new OracleParameter("P_CORREO_CONTACTO", OracleType.VarChar)).Value = dto.CORREO_CONTACTO;
-                        command.Parameters.Add(new OracleParameter("P_TELEFONO_CONTACTO", OracleType.Number)).Value = dto.TELEFONO_CONTACTO;
+                        command.Parameters.Add(new OracleParameter("P_TELEFONO_CONTACTO", OracleType.Int32)).Value = dto.TELEFONO_CONTACTO;
                         command.Parameters.Add(new OracleParameter("P_ESTADO", OracleType.Number)).Value = dto.ESTADO;
-                        command.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar,50)).Direction = System.Data.ParameterDirection.Output;
+                        command.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar,200)).Direction = System.Data.ParameterDirection.Output;
                         command.ExecuteNonQuery();
                         resultado = Convert.ToString(command.Parameters["P_RESULT"].Value);
                     }

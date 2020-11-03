@@ -29,10 +29,10 @@ namespace ProcessAppWebMvc.Controllers
 
         }
 
-        public ActionResult Delete(int ID_USUARIO)
+        public ActionResult Delete(int ID)
         {
             NegocioCliente neg = new NegocioCliente();
-            neg.Delete(ID_USUARIO);
+            neg.Delete(ID);
             return RedirectToAction("Read"); ;
         }
 
@@ -44,10 +44,10 @@ namespace ProcessAppWebMvc.Controllers
 
 
         [HttpGet]
-        public ActionResult Update(int ID_USUARIO)
+        public ActionResult Update(int ID)
         {
             NegocioCliente neg = new NegocioCliente();
-            USUARIO usu = neg.Read().FirstOrDefault(a => a.ID_USUARIO == ID_USUARIO);
+            USUARIO usu = neg.Read().FirstOrDefault(a => a.ID == ID);
             return View("Update", usu);
 
         }
