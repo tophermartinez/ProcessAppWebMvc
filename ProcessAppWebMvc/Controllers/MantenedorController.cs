@@ -82,7 +82,7 @@ namespace ProcessAppWebMvc.Controllers
 
             if (result.Equals("Administrador"))
             {
-                return RedirectToAction("Read");
+                return RedirectToAction("Dashboard");
             }
             else if (result.Equals("Funcionario"))
             {
@@ -130,6 +130,11 @@ namespace ProcessAppWebMvc.Controllers
         //}
 
         public ActionResult Flujos()
+        {
+            return View();
+        }
+
+        public ActionResult Dashboard()
         {
             return View();
         }
@@ -213,4 +218,6 @@ namespace ProcessAppWebMvc.Controllers
 
 
     }
+
+
 }

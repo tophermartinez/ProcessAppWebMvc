@@ -429,6 +429,7 @@
     <Content Include="Views\Perfil\Insert.cshtml" />
     <Content Include="Views\Perfil\Read.cshtml" />
     <Content Include="Views\Perfil\Update.cshtml" />
+    <Content Include="Views\Mantenedor\Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

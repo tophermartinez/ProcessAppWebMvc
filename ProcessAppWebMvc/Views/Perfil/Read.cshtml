@@ -4,22 +4,7 @@
     ViewBag.Title = "Read";
 }
 <style>
-    table th {
-        text-align: center;
-        font-size: 13px;
-        background-color: #a7d2ca;
-        padding-left: 3px;
-        padding-right: 3px;
-    }
-
-    table td {
-        text-align: center;
-        font-size: 12px;
-        padding-left: 1px;
-        padding-right: 2px;
-    }
-
-    a {
+      a {
         color: white;
     }
 
@@ -43,37 +28,43 @@
     </p>
 </div>
 <br />
-<table class="table table-bordered table-hover">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ID_PERFIL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NOMBRE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DESCRIPCION)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<div class="table-responsive-sm table-responsive-md">
+    <table class="table table-hover">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ID_PERFIL)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NOMBRE)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DESCRIPCION)
-            </td>
-            <td>
-                <p class="btn btn-warning btn-mant">@Html.ActionLink("Editar", "Update", new { ID_PERFIL = item.ID_PERFIL })</p>
-                <p class="btn btn-danger btn-mant"> @Html.ActionLink("Delete", "Delete", new { ID_PERFIL = item.ID_PERFIL })</p>
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.ID_PERFIL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NOMBRE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DESCRIPCION)
+            </th>
+            <th></th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID_PERFIL)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NOMBRE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DESCRIPCION)
+                </td>
+                <td>
+                    <p class="btn btn-warning btn-mant">@Html.ActionLink("Editar", "Update", new { ID_PERFIL = item.ID_PERFIL })</p>
+                </td>
+                <td>
+                    <p class="btn btn-danger btn-mant"> @Html.ActionLink("Eliminar", "Delete", new { ID_PERFIL = item.ID_PERFIL })</p>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
