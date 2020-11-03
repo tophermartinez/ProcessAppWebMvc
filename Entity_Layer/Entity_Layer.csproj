@@ -49,7 +49,6 @@
     <Compile Include="UNIDAD.cs" />
     <Compile Include="UNIDAD_DETALLE.cs" />
     <Compile Include="USUARIO.cs" />
-    <Compile Include="Usuario2.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -46,7 +46,6 @@
     <Compile Include="Cliente\ICrud.cs" />
     <Compile Include="Conexion\OracleConexion.cs" />
     <Compile Include="DaoCliente.cs" />
-    <Compile Include="DaoCliente2.cs" />
     <Compile Include="DaoPerfil.cs" />
     <Compile Include="DaoTarea.cs" />
     <Compile Include="DaoUnidad.cs" />
