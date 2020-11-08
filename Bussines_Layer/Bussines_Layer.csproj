@@ -46,6 +46,8 @@
     <Compile Include="NegocioEmpresa.cs" />
     <Compile Include="NegocioPerfil.cs" />
     <Compile Include="NegocioTarea.cs" />
+    <Compile Include="NegocioUnidad.cs" />
+    <Compile Include="NegocioUNIDADDET.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

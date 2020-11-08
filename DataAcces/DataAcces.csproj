@@ -48,8 +48,11 @@
     <Compile Include="DaoCliente.cs" />
     <Compile Include="DaoEmpresa.cs" />
     <Compile Include="DaoTarea.cs" />
+    <Compile Include="DaoUnidad.cs" />
+    <Compile Include="DaoUNIDADDET.cs" />
     <Compile Include="Empresa\ECrud.cs" />
     <Compile Include="DaoPerfil.cs" />
+    <Compile Include="ICRUDTODO\ICRUDTODO.cs" />
     <Compile Include="Perfil\ICRUDP.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tareas\ICRUDT.cs" />

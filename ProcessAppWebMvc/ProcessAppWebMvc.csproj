@@ -224,6 +224,8 @@
     <Compile Include="Controllers\MantenedorController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\TareaController.cs" />
+    <Compile Include="Controllers\UNIDADDETALLEController.cs" />
+    <Compile Include="Controllers\UnidadesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -430,6 +432,13 @@
     <Content Include="Views\Perfil\Read.cshtml" />
     <Content Include="Views\Perfil\Update.cshtml" />
     <Content Include="Views\Mantenedor\Dashboard.cshtml" />
+    <Content Include="Views\Unidades\Read.cshtml" />
+    <Content Include="Views\Unidades\Insert.cshtml" />
+    <Content Include="Views\Unidades\Update.cshtml" />
+    <Content Include="Views\UNIDADDETALLE\Read.cshtml" />
+    <Content Include="Views\UNIDADDETALLE\Insert.cshtml" />
+    <Content Include="Views\UNIDADDETALLE\Update.cshtml" />
+    <Content Include="Views\Shared\_Layout_2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
