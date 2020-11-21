@@ -1,38 +1,49 @@
 ﻿@model IEnumerable<Entity_Layer.UNIDAD>
 
+
 <p>
     @Html.ActionLink("Crear Unidades", "Insert")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ID_UNIDAD)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NOMBRE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DETALLE)
-        </th>
-        <th></th>
-    </tr>
+@if (Session["usu"] != null)
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID_UNIDAD)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NOMBRE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DETALLE)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ID_UNIDAD)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NOMBRE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DETALLE)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Update", new { ID_UNIDAD = item.ID_UNIDAD }) |
-            @Html.ActionLink("Eliminar", "Delete", new { ID_UNIDAD = item.ID_UNIDAD })
-        </td>
-    </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID_UNIDAD)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NOMBRE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DETALLE)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Update", new { ID_UNIDAD = item.ID_UNIDAD }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { ID_UNIDAD = item.ID_UNIDAD })
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+    <h1>Debe logearse para acceder a esta opcion, no te creas vivo ctm</h1>
 }
 
-</table>
+

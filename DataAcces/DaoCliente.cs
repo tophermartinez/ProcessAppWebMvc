@@ -14,7 +14,7 @@ namespace DataAcces
     public class DaoCliente : OracleConexion, ICrud<USUARIO>
     {
 
-      public  int Delete(int dto)
+        public int Delete(int dto)
         {
             string result = string.Empty;
             int rt = 0;
@@ -27,8 +27,8 @@ namespace DataAcces
                     {
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Parameters.Add(new OracleParameter("p_id", OracleType.Number)).Value = dto;
-                       // cmd.Parameters.Add(new OracleParameter("RUT", OracleType.Number)).Value = dto ;
-                      //  cmd.Parameters.Add(new OracleParameter("RUT", OracleType.Number)).Value = dto.DV;
+                        // cmd.Parameters.Add(new OracleParameter("RUT", OracleType.Number)).Value = dto ;
+                        //  cmd.Parameters.Add(new OracleParameter("RUT", OracleType.Number)).Value = dto.DV;
                         //  cmd.Parameters.Add(new OracleParameter("RUT", OracleType.Number)).Value = dto.;
                         cmd.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar, 200)).Direction =
                             System.Data.ParameterDirection.Output;
@@ -49,35 +49,6 @@ namespace DataAcces
             return 1;
             //throw new NotImplementedException();
         }
-        //public string Delete(int dto)
-        //{
-        //    string result = string.Empty;
-        //    try
-        //    {
-        //        using (OracleConnection cn = new OracleConnection(strOracle))
-        //        {
-        //            cn.Open();
-        //            using (OracleCommand cmd = new OracleCommand("DELETE_USUARIO", cn))
-        //            {
-        //                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-        //                cmd.Parameters.Add(new OracleParameter("RUT", OracleType.Number)).Value = dto;
-        //                cmd.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar,60)).Direction =
-        //                    System.Data.ParameterDirection.Output;
-
-        //                cmd.ExecuteNonQuery();
-        //                result = Convert.ToString(cmd.Parameters["P_RESULT"].Value);
-        //            }
-        //            cn.Close();
-        //        }
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        new Exception("Error en metodo ELiminar " + ex.Message);
-        //    }
-        //    return result;
-        //}
 
         public string Insert(USUARIO dto)
         {
@@ -215,23 +186,7 @@ namespace DataAcces
             return result;
         }
 
-        //public int Admin_Login()
-        //{ 
-        //    int res = 0
-
-
-
-        //}
-
-        //public string Login(string user, string pass)
-        //{
-        //    string result = string.Empty;
-
-
-
-
-        //    return result;
-        //}
+ 
 
         public string Login(string usu, string pass)  //( USUARIO dto)
         {
@@ -264,12 +219,20 @@ namespace DataAcces
                     OracleDataReader lector = comando.ExecuteReader();
                     OracleDataReader _reader = cmd.ExecuteReader();
 
+
+
                     if (lector.Read() == true)
                     {
+                        USUARIO usu_sesion = new USUARIO();
+                        usu_sesion.ID = lector.GetInt32(0);
+                        usu_sesion.NOMBRE_USUARIO = lector.GetString(9);
+                        usu_sesion.CONTRASENA = lector.GetString(10);
+
                         if (_reader.Read())
                         {
                             USUARIO usu1 = new USUARIO();
                             usu1.ID_PERFIL = _reader.GetInt32(0);
+                           
                             int id_per = usu1.ID_PERFIL;
 
                            
@@ -316,24 +279,41 @@ namespace DataAcces
         
         }
 
-        //public string Login(string user, string pass)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        // Validador de rut
+
+        public bool validarRut(string rut, char dv)
+        {
+
+            bool validacion = false;
+            try
+            {
+                rut = rut.ToUpper();
+                rut = rut.Replace(".", "");
+                rut = rut.Replace("-", "");
+                int rutAux = int.Parse(rut.Substring(0, rut.Length));
+                //int rutAux = int.Parse(rut.Substring(0, rut.Length - 1));
+
+                //char dv
+                dv = char.Parse(rut.Substring(rut.Length - 1, 1));
+
+                int m = 0, s = 1;
+                for (; rutAux != 0; rutAux /= 10)
+                {
+                    s = (s + rutAux % 10 * (9 - m++ % 6)) % 11;
+                }
+                if (dv == (char)(s != 0 ? s + 47 : 75))
+                {
+                    validacion = true;
+                }
+            }
+            catch (Exception)
+            {
+            }
+            return validacion;
 
 
+        }
 
 
-
-
-        //List<USUARIO> ICrud<USUARIO>.Read()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public string Login(USUARIO dto)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }

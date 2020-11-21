@@ -1,101 +1,121 @@
 ﻿@{
+    Layout = "~/Views/Shared/_Layout_2.cshtml";
+    ViewData["Title"] = "Contact";
+}
+
+@{
     ViewBag.Title = "Dashboard";
 }
 <br />
-<h3>Bienvenido Administrador,</h3>
+<h3>Bienvenido @Session["usu"].ToString()</h3>
+
 <br />
-<h5>este es el resumen de tus últimas acciones :</h5>
-<div class="table-responsive-sm table-responsive-md">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nombre Tarea</th>
-                <th scope="col">Fecha inicio</th>
-                <th scope="col">Fecha estimada</th>
-                <th scope="col">Subtareas</th>
-                <th scope="col">Estado</th>
-                <th scope="col">Usuario Asignado</th>
-                <th scope="col">Completado</th>
-                <th scope="col">%</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">205</th>
-                <td>Aumentar velocidad totem sucursal</td>
-                <td>03-11-2020</td>
-                <td>15-11-2020</td>
-                <td>4</td>
-                <td>Asignado</td>
-                <td>Topher</td>
-                <td>0</td>
-                <td>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100">0%</div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">156</th>
-                <td>Reparar teclado OF-844</td>
-                <td>25-09-2020</td>
-                <td>26-09-2020</td>
-                <td>1</td>
-                <td>Completado</td>
-                <td>Ruben</td>
-                <td>1</td>
-                <td>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100">100%</div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">55</th>
-                <td>Formatear VMS</td>
-                <td>22-10-2020</td>
-                <td>15-11-2020</td>
-                <td>4</td>
-                <td>En progreso</td>
-                <td>Maria</td>
-                <td>2</td>
-                <td>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">50%</div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">98</th>
-                <td>Reiniciar Clusters Desarrollo</td>
-                <td>01-10-2020</td>
-                <td>15-10-2020</td>
-                <td>7</td>
-                <td>Completado</td>
-                <td>Andres</td>
-                <td>7</td>
-                <td>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">100%</div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">156</th>
-                <td>Reparar teclado OF-844</td>
-                <td>25-09-2020</td>
-                <td>26-09-2020</td>
-                <td>1</td>
-                <td>Completado</td>
-                <td>Topher</td>
-                <td>1</td>
-                <td>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100">100%</div>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+
+@if (Session["usu"] != null)
+{
+    <h5>este es el resumen de tus últimas acciones :</h5>
+    <div class="table-responsive-sm table-responsive-md">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre Tarea</th>
+                    <th scope="col">Fecha inicio</th>
+                    <th scope="col">Fecha estimada</th>
+                    <th scope="col">Subtareas</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Usuario Asignado</th>
+                    <th scope="col">Completado</th>
+                    <th scope="col">%</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">205</th>
+                    <td>Aumentar velocidad totem sucursal</td>
+                    <td>03-11-2020</td>
+                    <td>15-11-2020</td>
+                    <td>4</td>
+                    <td>Asignado</td>
+                    <td>Topher</td>
+                    <td>0</td>
+                    <td>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100">0%</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">156</th>
+                    <td>Reparar teclado OF-844</td>
+                    <td>25-09-2020</td>
+                    <td>26-09-2020</td>
+                    <td>1</td>
+                    <td>Completado</td>
+                    <td>Ruben</td>
+                    <td>1</td>
+                    <td>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100">100%</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">55</th>
+                    <td>Formatear VMS</td>
+                    <td>22-10-2020</td>
+                    <td>15-11-2020</td>
+                    <td>4</td>
+                    <td>En progreso</td>
+                    <td>Maria</td>
+                    <td>2</td>
+                    <td>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">50%</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">98</th>
+                    <td>Reiniciar Clusters Desarrollo</td>
+                    <td>01-10-2020</td>
+                    <td>15-10-2020</td>
+                    <td>7</td>
+                    <td>Completado</td>
+                    <td>Andres</td>
+                    <td>7</td>
+                    <td>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">100%</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">156</th>
+                    <td>Reparar teclado OF-844</td>
+                    <td>25-09-2020</td>
+                    <td>26-09-2020</td>
+                    <td>1</td>
+                    <td>Completado</td>
+                    <td>Topher</td>
+                    <td>1</td>
+                    <td>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100">100%</div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+    </div>
+}
+else
+{
+<h1>Debe logearse para acceder a esta opcion, no te creas vivo ctm</h1>
+    @*<h1>Usuario o contraseña incorrecta</h1>
+
+        @Html.ActionLink("Volver a Home", "LoginProcess")*@
+}

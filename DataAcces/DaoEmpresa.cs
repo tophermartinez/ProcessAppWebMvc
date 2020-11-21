@@ -135,6 +135,43 @@ namespace DataAcces
             }
             return resultado;
         }
+
+        public List<EMPRESA> ListNameEmp()
+        {
+            List<EMPRESA> list = new List<EMPRESA>();
+            EMPRESA emp = null;
+            try
+            {
+                using (OracleConnection cn = new OracleConnection(strOracle))
+                {
+                    cn.Open();
+                   // using (OracleCommand command = new OracleCommand("SP_SELECT_EMPRESA", cn))
+                    {
+                        OracleCommand cmd = new OracleCommand("SELECT ID_EMPRESA,NOMBRE FROM EMPRESA ", cn);
+
+                        using (OracleDataReader dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection))
+                        {
+                            while (dr.Read())
+                            {
+                                emp = new EMPRESA();
+                                emp.ID = Convert.ToInt32(dr["ID_EMPRESA"]);
+                                emp.NOMBRE = Convert.ToString(dr["NOMBRE"]);
+                                list.Add(emp);
+                            }
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                new Exception("Error en el metodo listar" + ex.Message);
+            }
+            return list;
+        }
+
+  
+
     }
 }
 

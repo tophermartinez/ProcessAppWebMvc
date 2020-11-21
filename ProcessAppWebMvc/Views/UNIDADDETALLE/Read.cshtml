@@ -1,51 +1,88 @@
 ﻿@model IEnumerable<Entity_Layer.UNIDAD_DETALLE>
+@{
+    ViewBag.Title = "Read";
+}
+<style>
+    a {
+        color: white;
+    }
 
-<p>
-    @Html.ActionLink("Nueva Unidad ", "Insert")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ID_UNIDAD)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NOMBRE_UNIDAD)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ID_TAREA)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NOMBRE_TAREA)
-        </th>
-        <th></th>
-    </tr>
+        a:hover {
+            color: white;
+            text-decoration: none;
+        }
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.id)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ID_UNIDAD)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.NOMBRE_UNIDAD)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ID_TAREA)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.NOMBRE_TAREA)
-    </td>
-    <td>
-        @Html.ActionLink("Editar", "Update", new { id = item.id }) 
-        @*@Html.ActionLink("Details", "Details", new { id = item.id }) |*@
-        @Html.ActionLink("Eliminar", "Delete", new { id = item.id })
-    </td>
-</tr>
+    .btn-mant {
+        width: 60px;
+        font-size: 10px;
+    }
+</style>
+<br />
+<h3>Mantenedor de Roles</h3>
+<hr />
+<br />
+@if (Session["usu"] != null)
+{
+    <div class="col-lg-6">
+        <p class="btn btn-success btn-create">
+            @Html.ActionLink("Nueva Unidad ", "Insert")
+        </p>
+    </div>
+
+    <br />
+    <div class="table-responsive-sm table-responsive-md">
+        <table class="table table-hover">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ID_UNIDAD)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NOMBRE_UNIDAD)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ID_TAREA)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NOMBRE_TAREA)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ID_UNIDAD)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NOMBRE_UNIDAD)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ID_TAREA)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NOMBRE_TAREA)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Update", new { id = item.id })
+                        @*@Html.ActionLink("Details", "Details", new { id = item.id }) |*@
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+}
+else
+{
+    <h1>Debe logearse para acceder a esta opcion, no te creas vivo ctm</h1>
 }
 
-</table>
+

@@ -6,11 +6,21 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DataAcces;
+using System.Web.Security;
+using System.Web.UI;
 
 namespace ProcessAppWebMvc.Controllers
 {
+    
     public class MantenedorController : Controller
     {
+        DaoCliente dao;
+
+        public MantenedorController()
+        {
+            this.dao = new DaoCliente();
+        }
+
         [HttpPost]
         public ActionResult Insert(USUARIO dto)
         {
@@ -62,8 +72,8 @@ namespace ProcessAppWebMvc.Controllers
 
         public ActionResult Login()
         {
-            
-            
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+
             return View("LoginProcess");// deberia redirigir a una mantenedor
 
         }
@@ -72,13 +82,18 @@ namespace ProcessAppWebMvc.Controllers
         public ActionResult LoginPost(FormCollection fc)
         {
             string nombre = fc["usu"];
+            Session["usu"] = nombre;
 
             string pass =   fc["pass"];
 
-            //string Rol = fc["Rol"];
+            Session["pass"] = pass;
 
+            //string Rol = fc["Rol"];
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
             DaoCliente dao = new DaoCliente();
            string result = dao.Login(nombre, pass);
+
+            Session["Perfil"] = result;
 
             if (result.Equals("Administrador"))
             {
@@ -95,39 +110,49 @@ namespace ProcessAppWebMvc.Controllers
             }
             else
             {
+                Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
                 return View("LoginProcess");// deberia redirigir a una mantenedor
             }
 
         }
 
+        [HttpPost]
+        
+        [ValidateAntiForgeryToken]
+        [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
+        public ActionResult Logout()
+        {
+            Response.AppendHeader("Cache-Control", "no-store");
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetExpires(DateTime.Now.AddSeconds(-1));
+            Response.Cache.SetNoStore();
+             Session.Abandon(); 
+            Session.Clear();
+            //FormsAuthentication.SignOut();
+            FormsAuthentication.SignOut();
+            Session["usu"] = null;
+            Session.Abandon();
 
 
-        // GET: Mantenedor
-        //public ActionResult Usuarios()
-        //{
-        //    return View();
-        //}
+            //Response.Redirect("LoginProcess", false);
+            //if (Session["usu"] != null)
+            //{
+            //    return RedirectToAction("LoginPost");
+            //}
+            //else {
+            return View("LoginProcess");
+            //}
+            //
+            //
+          //  Redir
+        }
 
-        //public ActionResult Roles()
-        //{
-        //    return View();
-        //}
 
         public ActionResult Tareas()
         {
             return View();
         }
-
-        //public ActionResult TareasSubordinadas()
-        //{
-        //    return View();
-        //}
-
-        //public ActionResult AsignarTareas()
-        //{
-        //    return View();
-        //}
 
         public ActionResult Flujos()
         {
@@ -138,84 +163,6 @@ namespace ProcessAppWebMvc.Controllers
         {
             return View();
         }
-
-        //public ActionResult Conexion()
-        //{
-        //    return View();
-        //}
-
-        //// GET: Mantenedor/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
-
-        // GET: Mantenedor/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
-
-        //// POST: Mantenedor/Create
-        //[HttpPost]
-        //public ActionResult Create(FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add insert logic here
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        //// GET: Mantenedor/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: Mantenedor/Edit/5
-        //[HttpPost]
-        //public ActionResult Edit(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add update logic here
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        //// GET: Mantenedor/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: Mantenedor/Delete/5
-        //[HttpPost]
-        //public ActionResult Delete(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add delete logic here
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
 
     }
 

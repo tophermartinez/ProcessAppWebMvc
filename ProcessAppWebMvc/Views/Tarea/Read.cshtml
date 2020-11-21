@@ -22,60 +22,72 @@
 <h3>Mantenedor de Tareas</h3>
 <hr />
 <br />
-<div class="col-lg-6">
-    <p class="btn btn-success btn-create">
-        @Html.ActionLink("Nueva tarea", "Insert")
-    </p>
-</div>
-<br />
-<div class="table-responsive-sm table-responsive-md">
-    <table class="table table-hover">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.IDTAREA)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NOMBRETAREA)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FECHACREACION)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ESTADO_TAREA)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FECHA_ACTUAL)
-            </th>
-            <th></th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+@if (Session["usu"] != null)
+{
+    <div class="col-lg-6">
+        <p class="btn btn-success btn-create">
+            @Html.ActionLink("Nueva tarea", "Insert")
+        </p>
+    </div>
+    <br />
+    <div class="table-responsive-sm table-responsive-md">
+        <table class="table table-hover">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IDTAREA)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NOMBRETAREA)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FECHACREACION)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ESTADO_TAREA)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FECHA_ACTUAL)
-                </td>
-                <td>
-                    <p class="btn btn-warning btn-mant"> @Html.ActionLink("Editar", "Update", new { IDTAREA = item.IDTAREA })</p>
-                </td>
-                <td>
-                    <p class="btn btn-danger btn-mant">  @Html.ActionLink("Eliminar", "Delete", new { IDTAREA = item.IDTAREA })</p>
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.IDTAREA)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NOMBRETAREA)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FECHACREACION)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ESTADO_TAREA)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FECHA_ACTUAL)
+                </th>
+                <th></th>
+                <th></th>
             </tr>
-        }
-    </table>
-</div>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IDTAREA)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NOMBRETAREA)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FECHACREACION)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ESTADO_TAREA)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FECHA_ACTUAL)
+                    </td>
+                    <td>
+                        <p class="btn btn-warning btn-mant"> @Html.ActionLink("Editar", "Update", new { IDTAREA = item.IDTAREA })</p>
+                    </td>
+                    <td>
+                        <p class="btn btn-danger btn-mant">  @Html.ActionLink("Eliminar", "Delete", new { IDTAREA = item.IDTAREA })</p>
+                       
+                        
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+}
+else
+{
+
+    <h1>Debe logearse para acceder a esta opcion, no te creas vivo ctm</h1>
+
+    @Html.ActionLink("Volver a Home", "Login")
+}
 

@@ -12,5 +12,6 @@ namespace DataAcces.Empresa
         string Update(T dto);
         string Delete(string dto);
         List<T> Read();
+        List<T> ListNameEmp();
     }
 }

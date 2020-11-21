@@ -10,6 +10,24 @@ namespace ProcessAppWebMvc.Controllers
 {
     public class EmpresaController : Controller
     {
+
+        public ActionResult Index()
+        {
+
+            
+            //using (NegocioEmpresa DB = new NegocioEmpresa())
+            //{
+            //    public ActionResult ListNameEmp()
+            //    {
+            //        NegocioEmpresa emp = new NegocioEmpresa();
+            //        return View(emp.ListNameEmp());
+            //    }
+            //}
+
+            return View();
+        }
+
+
         [HttpPost]
         public ActionResult Insert(EMPRESA dto)
         {
@@ -47,5 +65,10 @@ namespace ProcessAppWebMvc.Controllers
         {
             return View("Insert",new EMPRESA());
         }
+
+
+     
+      
+     
     }
 }

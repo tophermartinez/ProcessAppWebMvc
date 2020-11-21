@@ -26,5 +26,11 @@ namespace Bussines_Layer
             DaoEmpresa emp = new DaoEmpresa();
             return emp.Read();
         }
+
+        public List<EMPRESA> ListNameEmp()
+        {
+            DaoEmpresa emp = new DaoEmpresa();
+            return emp.Read();
+        }
     }
 }
