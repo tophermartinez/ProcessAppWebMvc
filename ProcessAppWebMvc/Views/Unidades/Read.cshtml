@@ -1,11 +1,33 @@
 ﻿@model IEnumerable<Entity_Layer.UNIDAD>
+<style>
+    a {
+        color: white;
+    }
 
+        a:hover {
+            color: white;
+            text-decoration: none;
+        }
 
-<p>
-    @Html.ActionLink("Crear Unidades", "Insert")
-</p>
-@if (Session["usu"] != null)
+    .btn-mant {
+        width: 60px;
+        font-size: 10px;
+    }
+</style>
+<br />
+<h3>Mantenedor de Unidad</h3>
+<hr />
+<br />
+@if (Session["perfil"] != null)
 {
+    if (Convert.ToInt32(Session["perfil"]) == 2)
+    {
+        <div class="col-lg-6">
+            <p class="btn btn-success btn-create">
+                @Html.ActionLink("Nueva Unidad ", "Insert")
+            </p>
+        </div>
+    }
     <table class="table">
         <tr>
             <th>
@@ -18,25 +40,29 @@
                 @Html.DisplayNameFor(model => model.DETALLE)
             </th>
             <th></th>
+            <th></th>
         </tr>
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ID_UNIDAD)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NOMBRE)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DETALLE)
-                </td>
-                <td>
-                    @Html.ActionLink("Editar", "Update", new { ID_UNIDAD = item.ID_UNIDAD }) |
-                    @Html.ActionLink("Eliminar", "Delete", new { ID_UNIDAD = item.ID_UNIDAD })
-                </td>
-            </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID_UNIDAD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOMBRE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DETALLE)
+        </td>
+        <td>
+            <p class="btn btn-warning btn-mant"> @Html.ActionLink("Editar", "Update", new { ID_UNIDAD = item.ID_UNIDAD })</p>
+        </td>
+        <td>
+            <p class="btn btn-danger btn-mant">  @Html.ActionLink("Eliminar", "Delete", new { ID_UNIDAD = item.ID_UNIDAD })</p>
+
+        </td>
+    </tr>
         }
 
     </table>

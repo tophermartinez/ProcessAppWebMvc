@@ -2,7 +2,6 @@
 @{
     ViewBag.Title = "Login";
 }
-
 <br />
 <div class="row">
     <div class="col-lg-12 col-md-12 colsm-12">
@@ -26,11 +25,11 @@
                     </div>
                 </div>
                 @*<div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <label>Rol</label>
-                        <input name="Rol" type="number" required class="form-control" />
-                    </div>
-                </div>*@
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <label>Rol</label>
+                <input name="Rol" type="number" required class="form-control" />
+            </div>
+        </div>*@
                 <br />
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
@@ -38,26 +37,16 @@
                         <button type="submit" class="btn btn-success">Ingresar</button>
                     </div>
                 </div>
-
-                @Html.ActionLink("Sign in","","") 
+                <br />
+                @if (@ViewBag.error != null)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @ViewBag.error
+                    </div>
+                }
             </div>
 
         </div>
-        @*@{
-
-            if (TempData["Msg"] != null)
-            {
-
-                <script type="text/javascript">
-                            alert('@TempData["Msg"]');
-
-
-                </script>
-            }
-
-
-
-        }*@
     </form>
 
 </div>

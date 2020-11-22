@@ -18,17 +18,19 @@
     }
 </style>
 <br />
-<h3>Mantenedor de Roles</h3>
+<h3>Mantenedor de Unidad Detalle</h3>
 <hr />
 <br />
-@if (Session["usu"] != null)
+@if (Session["perfil"] != null)
 {
-    <div class="col-lg-6">
-        <p class="btn btn-success btn-create">
-            @Html.ActionLink("Nueva Unidad ", "Insert")
-        </p>
-    </div>
-
+    if (Convert.ToInt32(Session["perfil"]) == 2)
+    {
+        <div class="col-lg-6">
+            <p class="btn btn-success btn-create">
+                @Html.ActionLink("Nueva Unidad Detalle ", "Insert")
+            </p>
+        </div>
+    }
     <br />
     <div class="table-responsive-sm table-responsive-md">
         <table class="table table-hover">
@@ -49,32 +51,35 @@
                     @Html.DisplayNameFor(model => model.NOMBRE_TAREA)
                 </th>
                 <th></th>
+                <th></th>
             </tr>
 
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ID_UNIDAD)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NOMBRE_UNIDAD)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ID_TAREA)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NOMBRE_TAREA)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Editar", "Update", new { id = item.id })
-                        @*@Html.ActionLink("Details", "Details", new { id = item.id }) |*@
-                        @Html.ActionLink("Eliminar", "Delete", new { id = item.id })
-                    </td>
-                </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID_UNIDAD)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NOMBRE_UNIDAD)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID_TAREA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NOMBRE_TAREA)
+            </td>
+            <td>
+                <p class="btn btn-warning btn-mant"> @Html.ActionLink("Editar", "Update", new { id = item.id })</p>
+            </td>
+            <td>
+                <p class="btn btn-danger btn-mant">  @Html.ActionLink("Eliminar", "Delete", new { id = item.id })</p>
+
+            </td>
+        </tr>
             }
 
         </table>

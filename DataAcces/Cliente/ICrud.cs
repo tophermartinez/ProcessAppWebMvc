@@ -16,7 +16,7 @@ namespace DataAcces.Cliente
         
 
         List<T> Read();
-        string Login(string user, string pass);
+        int Login(string user, string pass);
     }
 }
 

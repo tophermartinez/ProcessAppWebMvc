@@ -83,6 +83,158 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        @if (Session["perfil"] != null)
+        {
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    @if (Convert.ToInt32(Session["perfil"]) == 1)
+                    {
+                        @Session["perfil"].ToString()
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Empresa
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="@Url.Action("Insert", "Empresa")">Crear Empresa</a>
+                                <a class="dropdown-item" href="@Url.Action("Read", "Empresa")">Mantenedor Empresas</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Usuario
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="@Url.Action("Insert", "Mantenedor")">Crear Usuario</a>
+                                <a class="dropdown-item" href="@Url.Action("Read", "Mantenedor")">Mantenedor Usuarios</a>
+
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Roles
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="@Url.Action("Insert", "Perfil")">Crear Rol</a>
+                                <a class="dropdown-item" href="@Url.Action("Read", "Perfil")">Mantenedor Roles</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Tarea
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <!--<a class="dropdown-item" href="@Url.Action("Insert", "Tarea")">Crear Tarea</a>-->
+                                <a class="dropdown-item" href="@Url.Action("Read", "Tarea")">Mantenedor Tareas</a>
+                            </div>
+
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Unidades
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <!--<a class="dropdown-item" href="@Url.Action("Insert", "Unidades")">Crear Unidad</a>-->
+                                <a class="dropdown-item" href="@Url.Action("Read", "Unidades")">Mantenedor Unidades</a>
+                            </div>
+
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Unidad Detalle
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <!--<a class="dropdown-item" href="@Url.Action("Insert", "UNIDADDETALLE")">Crear Unidad Detalle</a>-->
+                                <a class="dropdown-item" href="@Url.Action("Read", "UNIDADDETALLE")">Mantenedor Unidades  Detalle</a>
+                            </div>
+
+                        </li>
+                    }
+                    @if (Convert.ToInt32(Session["perfil"]) == 2)
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Tarea
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="@Url.Action("Insert", "Tarea")">Crear Tarea</a>
+                                <a class="dropdown-item" href="@Url.Action("Read", "Tarea")">Mantenedor Tareas</a>
+                            </div>
+
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Unidades
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="@Url.Action("Insert", "Unidades")">Crear Unidad</a>
+                                <a class="dropdown-item" href="@Url.Action("Read", "Unidades")">Mantenedor Unidades</a>
+                            </div>
+
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Unidad Detalle
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="@Url.Action("Insert", "UNIDADDETALLE")">Crear Unidad Detalle</a>
+                                <a class="dropdown-item" href="@Url.Action("Read", "UNIDADDETALLE")">Mantenedor Unidades  Detalle</a>
+                            </div>
+
+                        </li>
+                    }
+                    @if (Convert.ToInt32(Session["perfil"]) == 3)
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Tarea
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="@Url.Action("Insert", "Tarea")">Crear Tarea</a>
+                                <a class="dropdown-item" href="@Url.Action("Read", "Tarea")">Mantenedor Tareas</a>
+                            </div>
+
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Unidades
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <!--<a class="dropdown-item" href="@Url.Action("Insert", "Unidades")">Crear Unidad</a>-->
+                                <a class="dropdown-item" href="@Url.Action("Read", "Unidades")">Mantenedor Unidades</a>
+                            </div>
+
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Unidad Detalle
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <!--<a class="dropdown-item" href="@Url.Action("Insert", "UNIDADDETALLE")">Crear Unidad Detalle</a>-->
+                                <a class="dropdown-item" href="@Url.Action("Read", "UNIDADDETALLE")">Mantenedor Unidades  Detalle</a>
+                            </div>
+
+                        </li>
+                    }
+                </ul>
+                @if (Convert.ToInt32(Session["perfil"]) > 0)
+                {
+                    <li style="list-style-type: none">
+                        <div class="topnav">
+                            <!--<a href="javascript:ruta()">Home</a>-->
+                            @using (Html.BeginForm("Logout", "Mantenedor", FormMethod.Post, new { role = "form" }))
+                            {
+
+                                @Html.AntiForgeryToken()
+                                <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;" class="btn btn-link">Cerrar sesión</button>
+                            }
+
+                        </div>
+                    </li>
+                }
+            </div>
+
+
+        }
     </nav>
     <div class="container body-content">
         @RenderBody()

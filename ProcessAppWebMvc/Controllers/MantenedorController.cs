@@ -81,20 +81,27 @@ namespace ProcessAppWebMvc.Controllers
         [HttpPost]
         public ActionResult LoginPost(FormCollection fc)
         {
+            ViewBag.error = null;
             string nombre = fc["usu"];
             Session["usu"] = nombre;
-
-            string pass =   fc["pass"];
-
-            Session["pass"] = pass;
-
+            string pass = fc["pass"];
+            //Session["pass"] = pass;
             //string Rol = fc["Rol"];
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             DaoCliente dao = new DaoCliente();
-           string result = dao.Login(nombre, pass);
+            int result = dao.Login(nombre, pass);
 
             Session["Perfil"] = result;
-
+            if(result > 0)
+            {
+                return RedirectToAction("Dashboard");
+            }
+            else
+            {
+                ViewBag.error = "Usuario o contraseña incorrecto(s)";
+                return View("LoginProcess");
+            }
+            /*
             if (result.Equals("Administrador"))
             {
                 return RedirectToAction("Dashboard");
@@ -114,7 +121,7 @@ namespace ProcessAppWebMvc.Controllers
 
                 return View("LoginProcess");// deberia redirigir a una mantenedor
             }
-
+            */
         }
 
         [HttpPost]
@@ -127,11 +134,11 @@ namespace ProcessAppWebMvc.Controllers
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             Response.Cache.SetExpires(DateTime.Now.AddSeconds(-1));
             Response.Cache.SetNoStore();
-             Session.Abandon(); 
+           //Session.Abandon(); 
             Session.Clear();
             //FormsAuthentication.SignOut();
             FormsAuthentication.SignOut();
-            Session["usu"] = null;
+            //Session["usu"] = null;
             Session.Abandon();
 
 

@@ -188,13 +188,13 @@ namespace DataAcces
 
  
 
-        public string Login(string usu, string pass)  //( USUARIO dto)
+        public int Login(string usu, string pass)  //( USUARIO dto)
         {
 
             
             // Boolean result = false;
-            string result = "";
-            string Perfil = "";
+            int result = 0;
+            int Perfil = 0;
             //string email = "";
             //string NameRol = "";
             //int IdRol = 0;
@@ -231,11 +231,11 @@ namespace DataAcces
                         if (_reader.Read())
                         {
                             USUARIO usu1 = new USUARIO();
-                            usu1.ID_PERFIL = _reader.GetInt32(0);
-                           
-                            int id_per = usu1.ID_PERFIL;
+                            //usu1.ID_PERFIL = _reader.GetInt32(0);
+                            Perfil = _reader.GetInt32(0);
+                            //int id_per = usu1.ID_PERFIL;
 
-                           
+                           /*
                             switch (id_per)
                             {
                                
@@ -243,13 +243,13 @@ namespace DataAcces
                                     Perfil = "Administrador";
                                     break;
                                 case 2:
-                                    Perfil = "Funcionario";
+                                    Perfil = "Supervisor";
                                     break;
                                 case 3:
-                                    Perfil = "Diseñador";
+                                    Perfil = "Funcionario";
                                     break;
                             }
-
+                           */
                         }
                         
                         result = Perfil;
@@ -261,7 +261,7 @@ namespace DataAcces
                     }
                     else
                     {
-                        result = "NOOK";
+                        result = 0;
                         //MessageBox.Show("No se pudo ingresar");
                     }
 

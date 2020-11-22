@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = "~/Views/Shared/_Layout_2.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "Contact";
 }
 
@@ -7,12 +7,20 @@
     ViewBag.Title = "Dashboard";
 }
 <br />
-<h3>Bienvenido @Session["usu"].ToString()</h3>
-
-<br />
-
-@if (Session["usu"] != null)
+@if (Session["perfil"] != null && Convert.ToInt32(Session["perfil"]) == 1)
 {
+    <h2>Bienvenido Administrador, </h2>
+    <h3>@Session["usu"].ToString()</h3>
+    <br />
+    <h4>Empresa : </h4>
+    <h4>Fecha de hoy  : <span class="text-md-center">@DateTime.Now</span></h4>
+    
+}
+else
+{
+    <h3>Bienvenido</h3>
+    <br />
+
     <h5>este es el resumen de tus últimas acciones :</h5>
     <div class="table-responsive-sm table-responsive-md">
         <table class="table table-hover">
@@ -107,15 +115,8 @@
                 </tr>
             </tbody>
         </table>
-
-
-
     </div>
 }
-else
-{
-<h1>Debe logearse para acceder a esta opcion, no te creas vivo ctm</h1>
-    @*<h1>Usuario o contraseña incorrecta</h1>
 
-        @Html.ActionLink("Volver a Home", "LoginProcess")*@
-}
+
+
