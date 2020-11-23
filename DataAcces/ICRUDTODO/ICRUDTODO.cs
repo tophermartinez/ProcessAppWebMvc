@@ -12,5 +12,10 @@ namespace DataAcces.ICRUDTODO
         string Update(X dto);
         string Delete(String dto);
         List<X> Read();
+
+        string InsertF(X dto);
+        string UpdateF(X dto);
+        string DeleteF(String dto);
+        List<X> ReadF();
     }
 }

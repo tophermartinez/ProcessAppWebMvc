@@ -50,5 +50,45 @@ namespace ProcessAppWebMvc.Controllers
         {
             return View("Insert", new TAREA());
         }
+
+
+
+        // GET: TareaF
+        [HttpPost]
+        public ActionResult InsertF(TAREA dto)
+        {
+            NegocioTarea obj = new NegocioTarea();
+            obj.InsertF(dto);
+            return RedirectToAction("ReadF");
+        }
+        [HttpPost]
+        public ActionResult UpdateF(TAREA dto)
+        {
+            NegocioTarea obj = new NegocioTarea();
+            obj.UpdateF(dto);
+            return RedirectToAction("ReadF");
+        }
+        public ActionResult DeleteF(string IDTAREA)
+        {
+            NegocioTarea obj = new NegocioTarea();
+            obj.DeleteF(IDTAREA);
+            return RedirectToAction("ReadF");
+        }
+        public ActionResult ReadF()
+        {
+            NegocioTarea obj = new NegocioTarea();
+            return View(obj.ReadF());
+        }
+        public ActionResult UpdateF(int IDTAREA)
+        {
+            NegocioTarea obj = new NegocioTarea();
+            TAREA dto = obj.ReadF().FirstOrDefault(a => a.IDTAREA == IDTAREA);
+            return View("UpdateF", dto);
+        }
+
+        public ActionResult InsertF()
+        {
+            return View("InsertF", new TAREA());
+        }
     }
 }
