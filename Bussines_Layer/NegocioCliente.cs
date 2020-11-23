@@ -36,10 +36,10 @@ namespace Bussines_Layer
         }
 
 
-        public int Login(string usu, string pass)
+        public USER_INFO Login(string usu, string pass)
         {
             DaoCliente dao = new DaoCliente();
-            int log = dao.Login(usu, pass);
+            USER_INFO log = dao.Login(usu, pass);
             return log;
 
         }

@@ -14,43 +14,87 @@ namespace ProcessAppWebMvc.Controllers
         [HttpPost]
         public ActionResult Insert(UNIDAD dto)
         {
-            NegocioUnidad obj = new NegocioUnidad();
-            obj.Insert(dto);
-            return RedirectToAction("Read");
+            if (Session["Perfil"] != null)
+            {
+                NegocioUnidad obj = new NegocioUnidad();
+                obj.Insert(dto);
+                return RedirectToAction("Read");
+            }
+            else
+            {
+                return View("../Mantenedor/LoginProcess");
+            }
+        
         }
         [HttpPost]
         public ActionResult Update(UNIDAD dto)
         {
-            NegocioUnidad obj = new NegocioUnidad();
-            obj.Update(dto);
-            return RedirectToAction("Read");
+            if (Session["Perfil"] != null)
+            {
+                NegocioUnidad obj = new NegocioUnidad();
+                obj.Update(dto);
+                return RedirectToAction("Read");
+            }
+            else
+            {
+                return View("../Mantenedor/LoginProcess");
+            }
         }
         public ActionResult Delete(string ID_UNIDAD)
         {
-            NegocioUnidad obj = new NegocioUnidad();
-            obj.Delete(ID_UNIDAD);
-            return RedirectToAction("Read");
+            if (Session["Perfil"] != null)
+            {
+                NegocioUnidad obj = new NegocioUnidad();
+                obj.Delete(ID_UNIDAD);
+                return RedirectToAction("Read");
+            }
+            else
+            {
+                return View("../Mantenedor/LoginProcess");
+            }
         }
         public ActionResult Read()
         {
-            NegocioUnidad obj = new NegocioUnidad();
-            return View(obj.Read());
+            if (Session["Perfil"] != null)
+            {
+                NegocioUnidad obj = new NegocioUnidad();
+                return View(obj.Read());
+            }
+            else
+            {
+                return View("../Mantenedor/LoginProcess");
+            }
         }
         public ActionResult Update(int ID_UNIDAD)
         {
-            NegocioUnidad obj = new NegocioUnidad();
-            UNIDAD dto = obj.Read().FirstOrDefault(a => a.ID_UNIDAD == ID_UNIDAD);
-            return View("Update", dto);
+            if (Session["Perfil"] != null)
+            {
+                NegocioUnidad obj = new NegocioUnidad();
+                UNIDAD dto = obj.Read().FirstOrDefault(a => a.ID_UNIDAD == ID_UNIDAD);
+                return View("Update", dto);
+            }
+            else
+            {
+                return View("../Mantenedor/LoginProcess");
+            }
         }
 
         public ActionResult Insert()
         {
-            return View("Insert", new UNIDAD());
+            if (Session["Perfil"] != null)
+            {
+                return View("Insert", new UNIDAD());
+            }
+            else
+            {
+                return View("../Mantenedor/LoginProcess");
+            }
+            
         }
 
 
 
-
+        /*
         // GET: UnidadesF}
         [HttpPost]
         public ActionResult InsertF(UNIDAD dto)
@@ -83,7 +127,7 @@ namespace ProcessAppWebMvc.Controllers
             UNIDAD dto = obj.ReadF().FirstOrDefault(a => a.ID_UNIDAD == ID_UNIDAD);
             return View("UpdateF", dto);
         }
-
+        */
         public ActionResult InsertF()
         {
             return View("InsertF", new UNIDAD());

@@ -188,12 +188,12 @@ namespace DataAcces
 
  
 
-        public int Login(string usu, string pass)  //( USUARIO dto)
+        public USER_INFO Login(string usu, string pass)  //( USUARIO dto)
         {
 
-            
+
             // Boolean result = false;
-            int result = 0;
+            USER_INFO result = null;
             int Perfil = 0;
             //string email = "";
             //string NameRol = "";
@@ -205,54 +205,71 @@ namespace DataAcces
                 using (OracleConnection cn = new OracleConnection(strOracle))
                 {
                     cn.Open();
+                  //  OracleCommand cmd = new OracleCommand("SELECT p.id_perfil FROM PERFIL P " +
+                 //       "INNER JOIN USUARIO US ON P.ID_PERFIL = US.ID_PERFIL where US.NOMBRE_USUARIO = :usu AND CONTRASENA = :pass", cn);
 
-                    OracleCommand cmd = new OracleCommand("SELECT p.id_perfil FROM PERFIL P " +
-                        "INNER JOIN USUARIO US ON P.ID_PERFIL = US.ID_PERFIL where US.NOMBRE_USUARIO = :usu AND CONTRASENA = :pass", cn); 
-                  OracleCommand comando = new OracleCommand("SELECT * FROM USUARIO WHERE NOMBRE_USUARIO = :usu AND CONTRASENA = :pass", cn);
+
+                  OracleCommand comando = new OracleCommand("SELECT us.*," +
+                                                              "emp.rut, " +
+                                                              "emp.nombre, " +
+                                                              "per.nombre " +
+                                                              "FROM USUARIO us " +
+                                                              "INNER JOIN empresa emp ON us.empresa = emp.id_empresa " +
+                                                              "INNER JOIN perfil per ON per.id_perfil =  us.id_perfil " +
+                                                              "WHERE NOMBRE_USUARIO = :usu " +
+                                                              "AND CONTRASENA = :pass", cn);
 
                     comando.Parameters.AddWithValue(":usu", usu);
                     comando.Parameters.AddWithValue(":pass", pass);
 
-                    cmd.Parameters.AddWithValue(":usu", usu);
-                    cmd.Parameters.AddWithValue(":pass", pass);
+                    //cmd.Parameters.AddWithValue(":usu", usu);
+                    //cmd.Parameters.AddWithValue(":pass", pass);
 
                     OracleDataReader lector = comando.ExecuteReader();
-                    OracleDataReader _reader = cmd.ExecuteReader();
-
-
+                    //OracleDataReader _reader = cmd.ExecuteReader();
 
                     if (lector.Read() == true)
                     {
-                        USUARIO usu_sesion = new USUARIO();
-                        usu_sesion.ID = lector.GetInt32(0);
-                        usu_sesion.NOMBRE_USUARIO = lector.GetString(9);
-                        usu_sesion.CONTRASENA = lector.GetString(10);
+                        USER_INFO user = new USER_INFO();
+                        //USUARIO usu_sesion = new USUARIO();
+                        user.NOMBRE = lector.GetString(3);
+                        user.APELLIDO = lector.GetString(4) + " " + lector.GetString(5);
+                        user.RUT = lector.GetInt32(1);
+                        user.RUT_EMPRESA = lector.GetInt32(14);
+                        user.PERFIL = lector.GetInt32(11);
+                        user.NOMBRE_EMPRESA = lector.GetString(15);
+                        user.NOMBRE_PERFIL = lector.GetString(16);
+                        result = user;
+                        //usu_sesion.ID = lector.GetInt32(0);
+                        //usu_sesion.NOMBRE_USUARIO = lector.GetString(9);
+                        //usu_sesion.CONTRASENA = lector.GetString(10);
+                       
+                        //if (_reader.Read())
+                        //{
+                        //    //USUARIO usu1 = new USUARIO();
+                        //    //usu1.ID_PERFIL = _reader.GetInt32(0);
+                        //    Perfil = _reader.GetInt32(0);
+                        //    //int id_per = usu1.ID_PERFIL;
 
-                        if (_reader.Read())
-                        {
-                            USUARIO usu1 = new USUARIO();
-                            //usu1.ID_PERFIL = _reader.GetInt32(0);
-                            Perfil = _reader.GetInt32(0);
-                            //int id_per = usu1.ID_PERFIL;
-
-                           /*
-                            switch (id_per)
-                            {
+                        //   /*
+                        //    switch (id_per)
+                        //    {
                                
-                                case  1:
-                                    Perfil = "Administrador";
-                                    break;
-                                case 2:
-                                    Perfil = "Supervisor";
-                                    break;
-                                case 3:
-                                    Perfil = "Funcionario";
-                                    break;
-                            }
-                           */
-                        }
-                        
-                        result = Perfil;
+                        //        case  1:
+                        //            Perfil = "Administrador";
+                        //            break;
+                        //        case 2:
+                        //            Perfil = "Supervisor";
+                        //            break;
+                        //        case 3:
+                        //            Perfil = "Funcionario";
+                        //            break;
+                        //    }
+                        //   */
+                        //}
+                     
+                      
+                        //result = user;
 
                         //Form1 formulario = new Form1();
                         //conexion.Close();
@@ -261,7 +278,7 @@ namespace DataAcces
                     }
                     else
                     {
-                        result = 0;
+                        result = null;
                         //MessageBox.Show("No se pudo ingresar");
                     }
 

@@ -9,12 +9,12 @@
 <br />
 @if (Session["perfil"] != null && Convert.ToInt32(Session["perfil"]) == 1)
 {
-    <h2>Bienvenido Administrador, </h2>
-    <h3>@Session["usu"].ToString()</h3>
+    <h1>Empresa : @Session["nombreemp"]</h1>
     <br />
-    <h4>Empresa : </h4>
+    <h2>Bienvenido: @Session["nombre"] @Session["apellido"]</h2>
+    <br />
     <h4>Fecha de hoy  : <span class="text-md-center">@DateTime.Now</span></h4>
-    
+
 }
 else
 {

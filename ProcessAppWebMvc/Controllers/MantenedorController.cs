@@ -48,23 +48,46 @@ namespace ProcessAppWebMvc.Controllers
 
         public ActionResult Read()
         {
-            NegocioCliente neg = new NegocioCliente();
-            return View(neg.Read());
+            if(Session["Perfil"] != null)
+            {
+                NegocioCliente neg = new NegocioCliente();
+                return View(neg.Read());
+            }
+            else
+            {
+                return View("LoginProcess");
+            }
+           
         }
 
 
         [HttpGet]
         public ActionResult Update(int ID)
         {
-            NegocioCliente neg = new NegocioCliente();
-            USUARIO usu = neg.Read().FirstOrDefault(a => a.ID == ID);
-            return View("Update", usu);
+            if (Session["Perfil"] != null)
+            {
+                NegocioCliente neg = new NegocioCliente();
+                USUARIO usu = neg.Read().FirstOrDefault(a => a.ID == ID);
+                return View("Update", usu);
+            }
+            else
+            {
+                return View("LoginProcess");
+            }
 
         }
 
         public ActionResult Insert()
         {
-            return View("Insert", new USUARIO());
+            if (Session["Perfil"] != null)
+            {
+                return View("Insert", new USUARIO());
+            }
+            else
+            {
+                return View("LoginProcess");
+            }
+            
         }
 
 
@@ -73,8 +96,15 @@ namespace ProcessAppWebMvc.Controllers
         public ActionResult Login()
         {
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
-
-            return View("LoginProcess");// deberia redirigir a una mantenedor
+            if (Session["Perfil"] != null)
+            {
+                return View("LoginProcess");// deberia redirigir a una mantenedor
+            }
+            else
+            {
+                return View("LoginProcess");
+            }
+        
 
         }
 
@@ -89,11 +119,17 @@ namespace ProcessAppWebMvc.Controllers
             //string Rol = fc["Rol"];
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             DaoCliente dao = new DaoCliente();
-            int result = dao.Login(nombre, pass);
+            USER_INFO result = dao.Login(nombre, pass);
 
-            Session["Perfil"] = result;
-            if(result > 0)
+            if (result != null)
             {
+                Session["nombre"] = result.NOMBRE;
+                Session["apellido"] = result.APELLIDO;
+                Session["rut"] = result.RUT;
+                Session["rutempresa"] = result.RUT_EMPRESA;
+                Session["perfil"] = result.PERFIL;
+                Session["nombreemp"] = result.NOMBRE_EMPRESA;
+                Session["nombreper"] = result.NOMBRE_PERFIL;
                 return RedirectToAction("Dashboard");
             }
             else
@@ -101,6 +137,8 @@ namespace ProcessAppWebMvc.Controllers
                 ViewBag.error = "Usuario o contraseña incorrecto(s)";
                 return View("LoginProcess");
             }
+
+
             /*
             if (result.Equals("Administrador"))
             {
@@ -156,19 +194,16 @@ namespace ProcessAppWebMvc.Controllers
         }
 
 
-        public ActionResult Tareas()
-        {
-            return View();
-        }
-
-        public ActionResult Flujos()
-        {
-            return View();
-        }
-
         public ActionResult Dashboard()
         {
-            return View();
+            if (Session["Perfil"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return View("LoginProcess");
+            }
         }
 
     }

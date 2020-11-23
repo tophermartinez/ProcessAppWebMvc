@@ -38,8 +38,8 @@ namespace Entity_Layer
         [DataType(DataType.EmailAddress)]
         public string CORREO { get; set; }
         [Display(Name = "Telefono Contacto")]
-        [StringLength(8, ErrorMessage = "Numero no puede contener mas de 8 digitos")]
-        [MinLength(8, ErrorMessage = "Numero no puede contener menos de 8 digitos")]
+        //[StringLength(8, ErrorMessage = "Numero no puede contener mas de 8 digitos")]
+        //[MinLength(8, ErrorMessage = "Numero no puede contener menos de 8 digitos")]
         public int NUMERO { get; set; }
         public string DIRECCION { get; set; }
         public string NOMBRE_USUARIO { get; set; }

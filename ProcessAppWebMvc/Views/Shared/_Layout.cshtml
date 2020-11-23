@@ -83,13 +83,13 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         @if (Session["perfil"] != null)
         {
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav mr-auto">
                     @if (Convert.ToInt32(Session["perfil"]) == 1)
                     {
-                        @Session["perfil"].ToString()
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Empresa
@@ -186,6 +186,9 @@
                 @if (Convert.ToInt32(Session["perfil"]) > 0)
                 {
                     <li style="list-style-type: none">
+                        <a style="color:white;">@Session["nombreper"].ToString()</a>
+                    </li>
+                    <li style="list-style-type: none">
                         <div class="topnav">
                             <!--<a href="javascript:ruta()">Home</a>-->
                             @using (Html.BeginForm("Logout", "Mantenedor", FormMethod.Post, new { role = "form" }))
@@ -216,3 +219,14 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+@*
+    @if (Session["perfil"] != null)
+    {
+        <script>
+            //Script que impide el uso del botón atrás del navegador
+            window.location.hash = "no-back-button";
+            window.location.hash = "Again-No-back-button";
+            window.onhashchange = function () { window.location.hash = "";}
+        </script>
+    }
+*@
