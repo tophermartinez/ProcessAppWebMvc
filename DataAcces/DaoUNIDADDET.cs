@@ -43,6 +43,11 @@ namespace DataAcces
             return result;
         }
 
+        public string DeleteF(string dto)
+        {
+            throw new NotImplementedException();
+        }
+
         public string Insert(UNIDAD_DETALLE dto)
         {
             string result = string.Empty;
@@ -55,11 +60,11 @@ namespace DataAcces
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
                         //command.Parameters.Add(new OracleParameter("ID", OracleType.Number)).Value = dto.ID;
-                        command.Parameters.Add(new OracleParameter("p_ID_UNIDAD", OracleType.Number)).Value = dto.ID_UNIDAD;
-                        command.Parameters.Add(new OracleParameter("NOMBRE_UNIDAD", OracleType.VarChar)).Value = dto.NOMBRE_UNIDAD;
+                        command.Parameters.Add(new OracleParameter("P_ID_UNIDAD", OracleType.Number)).Value = dto.ID_UNIDAD;
+                       // command.Parameters.Add(new OracleParameter("NOMBRE_UNIDAD", OracleType.VarChar)).Value = dto.NOMBRE_UNIDAD;
                         command.Parameters.Add(new OracleParameter("P_ID_TAREA", OracleType.Number)).Value = dto.ID_TAREA;
-                        command.Parameters.Add(new OracleParameter("NOMBRE_TAREA", OracleType.VarChar)).Value = dto.NOMBRE_TAREA;
-                        command.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar, 50)).Value = System.Data.ParameterDirection.Output;
+                       // command.Parameters.Add(new OracleParameter("NOMBRE_TAREA", OracleType.VarChar)).Value = dto.NOMBRE_TAREA;
+                        command.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar,50)).Value = System.Data.ParameterDirection.Output;
                         command.ExecuteNonQuery();
                         result = Convert.ToString(command.Parameters["P_RESULT"].Value);
                     }
@@ -74,6 +79,11 @@ namespace DataAcces
                 new Exception("ERROR EN METODO INSERTAR" + ex.Message);
             }
             return result;
+        }
+
+        public string InsertF(UNIDAD_DETALLE dto)
+        {
+            throw new NotImplementedException();
         }
 
         public List<UNIDAD_DETALLE> Read()
@@ -118,6 +128,11 @@ namespace DataAcces
             return list;
         }
 
+        public List<UNIDAD_DETALLE> ReadF()
+        {
+            throw new NotImplementedException();
+        }
+
         public string Update(UNIDAD_DETALLE dto)
         {
             string result = string.Empty;
@@ -149,8 +164,9 @@ namespace DataAcces
             return result;
         }
 
-
-
-
+        public string UpdateF(UNIDAD_DETALLE dto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
