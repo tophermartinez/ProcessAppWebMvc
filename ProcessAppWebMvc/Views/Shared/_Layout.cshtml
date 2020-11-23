@@ -133,39 +133,6 @@
                                 Unidades
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <!--<a class="dropdown-item" href="@Url.Action("Insert", "Unidades")">Crear Unidad</a>-->
-                                <a class="dropdown-item" href="@Url.Action("Read", "Unidades")">Mantenedor Unidades</a>
-                            </div>
-
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Unidad Detalle
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <!--<a class="dropdown-item" href="@Url.Action("Insert", "UNIDADDETALLE")">Crear Unidad Detalle</a>-->
-                                <a class="dropdown-item" href="@Url.Action("Read", "UNIDADDETALLE")">Mantenedor Unidades  Detalle</a>
-                            </div>
-
-                        </li>
-                    }
-                    @if (Convert.ToInt32(Session["perfil"]) == 2)
-                    {
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Tarea
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="@Url.Action("Insert", "Tarea")">Crear Tarea</a>
-                                <a class="dropdown-item" href="@Url.Action("Read", "Tarea")">Mantenedor Tareas</a>
-                            </div>
-
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Unidades
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="@Url.Action("Insert", "Unidades")">Crear Unidad</a>
                                 <a class="dropdown-item" href="@Url.Action("Read", "Unidades")">Mantenedor Unidades</a>
                             </div>
@@ -182,6 +149,27 @@
 
                         </li>
                     }
+                    @if (Convert.ToInt32(Session["perfil"]) == 2)
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Unidades
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="@Url.Action("Insert", "Unidades")">Crear Unidad</a>
+                                <a class="dropdown-item" href="@Url.Action("Read", "Unidades")">Mantenedor Unidades</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Unidad Detalle
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="@Url.Action("Insert", "UNIDADDETALLE")">Crear Unidad Detalle</a>
+                                <a class="dropdown-item" href="@Url.Action("Read", "UNIDADDETALLE")">Mantenedor Unidades  Detalle</a>
+                            </div>
+                        </li>
+                    }
                     @if (Convert.ToInt32(Session["perfil"]) == 3)
                     {
                         <li class="nav-item dropdown">
@@ -192,27 +180,6 @@
                                 <a class="dropdown-item" href="@Url.Action("Insert", "Tarea")">Crear Tarea</a>
                                 <a class="dropdown-item" href="@Url.Action("Read", "Tarea")">Mantenedor Tareas</a>
                             </div>
-
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Unidades
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <!--<a class="dropdown-item" href="@Url.Action("Insert", "Unidades")">Crear Unidad</a>-->
-                                <a class="dropdown-item" href="@Url.Action("Read", "Unidades")">Mantenedor Unidades</a>
-                            </div>
-
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Unidad Detalle
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <!--<a class="dropdown-item" href="@Url.Action("Insert", "UNIDADDETALLE")">Crear Unidad Detalle</a>-->
-                                <a class="dropdown-item" href="@Url.Action("Read", "UNIDADDETALLE")">Mantenedor Unidades  Detalle</a>
-                            </div>
-
                         </li>
                     }
                 </ul>
