@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RUT_UTILS.cs" />
     <Compile Include="Cliente\ICrud.cs" />
     <Compile Include="Conexion\OracleConexion.cs" />
     <Compile Include="DaoCliente.cs" />

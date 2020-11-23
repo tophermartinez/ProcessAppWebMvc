@@ -41,24 +41,33 @@ namespace DataAcces
             string resultado = string.Empty;
             try
             {
-                using (OracleConnection cn = new OracleConnection(strOracle))
+                int rutValue = 0;
+                Boolean validate = RUT_UTILS.ValidaRut(dto.RUT);
+                if (validate)
                 {
-                    cn.Open();
-                    using (OracleCommand command = new OracleCommand("SP_INSERT_EMPRESA", cn))
+                    rutValue = RUT_UTILS.ObtenerNumeroRutSinDv(dto.RUT);
+                    using (OracleConnection cn = new OracleConnection(strOracle))
                     {
-                        command.CommandType = System.Data.CommandType.StoredProcedure;
-                        //command.Parameters.Add(new OracleParameter("P_IDEMPRESA", OracleType.Number)).Value = dto.ID;
-                        command.Parameters.Add(new OracleParameter("P_RUT", OracleType.Number)).Value = dto.RUT;
-                        command.Parameters.Add(new OracleParameter("P_NOMBRE", OracleType.VarChar)).Value = dto.NOMBRE;
-                        command.Parameters.Add(new OracleParameter("P_DIRECCION", OracleType.VarChar)).Value = dto.DIRECCION;
-                        command.Parameters.Add(new OracleParameter("P_CORREO_CONTACTO", OracleType.VarChar)).Value = dto.CORREO_CONTACTO;
-                        command.Parameters.Add(new OracleParameter("P_TELEFONO_CONTACTO", OracleType.Int32)).Value = dto.TELEFONO_CONTACTO;
-                        command.Parameters.Add(new OracleParameter("P_ESTADO", OracleType.Number)).Value = dto.ESTADO;
-                        command.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar,200)).Direction = System.Data.ParameterDirection.Output;
-                        command.ExecuteNonQuery();
-                        resultado = Convert.ToString(command.Parameters["P_RESULT"].Value);
+                        cn.Open();
+                        using (OracleCommand command = new OracleCommand("SP_INSERT_EMPRESA", cn))
+                        {
+                            command.CommandType = System.Data.CommandType.StoredProcedure;
+                            //command.Parameters.Add(new OracleParameter("P_IDEMPRESA", OracleType.Number)).Value = dto.ID;
+                            //command.Parameters.Add(new OracleParameter("P_RUT", OracleType.Number)).Value = dto.RUT;
+                            command.Parameters.Add(new OracleParameter("P_RUT", OracleType.Number)).Value = rutValue;
+                            command.Parameters.Add(new OracleParameter("P_NOMBRE", OracleType.VarChar)).Value = dto.NOMBRE;
+                            command.Parameters.Add(new OracleParameter("P_DIRECCION", OracleType.VarChar)).Value = dto.DIRECCION;
+                            command.Parameters.Add(new OracleParameter("P_CORREO_CONTACTO", OracleType.VarChar)).Value = dto.CORREO_CONTACTO;
+                            command.Parameters.Add(new OracleParameter("P_TELEFONO_CONTACTO", OracleType.Int32)).Value = dto.TELEFONO_CONTACTO;
+                            command.Parameters.Add(new OracleParameter("P_ESTADO", OracleType.Number)).Value = dto.ESTADO;
+                            command.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar, 200)).Direction = System.Data.ParameterDirection.Output;
+                            command.ExecuteNonQuery();
+                            resultado = Convert.ToString(command.Parameters["P_RESULT"].Value);
+                        }
                     }
                 }
+                
+              
 
             }
             catch (Exception ex)
@@ -86,7 +95,7 @@ namespace DataAcces
                             {
                                 emp = new EMPRESA();
                                 emp.ID = Convert.ToInt32(dr["ID_EMPRESA"]);
-                                emp.RUT = Convert.ToInt32(dr["RUT"]);
+                                emp.RUT = Convert.ToInt32(dr["RUT"]).ToString();
                                 emp.NOMBRE = Convert.ToString(dr["NOMBRE"]);
                                 emp.DIRECCION = Convert.ToString(dr["DIRECCION"]);
                                 emp.CORREO_CONTACTO = Convert.ToString(dr["CORREO_CONTACTO"]);
