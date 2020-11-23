@@ -58,7 +58,7 @@
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 @Html.LabelFor(model => model.CORREO_CONTACTO, htmlAttributes: new { @class = "control-label" })
                                 @Html.EditorFor(model => model.CORREO_CONTACTO, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.CORREO_CONTACTO, "", new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.CORREO_CONTACTO, null,  new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="row">
