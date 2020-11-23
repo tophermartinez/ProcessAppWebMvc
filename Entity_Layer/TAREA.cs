@@ -15,6 +15,15 @@ namespace Entity_Layer
 
         public DateTime FECHA_ACTUAL { get; set; }
 
+        public DateTime FECHA_TERMINO { get; set; }
+
+        public int  ID_EMPRESA { get; set; }
+        public int  ID_USUARIO { get; set; }
+
+        public int RUT_EM { get; set; }
+        public int RUT_USU { get; set; }
+
+
 
     }
 }

@@ -35,5 +35,33 @@ namespace Bussines_Layer
             DaoUnidad dao = new DaoUnidad();
             return dao.Read();
         }
+
+
+        /*FUNCIONARIOS */
+        public string UpdateF(UNIDAD dto)
+        {
+            DaoUnidad dao = new DaoUnidad();
+            return dao.UpdateF(dto);
+
+        }
+
+        public string DeleteF(string dto)
+        {
+            DaoUnidad dao = new DaoUnidad();
+            return dao.DeleteF(dto);
+        }
+
+
+        public string InsertF(UNIDAD dto)
+        {
+            DaoUnidad dao = new DaoUnidad();
+            return dao.InsertF(dto);
+        }
+
+        public List<UNIDAD> ReadF()
+        {
+            DaoUnidad dao = new DaoUnidad();
+            return dao.ReadF();
+        }
     }
 }

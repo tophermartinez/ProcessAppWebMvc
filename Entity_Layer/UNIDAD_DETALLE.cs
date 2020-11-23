@@ -13,10 +13,15 @@ namespace Entity_Layer
         public int ID_UNIDAD { get; set; }
 
         public string NOMBRE_UNIDAD { get; set; }
-        public int ID_TAREA { get; set; }
+        public int   ID_TAREA { get; set; }
 
         public string NOMBRE_TAREA { get; set; }
 
+        public DateTime FECHA_TERMINO { get; set; }
+
+        public DateTime FECHACREACION { get; set; }
+
+        public DateTime FECHA_ACTUAL { get; set; }
 
 
     }
