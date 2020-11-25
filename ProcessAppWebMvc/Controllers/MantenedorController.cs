@@ -22,8 +22,21 @@ namespace ProcessAppWebMvc.Controllers
         }
 
         [HttpPost]
-        public ActionResult Insert(USUARIO dto)
+        public ActionResult Insert(FormCollection fc)
         {
+            USUARIO dto = new USUARIO();
+            dto.RUT = fc["RUT"];
+            dto.NOMBRES = fc["NOMBRES"];
+            dto.APELLIDO_PATERNO = fc["APELLIDO_PATERNO"];
+            dto.APELIIDO_MATERNO = fc["APELIIDO_MATERNO"];
+            dto.CORREO = fc["CORREO"];
+            dto.NUMERO = Convert.ToInt32(fc["NUMERO"]);
+            dto.DIRECCION = fc["DIRECCION"];
+            dto.NOMBRE_USUARIO = fc["NOMBRE_USUARIO"];
+            dto.CONTRASENA = fc["CONTRASENA"];
+            dto.ID_PERFIL = Convert.ToInt32(fc["PERFIL"]);
+            dto.ESTADO = Convert.ToInt32(fc["ESTADO"]);
+            dto.EMPRESA = Convert.ToInt32(fc["EMPRESA"]);
             NegocioCliente neg = new NegocioCliente();
             neg.Insert(dto);
             return RedirectToAction("Read");
@@ -81,6 +94,22 @@ namespace ProcessAppWebMvc.Controllers
         {
             if (Session["Perfil"] != null)
             {
+                DataAcces.DaoEmpresa de = new DataAcces.DaoEmpresa();
+                DataAcces.DaoCliente dc = new DataAcces.DaoCliente();
+                try
+                {
+                    List<estado> list = de.ObtenerEstadoUsuario();
+                    List<EMPRESA> list2 = de.ObtenerListaEmpresas();
+                    List<PERFIL> list3 = dc.ObtenerListaPerfiles();
+                    ViewBag.EstadosUsuario = list;
+                    ViewBag.ListaEmpresas = list2;
+                    ViewBag.ListaPerfiles = list3;
+                }
+                catch (Exception ex)
+                {
+                    new Exception("ERROR EN METODO LISTAR" + ex.Message);
+                }
+
                 return View("Insert", new USUARIO());
             }
             else

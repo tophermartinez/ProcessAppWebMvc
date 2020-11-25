@@ -1,4 +1,5 @@
 ﻿using Bussines_Layer;
+using DataAcces;
 using Entity_Layer;
 using System;
 using System.Collections.Generic;
@@ -30,8 +31,16 @@ namespace ProcessAppWebMvc.Controllers
 
 
         [HttpPost]
-        public ActionResult Insert(EMPRESA dto)
+        public ActionResult Insert(FormCollection fc)
         {
+            EMPRESA dto = new EMPRESA();
+            dto.RUT = fc["RUT"];
+            dto.NOMBRE = fc["NOMBRE"];
+            dto.DIRECCION = fc["DIRECCION"];
+            dto.CORREO_CONTACTO = fc["CORREO_CONTACTO"];
+            dto.TELEFONO_CONTACTO = Convert.ToInt32(fc["TELEFONO_CONTACTO"]);
+            dto.ESTADO = Convert.ToInt32(fc["ESTADO"]);
+           
             if (Session["Perfil"] != null)
             {
                 NegocioEmpresa emp = new NegocioEmpresa();
@@ -104,6 +113,16 @@ namespace ProcessAppWebMvc.Controllers
         {
             if (Session["Perfil"] != null)
             {
+                DataAcces.DaoEmpresa de = new DataAcces.DaoEmpresa();
+                try
+                {
+                    List<estado> list = de.ObtenerEstadoUsuario();
+                    ViewBag.EstadosUsuario = list;
+                }
+                catch (Exception ex)
+                {
+                    new Exception("ERROR EN METODO LISTAR" + ex.Message);
+                }
                 return View("Insert", new EMPRESA());
             }
             else

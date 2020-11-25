@@ -179,8 +179,65 @@ namespace DataAcces
             return list;
         }
 
-  
+        public List<estado> ObtenerEstadoUsuario()
+        {
+            List<estado> list = new List<estado>();
+            estado dto = null;
+            try
+            {
+                using (OracleConnection cn = new OracleConnection(strOracle))
+                {
+                    cn.Open();
+                    using (OracleCommand cmd = new OracleCommand("SELECT ID_ESTADO, NOMBRE, DESCRIPCION FROM estado where Descripcion = 'Usuario'", cn))
+                    {
+                        OracleDataReader _reader = cmd.ExecuteReader();
+                        while (_reader.Read())
+                        {
+                            dto = new estado();
+                            dto.ID = Convert.ToInt32(_reader["ID_ESTADO"]);
+                            dto.NOMBRE = Convert.ToString(_reader["NOMBRE"]);
+                            dto.DESCRIPCION = Convert.ToString(_reader["DESCRIPCION"]);
+                            list.Add(dto);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                new Exception("Error en metodo listar" + ex.Message);
+            }
+            return list;
+        }
 
+        public List<EMPRESA> ObtenerListaEmpresas()
+        {
+            List<EMPRESA> list = new List<EMPRESA>();
+            EMPRESA dto = null;
+            try
+            {
+                using (OracleConnection cn = new OracleConnection(strOracle))
+                {
+                    cn.Open();
+                    using (OracleCommand cmd = new OracleCommand("SELECT ID_EMPRESA, NOMBRE FROM EMPRESA", cn))
+                    {
+                        OracleDataReader _reader = cmd.ExecuteReader();
+                        while (_reader.Read())
+                        {
+                            dto = new EMPRESA();
+                            dto.ID = Convert.ToInt32(_reader["ID_EMPRESA"]);
+                            dto.NOMBRE = Convert.ToString(_reader["NOMBRE"]);
+                            list.Add(dto);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                new Exception("Error en metodo listar" + ex.Message);
+            }
+            return list;
+        }
     }
+
 }
 

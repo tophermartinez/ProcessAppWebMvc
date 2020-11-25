@@ -19,6 +19,7 @@ namespace ProcessAppWebMvc.Controllers
         {
             NegocioTarea obj = new NegocioTarea();
             obj.Insert(dto);
+        
             return RedirectToAction("Read");
         }
         [HttpPost]
@@ -48,6 +49,16 @@ namespace ProcessAppWebMvc.Controllers
 
         public ActionResult Insert()
         {
+            DataAcces.DaoEmpresa de = new DataAcces.DaoEmpresa();
+            try
+            {
+                List<estado> list = de.ObtenerEstadoUsuario();
+                ViewBag.EstadosUsuario = list;
+            } 
+            catch (Exception ex)
+            {
+                new Exception("ERROR EN METODO LISTAR" + ex.Message);
+            }
             return View("Insert", new TAREA());
         }
 
@@ -58,6 +69,7 @@ namespace ProcessAppWebMvc.Controllers
         public ActionResult InsertF(TAREA dto)
         {
             NegocioTarea obj = new NegocioTarea();
+           
             obj.InsertF(dto);
             return RedirectToAction("ReadF");
         }

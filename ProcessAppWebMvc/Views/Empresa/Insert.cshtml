@@ -18,120 +18,108 @@
     }
 </style>
 
-@using (Html.BeginForm())
-{
+@*@using (Html.BeginForm())
+
+    </form>
+         {
+*@
+<form id="mant_conexion" method="post" action="@Url.Action("Insert", "Empresa")">
     @Html.AntiForgeryToken()
 
-   
-<div class="form-horizontal">
-    <br>
-    <h4>Crear Empresa</h4>
-    <hr />
-    @if (Session["usu"] != null)
-    {
-        <div class="card col-lg-6">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-lg-12">
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                @Html.LabelFor(model => model.RUT, htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.RUT, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.RUT, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+        <br>
+        <h4>Crear Empresa</h4>
+        <hr />
+        @if (Session["usu"] != null)
+        {
+            <div class="card col-lg-6">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    @Html.LabelFor(model => model.RUT, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.RUT, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.RUT, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                @Html.LabelFor(model => model.NOMBRE, htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.NOMBRE, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.NOMBRE, "", new { @class = "text-danger" })
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    @Html.LabelFor(model => model.NOMBRE, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.NOMBRE, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.NOMBRE, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                @Html.LabelFor(model => model.DIRECCION, htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.DIRECCION, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.DIRECCION, "", new { @class = "text-danger" })
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    @Html.LabelFor(model => model.DIRECCION, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.DIRECCION, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.DIRECCION, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                @Html.LabelFor(model => model.CORREO_CONTACTO, htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.CORREO_CONTACTO, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.CORREO_CONTACTO, null,  new { @class = "text-danger" })
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    @Html.LabelFor(model => model.CORREO_CONTACTO, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.CORREO_CONTACTO, new { htmlAttributes = new { @class = "form-control"} })
+                                    @Html.ValidationMessageFor(model => model.CORREO_CONTACTO, null, new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                @Html.LabelFor(model => model.TELEFONO_CONTACTO, htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.TELEFONO_CONTACTO, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.TELEFONO_CONTACTO, "", new { @class = "text-danger" })
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    @Html.LabelFor(model => model.TELEFONO_CONTACTO, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.TELEFONO_CONTACTO, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.TELEFONO_CONTACTO, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                @Html.LabelFor(model => model.ESTADO, htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.ESTADO, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.ESTADO, "", new { @class = "text-danger" })
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    @Html.LabelFor(model => model.ESTADO, htmlAttributes: new { @class = "control-label" })
+                                    @*@Html.EditorFor(model => model.ESTADO, new { htmlAttributes = new { @class = "form-control" } })*@
+                                    <select id="listbox" name="ESTADO" class="form-control">
+                                        @foreach (var item in ViewBag.EstadosUsuario)
+                                        {
+                                            <option value="@item.ID">
+                                                @item.NOMBRE
+                                            </option>
+                                        }
+                                    </select>
+                                    @Html.ValidationMessageFor(model => model.ESTADO, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
 
 
-                                @*@Html.DropDownList("yourDropName", listItems, new { @class = "form-control" })*@
+                                    @*@Html.DropDownList("yourDropName", listItems, new { @class = "form-control" })*@
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <input type="reset" value="Limpiar" class="btn btn-info" />
+                                    <input type="submit" value="Crear Empresa" class="btn btn-success" />
+                                </div>
                             </div>
                         </div>
-                        <br />
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <input type="reset" value="Limpiar" class="btn btn-info" />
-                                <input type="submit" value="Crear Empresa" class="btn btn-success" />
-                            </div>
-                        </div>
+
                     </div>
-
                 </div>
             </div>
-        </div>
 
-    }
-    else
-    {
-        <h1>Debe logearse para acceder a esta opcion, no te creas vivo ctm</h1>
-    }
-</div>
-}
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-<script>
-   
-    function formatRut(rut) {
-        // XX.XXX.XXX-X
-        const newRut = rut.replace(/\./g, '').replace(/\-/g, '').trim().toLowerCase();
-        const lastDigit = newRut.substr(-1, 1);
-        const rutDigit = newRut.substr(0, newRut.length - 1)
-        let format = '';
-        for (let i = rutDigit.length; i > 0; i--) {
-            const e = rutDigit.charAt(i - 1);
-            format = e.concat(format);
-            if (i % 3 === 0) {
-                format = '.'.concat(format);
-            }
         }
-        if ($('#RUT').val().length > 2) {
-            $('#RUT').val(format.concat('-').concat(lastDigit))
-            
+        else
+        {
+            <h1>Debe logearse para acceder a esta opcion, no te creas vivo ctm</h1>
         }
-   
+    </div>
+</form>
+  
+
+
+    @*
+        }
+    *@
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
     }
-
-    $('#RUT').on('input', function () {
-        formatRut($('#RUT').val());
-    });
-
-
-</script>

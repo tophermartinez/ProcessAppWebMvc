@@ -23,7 +23,7 @@ namespace Entity_Layer
 
         public int ID { get; set; }
         [Required(ErrorMessage = "Este campo es requerido.")]
-        public int RUT { get; set; }
+        public String RUT { get; set; }
         public char DV { get; set; }
         [Required(ErrorMessage = "Este campo es requerido.")]
         public string NOMBRES { get; set; }
