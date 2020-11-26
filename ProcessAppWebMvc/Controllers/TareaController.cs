@@ -6,6 +6,9 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DataAcces;
+using System.Web.Security;
+using System.Web.UI;
 
 namespace ProcessAppWebMvc.Controllers
 {
@@ -17,7 +20,11 @@ namespace ProcessAppWebMvc.Controllers
         [HttpPost]
         public ActionResult Insert(TAREA dto)
         {
+            TAREA ta = new TAREA();
             NegocioTarea obj = new NegocioTarea();
+
+            dto.RUT_EM = (int)Session["rutempresa"];
+            dto.RUT_USU = (int)Session["rut"];
             obj.Insert(dto);
             return RedirectToAction("Read");
         }
@@ -43,6 +50,7 @@ namespace ProcessAppWebMvc.Controllers
         {
             NegocioTarea obj = new NegocioTarea();
             TAREA dto = obj.Read().FirstOrDefault(a => a.IDTAREA == IDTAREA);
+            dto.RUT_USU = (int)Session["rut"];
             return View("Update", dto);
         }
 
@@ -68,12 +76,12 @@ namespace ProcessAppWebMvc.Controllers
             obj.UpdateF(dto);
             return RedirectToAction("ReadF");
         }
-        public ActionResult DeleteF(string IDTAREA)
-        {
-            NegocioTarea obj = new NegocioTarea();
-            obj.DeleteF(IDTAREA);
-            return RedirectToAction("ReadF");
-        }
+        //public ActionResult DeleteF(string IDTAREA)
+        //{
+        //    NegocioTarea obj = new NegocioTarea();
+        //    obj.DeleteF(IDTAREA);
+        //    return RedirectToAction("ReadF");
+        //}
         public ActionResult ReadF()
         {
             NegocioTarea obj = new NegocioTarea();

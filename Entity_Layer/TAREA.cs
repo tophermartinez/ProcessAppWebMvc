@@ -14,15 +14,16 @@ namespace Entity_Layer
        public DateTime FECHACREACION { get; set; }
        public int ESTADO_TAREA { get; set; }
 
-        public DateTime FECHA_ACTUAL { get; set; }
+        public string FECHA_ACTUAL { get; set; }
 
-        public DateTime FECHA_TERMINO { get; set; }
+        public string FECHA_TERMINO { get; set; }
 
         public int  ID_EMPRESA { get; set; }
-        public int  ID_USUARIO { get; set; }
+        public string nombre_usuario { get; set; }
 
         public int RUT_EM { get; set; }
         public int RUT_USU { get; set; }
+        public string FechaEstimada { get; set; }
 
 
 

@@ -27,6 +27,7 @@ namespace Bussines_Layer
         
         public string Insert(TAREA dto)
         {
+
             DaoTarea dao = new DaoTarea();
             return dao.Insert(dto);
         }
@@ -47,11 +48,11 @@ namespace Bussines_Layer
 
         }
 
-        public string DeleteF(string dto)
-        {
-            DaoTarea dao = new DaoTarea();
-            return dao.DeleteF(dto);
-        }
+        //public string DeleteF(string dto)
+        //{
+        //    DaoTarea dao = new DaoTarea();
+        //    return dao.DeleteF(dto);
+        //}
 
 
         public string InsertF(TAREA dto)

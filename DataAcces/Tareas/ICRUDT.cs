@@ -15,7 +15,7 @@ namespace DataAcces.Tarea
 
         string InsertF(X dto);
         string UpdateF(X dto);
-        string DeleteF(String dto);
+        //string DeleteF(String dto);
         List<X> ReadF();
     }
 }
