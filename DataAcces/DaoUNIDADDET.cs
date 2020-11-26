@@ -61,9 +61,9 @@ namespace DataAcces
                         command.CommandType = System.Data.CommandType.StoredProcedure;
                         //command.Parameters.Add(new OracleParameter("ID", OracleType.Number)).Value = dto.ID;
                         command.Parameters.Add(new OracleParameter("P_ID_UNIDAD", OracleType.Number)).Value = dto.ID_UNIDAD;
-                       // command.Parameters.Add(new OracleParameter("NOMBRE_UNIDAD", OracleType.VarChar)).Value = dto.NOMBRE_UNIDAD;
                         command.Parameters.Add(new OracleParameter("P_ID_TAREA", OracleType.Number)).Value = dto.ID_TAREA;
-                       // command.Parameters.Add(new OracleParameter("NOMBRE_TAREA", OracleType.VarChar)).Value = dto.NOMBRE_TAREA;
+                        command.Parameters.Add(new OracleParameter("P_ESTAT", OracleType.Int32)).Value = dto.ESTADO;
+                        command.Parameters.Add(new OracleParameter("P_FECHEST", OracleType.DateTime)).Value = dto.FECHA_ESTIMADA;
                         command.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar,50)).Value = System.Data.ParameterDirection.Output;
                         command.ExecuteNonQuery();
                         result = Convert.ToString(command.Parameters["P_RESULT"].Value);
@@ -105,12 +105,17 @@ namespace DataAcces
                         {
                             while (dr.Read())
                             {
+
                                 dto = new UNIDAD_DETALLE();
                                 dto.id = Convert.ToInt32(dr["id"]);
                                 dto.ID_UNIDAD = Convert.ToInt32(dr["ID_UNIDAD"]);
                                 dto.NOMBRE_UNIDAD = Convert.ToString(dr["NOMBRE_UNIDAD"]);
                                 dto.ID_TAREA = Convert.ToInt32(dr["ID_TAREA"]);
                                 dto.NOMBRE_TAREA = Convert.ToString(dr["NOMBRE_TAREA"]);
+                                dto.FECHA_TERMINO = Convert.ToString(dr["FECHA_TERMINO"]);
+                                dto.FECHACREACION = Convert.ToDateTime(dr["FECHACREACION"]);
+                                dto.ESTADO = Convert.ToInt32(dr["ESTADO_TAREA"]);
+                                dto.FECHA_ESTIMADA = Convert.ToString(dr["FECHA_ESTIMADA"]);
                                 list.Add(dto);
                             }
 
@@ -145,10 +150,10 @@ namespace DataAcces
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
                         command.Parameters.Add(new OracleParameter("P_ID", OracleType.Number)).Value = dto.id;
-                        command.Parameters.Add(new OracleParameter("P_ID_UNIDAD", OracleType.Number)).Value = dto.ID_UNIDAD;
-                        command.Parameters.Add(new OracleParameter("P_NOMBRE_UNIDAD", OracleType.VarChar)).Value = dto.NOMBRE_UNIDAD;
                         command.Parameters.Add(new OracleParameter("P_ID_TAREA", OracleType.Number)).Value = dto.ID_TAREA;
-                        command.Parameters.Add(new OracleParameter("P_NOMBRE_TAREA", OracleType.VarChar)).Value = dto.NOMBRE_TAREA;
+                        command.Parameters.Add(new OracleParameter("p_ESTADO", OracleType.VarChar)).Value = dto.ESTADO;
+                        command.Parameters.Add(new OracleParameter("p_FECHA_ES", OracleType.VarChar)).Value = dto.FECHA_ESTIMADA; 
+                         command.Parameters.Add(new OracleParameter("p_rutusu", OracleType.VarChar)).Value = dto.Rut_Usu; 
                         command.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar, 50)).Value = System.Data.ParameterDirection.Output;
                         command.ExecuteNonQuery();
                         result = Convert.ToString(command.Parameters["P_RESULT"].Value);

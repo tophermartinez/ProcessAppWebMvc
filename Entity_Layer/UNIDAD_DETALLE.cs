@@ -17,11 +17,18 @@ namespace Entity_Layer
 
         public string NOMBRE_TAREA { get; set; }
 
-        public DateTime FECHA_TERMINO { get; set; }
+        public string FECHA_TERMINO { get; set; }
 
         public DateTime FECHACREACION { get; set; }
 
-        public DateTime FECHA_ACTUAL { get; set; }
+        public string FECHA_ACTUAL { get; set; }
+
+        public string FECHA_ESTIMADA { get; set; }
+
+        public int ESTADO { get; set; }
+
+        public int Rut_Usu { get; set; }
+
 
 
     }

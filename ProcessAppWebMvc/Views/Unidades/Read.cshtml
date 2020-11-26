@@ -28,44 +28,75 @@
             </p>
         </div>
     }
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ID_UNIDAD)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NOMBRE)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DETALLE)
-            </th>
-            <th></th>
-            <th></th>
-        </tr>
+<table class="table">
 
-        @foreach (var item in Model)
-        {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ID_UNIDAD)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NOMBRE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DETALLE)
-        </td>
-        <td>
-            <p class="btn btn-warning btn-mant"> @Html.ActionLink("Editar", "Update", new { ID_UNIDAD = item.ID_UNIDAD })</p>
-        </td>
-        <td>
-            <p class="btn btn-danger btn-mant">  @Html.ActionLink("Eliminar", "Delete", new { ID_UNIDAD = item.ID_UNIDAD })</p>
-
-        </td>
+        <th>
+            @Html.DisplayNameFor(model => model.ID_UNIDAD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NOMBRE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DETALLE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FECHACREACION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaEstimada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FECHA_TERMINO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre_usuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RUT_USU)
+        </th>
+        <th></th>
+        <th></th>
     </tr>
-        }
 
-    </table>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.ID_UNIDAD)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NOMBRE)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DETALLE)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FECHACREACION)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FechaEstimada)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FECHA_TERMINO)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.nombre_usuario)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.RUT_USU)
+    </td>
+    <td>
+        <p class="btn btn-warning btn-mant"> @Html.ActionLink("Editar", "Update", new { ID_UNIDAD = item.ID_UNIDAD })</p>
+    </td>
+    <td>
+        <p class="btn btn-danger btn-mant">  @Html.ActionLink("Eliminar", "Delete", new { ID_UNIDAD = item.ID_UNIDAD })</p>
+
+    </td>
+</tr>
+    }
+
+</table>
 }
 else
 {

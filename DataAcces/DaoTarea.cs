@@ -253,6 +253,7 @@ namespace DataAcces
                         command.Parameters.Add(new OracleParameter("P_NOMBRETAREA", OracleType.VarChar)).Value = dto.NOMBRETAREA;
                         command.Parameters.Add(new OracleParameter("P_IDESTADO", OracleType.Number)).Value = dto.ESTADO_TAREA;
                         command.Parameters.Add(new OracleParameter("p_Rutusu", OracleType.Number)).Value = dto.RUT_USU;
+                        command.Parameters.Add(new OracleParameter("p_FechaEst", OracleType.DateTime)).Value = dto.FechaEstimada; 
                         command.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar, 50)).Value = System.Data.ParameterDirection.Output;
                         command.ExecuteNonQuery();
                         result = Convert.ToString(command.Parameters["P_RESULT"].Value);

@@ -35,6 +35,7 @@
     <div class="table-responsive-sm table-responsive-md">
         <table class="table table-hover">
             <tr>
+
                 <th>
                     @Html.DisplayNameFor(model => model.id)
                 </th>
@@ -50,6 +51,18 @@
                 <th>
                     @Html.DisplayNameFor(model => model.NOMBRE_TAREA)
                 </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FECHA_TERMINO)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FECHACREACION)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ESTADO)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FECHA_ESTIMADA)
+                </th>
                 <th></th>
                 <th></th>
             </tr>
@@ -57,6 +70,8 @@
             @foreach (var item in Model)
             {
         <tr>
+
+
             <td>
                 @Html.DisplayFor(modelItem => item.id)
             </td>
@@ -71,6 +86,18 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NOMBRE_TAREA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FECHA_TERMINO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FECHACREACION)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ESTADO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FECHA_ESTIMADA)
             </td>
             <td>
                 <p class="btn btn-warning btn-mant"> @Html.ActionLink("Editar", "Update", new { id = item.id })</p>
