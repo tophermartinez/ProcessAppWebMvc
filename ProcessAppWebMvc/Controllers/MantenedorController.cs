@@ -81,6 +81,21 @@ namespace ProcessAppWebMvc.Controllers
             {
                 NegocioCliente neg = new NegocioCliente();
                 USUARIO usu = neg.Read().FirstOrDefault(a => a.ID == ID);
+                ViewBag.estado = usu.ESTADO;
+                ViewBag.perfil = usu.ID_PERFIL;
+                DataAcces.DaoEmpresa de = new DataAcces.DaoEmpresa();
+                DataAcces.DaoCliente dc = new DataAcces.DaoCliente();
+                try
+                {
+                    List<estado> list = de.ObtenerEstadoUsuario();
+                    List<PERFIL> list3 = dc.ObtenerListaPerfiles();
+                    ViewBag.EstadosUsuario = list;
+                    ViewBag.ListaPerfiles = list3;
+                }
+                catch (Exception ex)
+                {
+                    new Exception("ERROR EN METODO LISTAR" + ex.Message);
+                }
                 return View("Update", usu);
             }
             else

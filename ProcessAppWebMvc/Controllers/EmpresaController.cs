@@ -101,6 +101,17 @@ namespace ProcessAppWebMvc.Controllers
             {
                 NegocioEmpresa emp = new NegocioEmpresa();
                 EMPRESA aux = emp.Read().FirstOrDefault(a => a.ID == int.Parse(ID));
+                ViewBag.estado = aux.ESTADO;
+                DataAcces.DaoEmpresa de = new DataAcces.DaoEmpresa();
+                try
+                {
+                    List<estado> list = de.ObtenerEstadoUsuario();
+                    ViewBag.EstadosUsuario = list;
+                }
+                catch (Exception ex)
+                {
+                    new Exception("ERROR EN METODO LISTAR" + ex.Message);
+                }
                 return View("Update", aux);
             }
             else
