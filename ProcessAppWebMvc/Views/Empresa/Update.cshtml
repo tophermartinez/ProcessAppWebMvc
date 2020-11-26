@@ -69,7 +69,25 @@
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 @Html.LabelFor(model => model.ESTADO, htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.ESTADO, new { htmlAttributes = new { @class = "form-control" } })
+                                @*@Html.EditorFor(model => model.ESTADO, new { htmlAttributes = new { @class = "form-control" } })*@
+                                <select id="listbox" name="ESTADO" class="form-control">
+                                    @foreach (var item in ViewBag.EstadosUsuario)
+                                    {
+                                        if (ViewBag.estado == item.ID)
+                                        {
+                                            <option value="@item.ID" selected>
+                                                @item.NOMBRE
+                                            </option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.ID">
+                                                @item.NOMBRE
+                                            </option>
+                                        }
+
+                                    }
+                                </select>
                                 @Html.ValidationMessageFor(model => model.ESTADO, "", new { @class = "text-danger" })
                             </div>
                         </div>
