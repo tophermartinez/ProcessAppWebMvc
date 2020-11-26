@@ -23,8 +23,8 @@ namespace ProcessAppWebMvc.Controllers
             TAREA ta = new TAREA();
             NegocioTarea obj = new NegocioTarea();
 
-            dto.RUT_EM = (int)Session["rutempresa"];
-            dto.RUT_USU = (int)Session["rut"];
+           //dto.RUT_EM = (int)Session["rutempresa"];
+          // dto.RUT_USU = (int)Session["rut"];
             obj.Insert(dto);
         
             return RedirectToAction("Read");
