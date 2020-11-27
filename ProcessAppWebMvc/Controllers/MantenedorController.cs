@@ -239,7 +239,12 @@ namespace ProcessAppWebMvc.Controllers
         {
             if (Session["Perfil"] != null)
             {
-                return View();
+                DataAcces.DaoDashboard ds = new DaoDashboard();
+
+                List<Dashboard_Gen> dsGen = ds.DashBoard(Convert.ToInt32(Session["rut"]));
+
+                ViewBag.Daslist = dsGen;
+                return View(dsGen);
             }
             else
             {
@@ -247,6 +252,7 @@ namespace ProcessAppWebMvc.Controllers
             }
         }
 
+    
     }
 
 
