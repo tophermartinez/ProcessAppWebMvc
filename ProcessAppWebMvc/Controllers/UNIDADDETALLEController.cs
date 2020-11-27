@@ -19,6 +19,7 @@ namespace ProcessAppWebMvc.Controllers
             dto.ID_TAREA = Convert.ToInt32(fc["ID_TAREA"]);
             dto.ESTADO = Convert.ToInt32(fc["ESTADO"]);
             dto.FECHA_ESTIMADA = fc["FECHA_ESTIMADA"];
+            dto.Rut_Usu = Convert.ToInt32(fc["Rut_Usu"]);
             if (Session["Perfil"] != null)
             {
                 NegocioUNIDADDET obj = new NegocioUNIDADDET();
@@ -77,8 +78,31 @@ namespace ProcessAppWebMvc.Controllers
             if (Session["Perfil"] != null)
             {
                 NegocioUNIDADDET obj = new NegocioUNIDADDET();
-                UNIDAD_DETALLE dto = obj.Read().FirstOrDefault(a => a.id == id);
-                return View("Update", dto);
+                UNIDAD_DETALLE aux = obj.Read().FirstOrDefault(a => a.id == id);
+                ViewBag.Unidad = aux.ID_UNIDAD;
+                ViewBag.Tarea = aux.ID_TAREA;
+                ViewBag.Estado = aux.ESTADO;
+                ViewBag.Usuario = aux.Rut_Usu;
+                DataAcces.DaoUnidad du = new DataAcces.DaoUnidad();
+                DataAcces.DaoTarea dt = new DataAcces.DaoTarea();
+                DataAcces.DaoCliente dc = new DataAcces.DaoCliente();
+                try
+                {
+                    int rut_empresa = Convert.ToInt32(Session["rutempresa"]);
+                    List<UNIDAD> list = du.ListarUnidades(rut_empresa);
+                    List<TAREA> list2 = dt.ObtenerTareas(0, rut_empresa, 0);
+                    List<estado> list3 = dt.ObtenerEstadoTarea();
+                    List<USUARIO> list4 = dc.ObtenerListaUsuarios(0, rut_empresa, 1);
+                    ViewBag.ListaUnidades = list;
+                    ViewBag.ListaTareas = list2;
+                    ViewBag.ListaEstados = list3;
+                    ViewBag.ListaUsuarios = list4;
+                }
+                catch (Exception ex)
+                {
+                    new Exception("ERROR EN METODO LISTAR" + ex.Message);
+                }
+                return View("Update", aux);
             }
             else
             {
@@ -93,16 +117,18 @@ namespace ProcessAppWebMvc.Controllers
             {
                 DataAcces.DaoUnidad du = new DataAcces.DaoUnidad();
                 DataAcces.DaoTarea dt = new DataAcces.DaoTarea();
+                DataAcces.DaoCliente dc = new DataAcces.DaoCliente();
                 try
                 {
                     int rut_empresa = Convert.ToInt32(Session["rutempresa"]);
                     List<UNIDAD> list = du.ListarUnidades(rut_empresa);
                     List<TAREA> list2= dt.ObtenerTareas(0, rut_empresa, 0);
                     List<estado> list3 = dt.ObtenerEstadoTarea();
-
+                    List<USUARIO> list4 = dc.ObtenerListaUsuarios(0, rut_empresa, 1);
                     ViewBag.ListaUnidades = list;
                     ViewBag.ListaTareas = list2;
                     ViewBag.ListaEstados = list3;
+                    ViewBag.ListaUsuarios = list4;
                 }
                 catch (Exception ex)
                 {

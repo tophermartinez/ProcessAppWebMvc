@@ -64,6 +64,7 @@ namespace DataAcces
                         command.Parameters.Add(new OracleParameter("P_ID_TAREA", OracleType.Number)).Value = dto.ID_TAREA;
                         command.Parameters.Add(new OracleParameter("P_ESTAT", OracleType.Int32)).Value = dto.ESTADO;
                         command.Parameters.Add(new OracleParameter("P_FECHEST", OracleType.DateTime)).Value = dto.FECHA_ESTIMADA;
+                        command.Parameters.Add(new OracleParameter("P_RUT_USU", OracleType.VarChar)).Value = dto.Rut_Usu;
                         command.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar,50)).Value = System.Data.ParameterDirection.Output;
                         command.ExecuteNonQuery();
                         result = Convert.ToString(command.Parameters["P_RESULT"].Value);
@@ -116,6 +117,8 @@ namespace DataAcces
                                 dto.FECHACREACION = Convert.ToDateTime(dr["FECHACREACION"]);
                                 dto.ESTADO = Convert.ToInt32(dr["ESTADO_TAREA"]);
                                 dto.FECHA_ESTIMADA = Convert.ToString(dr["FECHA_ESTIMADA"]);
+                                dto.Rut_Usu = Convert.ToInt32(dr["rut_usu"]);
+                                dto.NOMBRE_USUARIO = Convert.ToString(dr["NOMBRE_USUARIO"]);
                                 list.Add(dto);
                             }
 
@@ -152,8 +155,9 @@ namespace DataAcces
                         command.Parameters.Add(new OracleParameter("P_ID", OracleType.Number)).Value = dto.id;
                         command.Parameters.Add(new OracleParameter("P_ID_TAREA", OracleType.Number)).Value = dto.ID_TAREA;
                         command.Parameters.Add(new OracleParameter("p_ESTADO", OracleType.VarChar)).Value = dto.ESTADO;
-                        command.Parameters.Add(new OracleParameter("p_FECHA_ES", OracleType.VarChar)).Value = dto.FECHA_ESTIMADA; 
-                         command.Parameters.Add(new OracleParameter("p_rutusu", OracleType.VarChar)).Value = dto.Rut_Usu; 
+                        command.Parameters.Add(new OracleParameter("p_FECHA_ES", OracleType.DateTime)).Value = dto.FECHA_ESTIMADA; 
+                         command.Parameters.Add(new OracleParameter("p_rutusu", OracleType.VarChar)).Value = Convert.ToInt32(dto.Rut_Usu); 
+                         command.Parameters.Add(new OracleParameter("P_ID_UNIDAD", OracleType.Int32)).Value = dto.ID_UNIDAD; 
                         command.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar, 50)).Value = System.Data.ParameterDirection.Output;
                         command.ExecuteNonQuery();
                         result = Convert.ToString(command.Parameters["P_RESULT"].Value);

@@ -137,7 +137,6 @@ namespace DataAcces
                         command.Parameters.Add(new OracleParameter("P_ID_UNIDAD", OracleType.Number)).Value = dto.ID_UNIDAD;
                         command.Parameters.Add(new OracleParameter("P_NOMBRE", OracleType.VarChar)).Value = dto.NOMBRE;
                         command.Parameters.Add(new OracleParameter("P_DETALLE", OracleType.VarChar)).Value = dto.DETALLE;
-                        command.Parameters.Add(new OracleParameter("p_ESTADO", OracleType.Int32)).Value = dto.ESTADO;
                         command.Parameters.Add(new OracleParameter("p_Rutusu", OracleType.Int32)).Value = dto.RUT_USU;
                         command.Parameters.Add(new OracleParameter("p_FechaEst", OracleType.DateTime)).Value = dto.FechaEstimada;
                         command.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar, 50)).Value = System.Data.ParameterDirection.Output;

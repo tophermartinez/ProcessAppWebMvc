@@ -28,6 +28,7 @@ namespace Entity_Layer
         public int ESTADO { get; set; }
 
         public int Rut_Usu { get; set; }
+        public string NOMBRE_USUARIO{ get; set; }
 
 
 

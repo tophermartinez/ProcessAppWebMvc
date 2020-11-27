@@ -77,8 +77,21 @@ namespace ProcessAppWebMvc.Controllers
             if (Session["Perfil"] != null)
             {
                 NegocioUnidad obj = new NegocioUnidad();
-                UNIDAD dto = obj.Read().FirstOrDefault(a => a.ID_UNIDAD == ID_UNIDAD);
-                return View("Update", dto);
+                UNIDAD aux = obj.Read().FirstOrDefault(a => a.ID_UNIDAD == ID_UNIDAD);
+                ViewBag.Usuario = aux.RUT_USU;
+                DataAcces.DaoCliente dc = new DataAcces.DaoCliente();
+                try
+                {
+                    int rut_empresa = Convert.ToInt32(Session["rutempresa"]);
+                    List<USUARIO> list = dc.ObtenerListaUsuarios(0, rut_empresa, 1);
+
+                    ViewBag.ListaUsuarios = list;
+                }
+                catch (Exception ex)
+                {
+                    new Exception("ERROR EN METODO LISTAR" + ex.Message);
+                }
+                return View("Update", aux);
             }
             else
             {

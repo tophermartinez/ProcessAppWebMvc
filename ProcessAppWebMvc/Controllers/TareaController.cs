@@ -51,12 +51,30 @@ namespace ProcessAppWebMvc.Controllers
             NegocioTarea obj = new NegocioTarea();
             return View(obj.Read());
         }
+
+        [HttpGet]
         public ActionResult Update(int IDTAREA)
         {
             NegocioTarea obj = new NegocioTarea();
-            TAREA dto = obj.Read().FirstOrDefault(a => a.IDTAREA == IDTAREA);
-            dto.RUT_USU = (int)Session["rut"];
-            return View("Update", dto);
+            TAREA aux = obj.Read().FirstOrDefault(a => a.IDTAREA == IDTAREA);
+        
+            ViewBag.Estado = aux.ESTADO_TAREA;
+            ViewBag.Usuario = aux.RUT_USU;
+            DataAcces.DaoCliente dc = new DataAcces.DaoCliente();
+            DataAcces.DaoTarea dt = new DataAcces.DaoTarea();
+            try
+            {
+                int rut_empresa = Convert.ToInt32(Session["rutempresa"]);
+                List<estado> list = dt.ObtenerEstadoTarea();
+                List<USUARIO> list2 = dc.ObtenerListaUsuarios(0, rut_empresa, 1);
+                ViewBag.EstadosTarea = list;
+                ViewBag.ListaUsuarios = list2;
+            }
+            catch (Exception ex)
+            {
+                new Exception("ERROR EN METODO LISTAR" + ex.Message);
+            }
+            return View("Update", aux);
         }
 
         public ActionResult Insert()
