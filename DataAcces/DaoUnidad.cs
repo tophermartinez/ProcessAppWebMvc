@@ -58,7 +58,14 @@ namespace DataAcces
                         command.Parameters.Add(new OracleParameter("NOMBRE", OracleType.VarChar)).Value = dto.NOMBRE;
                         command.Parameters.Add(new OracleParameter("DETALLE", OracleType.VarChar)).Value = dto.DETALLE;
                         command.Parameters.Add(new OracleParameter("p_Rutusu", OracleType.Number)).Value = dto.RUT_USU;
-                        command.Parameters.Add(new OracleParameter("p_FechaEst", OracleType.DateTime)).Value = dto.FechaEstimada;
+                        if (dto.FechaEstimada != null)
+                        {
+                            command.Parameters.Add(new OracleParameter("p_FechaEst", OracleType.DateTime)).Value = dto.FechaEstimada;
+                        }
+                        else
+                        {
+                            command.Parameters.Add(new OracleParameter("p_FechaEst", OracleType.DateTime)).Value = DBNull.Value;
+                        }
                         command.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar, 500)).Value = System.Data.ParameterDirection.Output;
                         command.ExecuteNonQuery();
                         result = Convert.ToString(command.Parameters["P_RESULT"].Value);
@@ -104,8 +111,6 @@ namespace DataAcces
                                 dto.FECHA_TERMINO = Convert.ToString(dr["FECHA_TERMINO"]);
                                 dto.nombre_usuario = Convert.ToString(dr["nombre_usuario"]);
                                 dto.RUT_USU = Convert.ToInt32(dr["rut_usu"]);
-                             
-
                                 list.Add(dto);
                             }
 
@@ -138,7 +143,14 @@ namespace DataAcces
                         command.Parameters.Add(new OracleParameter("P_NOMBRE", OracleType.VarChar)).Value = dto.NOMBRE;
                         command.Parameters.Add(new OracleParameter("P_DETALLE", OracleType.VarChar)).Value = dto.DETALLE;
                         command.Parameters.Add(new OracleParameter("p_Rutusu", OracleType.Int32)).Value = dto.RUT_USU;
-                        command.Parameters.Add(new OracleParameter("p_FechaEst", OracleType.DateTime)).Value = dto.FechaEstimada;
+                        if (dto.FechaEstimada != null)
+                        {
+                            command.Parameters.Add(new OracleParameter("p_FechaEst", OracleType.DateTime)).Value = dto.FechaEstimada;
+                        }
+                        else
+                        {
+                            command.Parameters.Add(new OracleParameter("p_FechaEst", OracleType.DateTime)).Value = DBNull.Value;
+                        }
                         command.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar, 50)).Value = System.Data.ParameterDirection.Output;
                         command.ExecuteNonQuery();
                         result = Convert.ToString(command.Parameters["P_RESULT"].Value);

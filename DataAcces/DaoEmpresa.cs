@@ -102,6 +102,7 @@ namespace DataAcces
                                 emp.CORREO_CONTACTO = Convert.ToString(dr["CORREO_CONTACTO"]);
                                 emp.TELEFONO_CONTACTO = Convert.ToInt64(dr["TELEFONO_CONTACTO"]);
                                 emp.ESTADO = Convert.ToInt32(dr["ESTADO"]);
+                                emp.NOMBRE_ESTADO = Convert.ToString(dr["NOMBRE_ESTADO"]);
                                 list.Add(emp);
                             }
                         }

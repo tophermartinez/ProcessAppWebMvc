@@ -39,7 +39,7 @@
                 <th hidden>
                     @Html.DisplayNameFor(model => model.ID)
                 </th>
-                <th>
+                <th hidden>
                     @Html.DisplayNameFor(model => model.RUT)
                 </th>
                 <th>
@@ -55,7 +55,8 @@
                     @Html.DisplayNameFor(model => model.TELEFONO_CONTACTO)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.ESTADO)
+                    @*@Html.DisplayNameFor(model => model.ESTADO)*@
+                    <label for="ESTADO">Estado</label>
                 </th>
                 <th></th>
                 <th></th>
@@ -67,7 +68,7 @@
                     <td hidden>
                         @Html.DisplayFor(modelItem => item.ID)
                     </td>
-                    <td>
+                    <td hidden>
                         @Html.DisplayFor(modelItem => item.RUT)
                     </td>
                     <td>
@@ -77,21 +78,24 @@
                         @Html.DisplayFor(modelItem => item.DIRECCION)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.CORREO_CONTACTO)
+                        @*@Html.DisplayFor(modelItem => item.CORREO_CONTACTO)*@
+                        <p>@item.CORREO_CONTACTO</p>
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.TELEFONO_CONTACTO)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ESTADO)
+                        @Html.DisplayFor(modelItem => item.NOMBRE_ESTADO)
                     </td>
                     <td>
                         <p class="btn btn-warning btn-mant"> @Html.ActionLink("Editar", "Update", new { ID = item.ID })</p>
                         @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })*@
-
                     </td>
                     <td>
-                        <p class="btn btn-danger btn-mant">@Html.ActionLink("Eliminar", "Delete", new { ID = item.ID })</p>
+                        @if (item.RUT != "63988323")
+                        {
+                           <p class="btn btn-danger btn-mant">@Html.ActionLink("Eliminar", "Delete", new { ID = item.ID })</p>
+                        }
                     </td>
                 </tr>
             }

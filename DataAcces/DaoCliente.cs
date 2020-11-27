@@ -132,6 +132,9 @@ namespace DataAcces
                                 usu.ID_PERFIL = Convert.ToInt32(dr["ID_PERFIL"]);
                                 usu.ESTADO = Convert.ToInt32(dr["ESTADO"]);
                                 usu.EMPRESA = Convert.ToInt32(dr["EMPRESA"]);
+                                usu.NOMBRE_PERFIL = Convert.ToString(dr["NOMBRE_PERFIL"]);
+                                usu.NOMBRE_ESTADO = Convert.ToString(dr["NOMBRE_ESTADO"]);
+                                usu.NOMBRE_EMPRESA = Convert.ToString(dr["NOMBRE_EMPRESA"]);
 
                                 list.Add(usu);
                             }

@@ -26,9 +26,11 @@ namespace Entity_Layer
         public String RUT { get; set; }
         public char DV { get; set; }
         [Required(ErrorMessage = "Este campo es requerido.")]
+        [Display(Name = "Nombres")]
         public string NOMBRES { get; set; }
-        [Column("NOMBRES")]
+        [Display(Name = "Apellido paterno")]
         public string APELLIDO_PATERNO { get; set; }
+        [Display(Name = "Apellido Materno")]
         public string APELIIDO_MATERNO { get; set; }
         [Display(Name = "Correo electrónico")]
         [Required(ErrorMessage = "Este campo es requerido.")]
@@ -37,23 +39,28 @@ namespace Entity_Layer
         [StringLength(100, ErrorMessage = "Longitud máxima 100")]
         [DataType(DataType.EmailAddress)]
         public string CORREO { get; set; }
-        [Display(Name = "Telefono Contacto")]
+        [Display(Name = "Teléfono Contacto")]
         //[StringLength(8, ErrorMessage = "Numero no puede contener mas de 8 digitos")]
         //[MinLength(8, ErrorMessage = "Numero no puede contener menos de 8 digitos")]
         public int NUMERO { get; set; }
+        [Display(Name = "Dirección")]
         public string DIRECCION { get; set; }
+        [Display(Name = "Usuario")]
         public string NOMBRE_USUARIO { get; set; }
-        [Column("NOMBRE_USUARIO")]
+        [Display(Name = "Contraseña")]
         public string CONTRASENA { get; set; }
-        [Column("NOMBRE_USUARIO")]
+        [Display(Name = "Perfil")]
         public int ID_PERFIL { get; set; }
-        [Column("ID_PERFIL")]
         [Required(ErrorMessage = "Este campo es requerido.")]
+        [Display(Name = "Estado")]
         public int ESTADO { get; set; }
         [Required(ErrorMessage = "Este campo es requerido.")]
+        [Display(Name = "Empresa")]
         public int EMPRESA { get; set; }
 
-        
+        public string NOMBRE_PERFIL { get; set; }
+        public string NOMBRE_ESTADO { get; set; }
+        public string NOMBRE_EMPRESA { get; set; }
 
 
 

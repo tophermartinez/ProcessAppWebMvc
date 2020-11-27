@@ -40,17 +40,18 @@
                 <th>
                     @Html.DisplayNameFor(model => model.RUT)
                 </th>
-                <th>
+                <th hidden>
                     @Html.DisplayNameFor(model => model.DV)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.NOMBRES)
+                    @*@Html.DisplayNameFor(model => model.NOMBRES)*@
+                    Nombre Completo
                 </th>
-                <th>
+                <th hidden>
                     AP.PATERNO
                     @*@Html.DisplayNameFor(model => model.APELLIDO_PATERNO)*@
                 </th>
-                <th>
+                <th hidden>
                     AP.MATERNO
                     @*@Html.DisplayNameFor(model => model.APELIIDO_MATERNO)*@
                 </th>
@@ -64,8 +65,7 @@
                     @Html.DisplayNameFor(model => model.DIRECCION)
                 </th>
                 <th>
-                    USUARIO
-                    @*@Html.DisplayNameFor(model => model.NOMBRE_USUARIO)*@
+                     @Html.DisplayNameFor(model => model.NOMBRE_USUARIO)
                 </th>
                 <th hidden>
                     @Html.DisplayNameFor(model => model.CONTRASENA)
@@ -90,22 +90,24 @@
                         @Html.DisplayFor(modelItem => item.ID)
                     </th>
                     <td>
-                        @Html.DisplayFor(modelItem => item.RUT)
+                        @*@Html.DisplayFor(modelItem => item.RUT)*@
+                        @(item.RUT + "-" + item.DV)
                     </td>
-                    <td>
+                    <td hidden>
                         @Html.DisplayFor(modelItem => item.DV)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.NOMBRES)
+                        @(item.NOMBRES + " " + item.APELLIDO_PATERNO + " " + item.APELIIDO_MATERNO)
                     </td>
-                    <td>
+                    <td hidden>
                         @Html.DisplayFor(modelItem => item.APELLIDO_PATERNO)
                     </td>
-                    <td>
+                    <td hidden>
                         @Html.DisplayFor(modelItem => item.APELIIDO_MATERNO)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.CORREO)
+                        @*@Html.DisplayFor(modelItem => item.CORREO)*@          
+                        <p>@item.CORREO</p>
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.NUMERO)
@@ -120,19 +122,28 @@
                         @Html.DisplayFor(modelItem => item.CONTRASENA)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ID_PERFIL)
+                        @Html.DisplayFor(modelItem => item.NOMBRE_PERFIL)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ESTADO)
+                        @Html.DisplayFor(modelItem => item.NOMBRE_ESTADO)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.EMPRESA)
+                        @Html.DisplayFor(modelItem => item.NOMBRE_EMPRESA)
                     </td>
                     <td>
-                        <p class="btn btn-warning btn-mant">@Html.ActionLink("Editar", "Update", new { ID = item.ID })</p>
+                        @if (item.ID_PERFIL != 1)
+                        {
+                            <p class="btn btn-warning btn-mant">@Html.ActionLink("Editar", "Update", new { ID = item.ID })</p>
+                        }
+
                         @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })*@
                     </td>
-                    <td>           <p class="btn btn-danger btn-mant">@Html.ActionLink("Eliminar", "Delete", new { ID = item.ID })</p></td>
+                    <td>
+                        @if (item.ID_PERFIL != 1)
+                        {
+                            <p class="btn btn-danger btn-mant">@Html.ActionLink("Eliminar", "Delete", new { ID = item.ID })</p>
+                        }
+                    </td>
                 </tr>
             }
         </table>

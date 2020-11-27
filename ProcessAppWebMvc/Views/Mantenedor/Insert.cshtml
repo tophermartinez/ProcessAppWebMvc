@@ -49,14 +49,13 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-6 col-md-12 col-sm-12">
-                        <label>APELLIDO PATERNO</label>
-                        @*@Html.LabelFor(model => model.APELLIDO_PATERNO, htmlAttributes: new { @class = "control-label" })*@
+                       
+                        @Html.LabelFor(model => model.APELLIDO_PATERNO, htmlAttributes: new { @class = "control-label" })
                         @Html.EditorFor(model => model.APELLIDO_PATERNO, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.APELLIDO_PATERNO, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12">
-                        <label>APELLIDO MATERNO</label>
-                        @*@Html.LabelFor(model => model.APELIIDO_MATERNO, htmlAttributes: new { @class = "control-label" })*@
+                        @Html.LabelFor(model => model.APELIIDO_MATERNO, htmlAttributes: new { @class = "control-label" })
                         @Html.EditorFor(model => model.APELIIDO_MATERNO, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.APELIIDO_MATERNO, "", new { @class = "text-danger" })
                     </div>
@@ -68,8 +67,7 @@
                         @Html.ValidationMessageFor(model => model.CORREO, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12">
-                        <label>TEL&Eacute;FONO</label>
-                        @* @Html.LabelFor(model => model.NUMERO, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        @Html.LabelFor(model => model.NUMERO, htmlAttributes: new { @class = "control-label" })
                         @Html.EditorFor(model => model.NUMERO, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.NUMERO, "", new { @class = "text-danger" })
                     </div>

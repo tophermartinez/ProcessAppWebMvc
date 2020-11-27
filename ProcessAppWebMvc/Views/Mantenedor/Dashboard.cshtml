@@ -164,7 +164,8 @@ else
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.NOMBRE_UNIDAD)
+                            @*@Html.DisplayFor(modelItem => item.NOMBRE_UNIDAD)*@
+                            <a href=" @Url.Action("Update", "Unidades" , new { ID_UNIDAD="4"})">@item.NOMBRE_UNIDAD</a>
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.FECHACREACION)
@@ -188,7 +189,9 @@ else
                             @Html.DisplayFor(modelItem => item.nombre_usurio)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.procentaje)
+                            <div style="background:#808080;border-radius:5%;"> 
+                                <div class="progress-bar" role="progressbar" style="width: @item.procentaje%;border-radius:5%; " aria-valuenow="@item.procentaje" aria-valuemin="0" aria-valuemax="100">@item.procentaje%</div>
+                            </div>    
                         </td>
                         @*<td>
                                 <p class="btn btn-warning btn-mant"> @Html.ActionLink("Editar", "Update", new { id = item.id })</p>
