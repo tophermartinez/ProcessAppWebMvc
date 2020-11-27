@@ -12,8 +12,15 @@ namespace ProcessAppWebMvc.Controllers
     {
         // GET: Unidades}
         [HttpPost]
-        public ActionResult Insert(UNIDAD dto)
+        public ActionResult Insert(FormCollection fc)
         {
+            UNIDAD dto = new UNIDAD();
+            dto.NOMBRE = fc["NOMBRE"];
+            dto.DETALLE = fc["DETALLE"];  
+            dto.RUT_USU = Convert.ToInt32(fc["RUT_USU"]);  
+            dto.RUT_USU = Convert.ToInt32(fc["RUT_USU"]);  
+            dto.FechaEstimada = fc["FechaEstimada"];
+
             if (Session["Perfil"] != null)
             {
                 NegocioUnidad obj = new NegocioUnidad();
@@ -83,6 +90,18 @@ namespace ProcessAppWebMvc.Controllers
         {
             if (Session["Perfil"] != null)
             {
+                DataAcces.DaoCliente dc = new DataAcces.DaoCliente();
+                try
+                {
+                    int rut_empresa = Convert.ToInt32(Session["rutempresa"]);
+                    List<USUARIO> list = dc.ObtenerListaUsuarios(0, rut_empresa, 1);
+
+                    ViewBag.ListaUsuarios = list;
+                }
+                catch (Exception ex)
+                {
+                    new Exception("ERROR EN METODO LISTAR" + ex.Message);
+                }
                 return View("Insert", new UNIDAD());
             }
             else
@@ -133,4 +152,5 @@ namespace ProcessAppWebMvc.Controllers
             return View("InsertF", new UNIDAD());
         }
     }
+
 }

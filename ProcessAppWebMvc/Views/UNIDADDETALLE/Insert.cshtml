@@ -15,7 +15,15 @@
     <div class="form-group">
         @Html.LabelFor(model => model.ID_UNIDAD, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.ID_UNIDAD, new { htmlAttributes = new { @class = "form-control" } })
+            @*@Html.EditorFor(model => model.ID_UNIDAD, new { htmlAttributes = new { @class = "form-control" } })*@
+            <select name="ID_UNIDAD" id="ID_UNIDAD" class="form-control">
+                @foreach (var item in ViewBag.ListaUnidades)
+                {
+                    <option value="@item.ID_UNIDAD">
+                        @item.NOMBRE
+                    </option>
+                }
+            </select>
             @Html.ValidationMessageFor(model => model.ID_UNIDAD, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -24,7 +32,15 @@
     <div class="form-group">
         @Html.LabelFor(model => model.ID_TAREA, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.ID_TAREA, new { htmlAttributes = new { @class = "form-control" } })
+            @*@Html.EditorFor(model => model.ID_TAREA, new { htmlAttributes = new { @class = "form-control" } })*@
+            <select name="ID_TAREA" id="ID_TAREA" class="form-control">
+                @foreach (var item in ViewBag.ListaTareas)
+                {
+                    <option value="@item.IDTAREA">
+                        @item.NOMBRETAREA
+                    </option>
+                }
+            </select>
             @Html.ValidationMessageFor(model => model.ID_TAREA, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -32,12 +48,18 @@
     <div class="form-group">
         @Html.LabelFor(model => model.ESTADO, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.ESTADO, new { htmlAttributes = new { @class = "form-control" } })
+            @*@Html.EditorFor(model => model.ESTADO, new { htmlAttributes = new { @class = "form-control" } })*@
+            <select name="ESTADO" id="ESTADO" class="form-control">
+                @foreach (var item in ViewBag.ListaEstados)
+                {
+                    <option value="@item.ID">
+                        @item.NOMBRE
+                    </option>
+                }
+            </select>
             @Html.ValidationMessageFor(model => model.ESTADO, "", new { @class = "text-danger" })
         </div>
     </div>
-
-
     <div class="form-group">
             @Html.LabelFor(model => model.FECHA_ESTIMADA, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">

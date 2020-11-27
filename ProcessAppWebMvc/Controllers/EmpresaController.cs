@@ -7,16 +7,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-
 namespace ProcessAppWebMvc.Controllers
 {
     public class EmpresaController : Controller
     {
-
-        public ActionResult Index()
+       public ActionResult Index()
         {
-
-            
             //using (NegocioEmpresa DB = new NegocioEmpresa())
             //{
             //    public ActionResult ListNameEmp()
@@ -25,7 +21,6 @@ namespace ProcessAppWebMvc.Controllers
             //        return View(emp.ListNameEmp());
             //    }
             //}
-
             return View();
         }
 

@@ -80,10 +80,26 @@
                 @Html.DisplayFor(modelItem => item.ESTADO_TAREA)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FechaEstimada)
+                @if (item.FechaEstimada != null)
+                {
+                    @Html.DisplayFor(modelItem => item.FechaEstimada)
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => "")
+                }
+
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FECHA_TERMINO)
+                @if (item.FECHA_TERMINO != null)
+                {
+                    @Html.DisplayFor(modelItem => item.FECHA_TERMINO)
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => "")
+                }
+
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.RUT_USU)

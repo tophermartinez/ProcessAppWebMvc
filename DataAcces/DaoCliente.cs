@@ -56,12 +56,12 @@ namespace DataAcces
             try
             {
                 int rutValue = 0;
-               
-                Boolean validate = RUT_UTILS.ValidaRut(dto.RUT);
+                RUT_UTILS ru = new RUT_UTILS();
+                Boolean validate = ru.ValidaRut(dto.RUT);
                 if (validate)
                 {
-                    int rut = RUT_UTILS.ObtenerNumeroRutSinDv(dto.RUT);
-                    String rutDv = RUT_UTILS.Digito(rut);
+                    int rut = ru.ObtenerNumeroRutSinDv(dto.RUT);
+                    String rutDv = ru.Digito(rut);
                     using (OracleConnection cn = new OracleConnection(strOracle))
                     {
                         cn.Open();
@@ -334,7 +334,55 @@ namespace DataAcces
             return list;
         }
 
-
+        public List<USUARIO> ObtenerListaUsuarios(int rut, int rut_empresa, int tipo_busqueda)
+        {
+            //TIPO BUSQUEDA 1 : BUSQUEDA POR EMPRESA
+            //TIPO BUSQUEDA 2 : BUSQUEDA POR RUT Y EMPRESA
+            List<USUARIO> list = new List<USUARIO>();
+            USUARIO dto = null;
+            try
+            {
+                using (OracleConnection cn = new OracleConnection(strOracle))
+                {
+                    cn.Open();
+                    String query = "";
+                    if(tipo_busqueda == 1)
+                    {
+                        query = "SELECT rut, " +
+                                "nombres, " +
+                                "apellido_paterno " +
+                                "FROM usuario " +
+                                "WHERE empresa = (SELECT id_empresa from empresa where rut = " + rut_empresa + ")";
+                    }
+                    else if (tipo_busqueda == 2)
+                    {
+                        query = "SELECT rut, " +
+                                "nombres, " +
+                                "apellido_paterno " +
+                                "FROM usuario " +
+                                "WHERE rut = " + rut + " " +
+                                "AND empresa = (SELECT id_empresa from empresa where rut = " + rut_empresa + ")";
+                    }
+                    using (OracleCommand cmd = new OracleCommand(query, cn))
+                    {
+                        OracleDataReader _reader = cmd.ExecuteReader();
+                        while (_reader.Read())
+                        {
+                            dto = new USUARIO();
+                            dto.RUT = Convert.ToString(_reader["rut"]);
+                            dto.NOMBRES = Convert.ToString(_reader["nombres"]);
+                            dto.APELLIDO_PATERNO = Convert.ToString(_reader["apellido_paterno"]);
+                            list.Add(dto);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                new Exception("Error en metodo listar" + ex.Message);
+            }
+            return list;
+        }
 
     }
 }

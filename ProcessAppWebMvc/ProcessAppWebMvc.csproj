@@ -439,9 +439,6 @@
     <Content Include="Views\UNIDADDETALLE\Insert.cshtml" />
     <Content Include="Views\UNIDADDETALLE\Update.cshtml" />
     <Content Include="Views\Shared\_Layout_2.cshtml" />
-    <Content Include="Views\Tarea\ReadF.cshtml" />
-    <Content Include="Views\Tarea\InsertF.cshtml" />
-    <Content Include="Views\Tarea\UpdateF.cshtml" />
     <Content Include="Views\Unidades\ReadF.cshtml" />
     <Content Include="Views\Unidades\InsertF.cshtml" />
     <Content Include="Views\Unidades\UpdateF.cshtml" />

@@ -102,7 +102,6 @@ namespace ProcessAppWebMvc.Controllers
             {
                 return View("LoginProcess");
             }
-
         }
 
         public ActionResult Insert()
@@ -222,8 +221,6 @@ namespace ProcessAppWebMvc.Controllers
             FormsAuthentication.SignOut();
             //Session["usu"] = null;
             Session.Abandon();
-
-
             //Response.Redirect("LoginProcess", false);
             //if (Session["usu"] != null)
             //{

@@ -42,10 +42,11 @@ namespace DataAcces
             try
             {
                 int rutValue = 0;
-                Boolean validate = RUT_UTILS.ValidaRut(dto.RUT);
+                RUT_UTILS ru = new RUT_UTILS();
+                Boolean validate = ru.ValidaRut(dto.RUT);
                 if (validate)
                 {
-                    rutValue = RUT_UTILS.ObtenerNumeroRutSinDv(dto.RUT);
+                    rutValue = ru.ObtenerNumeroRutSinDv(dto.RUT);
                     using (OracleConnection cn = new OracleConnection(strOracle))
                     {
                         cn.Open();

@@ -297,7 +297,34 @@ namespace DataAcces
 
 
 
-
+        public List<UNIDAD> ListarUnidades(int rut_empresa)
+        {
+            List<UNIDAD> list = new List<UNIDAD>();
+            UNIDAD dto = null;
+            try
+            {
+                using (OracleConnection cn = new OracleConnection(strOracle))
+                {
+                    cn.Open();
+                    using (OracleCommand cmd = new OracleCommand("SELECT ID_UNIDAD, NOMBRE FROM UNIDAD WHERE RUT_EM = " + rut_empresa , cn))
+                    {
+                        OracleDataReader _reader = cmd.ExecuteReader();
+                        while (_reader.Read())
+                        {
+                            dto = new UNIDAD();
+                            dto.ID_UNIDAD = Convert.ToInt32(_reader["ID_UNIDAD"]);
+                            dto.NOMBRE = Convert.ToString(_reader["NOMBRE"]);
+                            list.Add(dto);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                new Exception("Error en metodo listar" + ex.Message);
+            }
+            return list;
+        }
 
 
 

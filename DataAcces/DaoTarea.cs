@@ -44,36 +44,6 @@ namespace DataAcces
             return result;
         }
 
-        //public string DeleteF(string dto)
-        //{
-        //    string result = string.Empty;
-        //    try
-        //    {
-        //        using (OracleConnection cn = new OracleConnection(strOracle))
-        //        {
-        //            cn.Open();
-        //            using (OracleCommand command = new OracleCommand("SP_DELETE_TAREA", cn))
-        //            {
-        //                command.CommandType = System.Data.CommandType.StoredProcedure;
-        //                command.Parameters.Add(new OracleParameter("P_IDTAREA", OracleType.Number)).Value = dto;
-        //                command.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar, 50)).Direction =
-        //                    System.Data.ParameterDirection.Output;
-
-        //                command.ExecuteNonQuery();
-        //                result = Convert.ToString(command.Parameters["P_RESULT"].Value);
-        //            }
-        //            cn.Close();
-        //        }
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        new Exception("Error en metodo ELiminar " + ex.Message);
-        //    }
-        //    return result;
-        //}
-
         public string Insert(TAREA dto)
         {
             string result = string.Empty;
@@ -97,41 +67,6 @@ namespace DataAcces
                         //command.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar, 50)).Value = System.Data.ParameterDirection.Output;
                         //command.ExecuteNonQuery();
                         //result = Convert.ToString(command.Parameters["P_RESULT"].Value);
-                    }
-                    cn.Close();
-
-
-                }
-            }
-            catch (Exception ex)
-            {
-
-                new Exception("ERROR EN METODO INSERTAR" + ex.Message);
-            }
-            return result;
-        }
-
-        public string InsertF(TAREA dto)
-        {
-            string result = string.Empty;
-            try
-            {
-                using (OracleConnection cn = new OracleConnection(strOracle))
-                {
-                    cn.Open();
-                    using (OracleCommand command = new OracleCommand("SP_CREATE_TAREA_F", cn))
-                    {
-                        command.CommandType = System.Data.CommandType.StoredProcedure;
-                        // command.Parameters.Add(new OracleParameter("IDTAREA", OracleType.Number)).Value = dto.IDTAREA;
-                        command.Parameters.Add(new OracleParameter("NOMBRETAREA", OracleType.VarChar)).Value = dto.NOMBRETAREA;
-                        // command.Parameters.Add(new OracleParameter("FECHACREACION", OracleType.DateTime)).Value = dto.FECHACREACION;
-                        command.Parameters.Add(new OracleParameter("IDESTADO", OracleType.Number)).Value = dto.ESTADO_TAREA;
-                        command.Parameters.Add(new OracleParameter("P_FECHA_TERMINO", OracleType.VarChar)).Value = dto.FECHA_TERMINO;
-                        command.Parameters.Add(new OracleParameter("P_EMPRESA", OracleType.Number)).Value = dto.RUT_EM;
-                        command.Parameters.Add(new OracleParameter("P_RUT", OracleType.VarChar)).Value = dto.RUT_USU;
-                        command.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar)).Value = System.Data.ParameterDirection.Output;
-                        command.ExecuteNonQuery();
-                        result = Convert.ToString(command.Parameters["P_RESULT"].Value);
                     }
                     cn.Close();
 
@@ -170,18 +105,15 @@ namespace DataAcces
                                 dto.NOMBRETAREA = Convert.ToString(dr["NOMBRETAREA"]);
                                 dto.FECHACREACION = Convert.ToDateTime(dr["FECHACREACION"]);
                                 dto.ESTADO_TAREA = Convert.ToInt32(dr["ESTADO_TAREA"]);
-                                dto.FECHA_TERMINO = Convert.ToString(dr["fecha_termino"]) ;
+                                dto.FECHA_TERMINO = Convert.ToString(dr["fecha_termino"]);
                                 dto.FechaEstimada = Convert.ToString(dr["fecha_estimada"]);
                                 dto.RUT_USU = Convert.ToInt32(dr["rut_usu"]);
-                                dto.nombre_usuario = Convert.ToString(dr["nombre_usuario"]); 
+                                dto.nombre_usuario = Convert.ToString(dr["nombre_usuario"]);
 
                                 list.Add(dto);
                             }
-
                         }
-
                     }
-
                 }
             }
             catch (Exception ex)
@@ -192,52 +124,6 @@ namespace DataAcces
             return list;
         }
 
-
-        public List<TAREA> ReadF()
-        {
-            List<TAREA> list = new List<TAREA>();
-            TAREA dto = null;
-            try
-            {
-                using (OracleConnection cn = new OracleConnection(strOracle))
-                {
-                    cn.Open();
-                    using (OracleCommand command = new OracleCommand("LIST_TAREA_F", cn))
-                    {
-                        command.CommandType = System.Data.CommandType.StoredProcedure;
-                        command.Parameters.Add(new OracleParameter("P_CURSOR", OracleType.Cursor)).Direction =
-                        System.Data.ParameterDirection.Output;
-
-                        using (OracleDataReader dr = command.ExecuteReader(System.Data.CommandBehavior.CloseConnection))
-                        {
-                            while (dr.Read())
-                            {
-                                dto = new TAREA();
-                                dto.IDTAREA = Convert.ToInt32(dr["IDTAREA"]);
-                                dto.NOMBRETAREA = Convert.ToString(dr["NOMBRETAREA"]);
-                                dto.FECHACREACION = Convert.ToDateTime(dr["FECHACREACION"]);
-                                dto.ESTADO_TAREA = Convert.ToInt32(dr["ESTADO_TAREA"]);
-                                dto.FECHA_ACTUAL = Convert.ToString(dr["FECHA_ACTUAL"]);
-                                dto.FECHA_TERMINO = Convert.ToString(dr["FECHA_TERMINO"]);
-                                dto.RUT_USU = Convert.ToInt32(dr["RUT_USU"]);
-                                list.Add(dto);
-                            }
-
-                        }
-
-                    }
-
-                }
-            }
-            catch (Exception ex)
-            {
-
-                new Exception("Error en metodo listar" + ex.Message);
-            }
-            return list;
-        }
-
-        
         public string Update(TAREA dto)
         {
             string result = string.Empty;
@@ -253,7 +139,7 @@ namespace DataAcces
                         command.Parameters.Add(new OracleParameter("P_NOMBRETAREA", OracleType.VarChar)).Value = dto.NOMBRETAREA;
                         command.Parameters.Add(new OracleParameter("P_IDESTADO", OracleType.Number)).Value = dto.ESTADO_TAREA;
                         command.Parameters.Add(new OracleParameter("p_Rutusu", OracleType.Number)).Value = dto.RUT_USU;
-                        command.Parameters.Add(new OracleParameter("p_FechaEst", OracleType.DateTime)).Value = dto.FechaEstimada; 
+                        command.Parameters.Add(new OracleParameter("p_FechaEst", OracleType.DateTime)).Value = dto.FechaEstimada;
                         command.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar, 50)).Value = System.Data.ParameterDirection.Output;
                         command.ExecuteNonQuery();
                         result = Convert.ToString(command.Parameters["P_RESULT"].Value);
@@ -269,39 +155,67 @@ namespace DataAcces
             return result;
         }
 
-        public string UpdateF(TAREA dto)
+        public List<estado> ObtenerEstadoTarea()
         {
-            string result = string.Empty;
+            List<estado> list = new List<estado>();
+            estado dto = null;
             try
             {
                 using (OracleConnection cn = new OracleConnection(strOracle))
                 {
                     cn.Open();
-                    using (OracleCommand command = new OracleCommand("SP_UPDATE_TAREA_F", cn))
+                    using (OracleCommand cmd = new OracleCommand("SELECT ID_ESTADO, NOMBRE, DESCRIPCION FROM estado where Descripcion = 'Tarea'", cn))
                     {
-                        command.CommandType = System.Data.CommandType.StoredProcedure;
-                        command.Parameters.Add(new OracleParameter("P_IDTAREA", OracleType.Number)).Value = dto.IDTAREA;
-                        command.Parameters.Add(new OracleParameter("P_NOMBRETAREA", OracleType.VarChar)).Value = dto.NOMBRETAREA;
-                        command.Parameters.Add(new OracleParameter("P_IDESTADO", OracleType.Number)).Value = dto.ESTADO_TAREA;
-                        command.Parameters.Add(new OracleParameter("P_FECHA_TERMINO", OracleType.DateTime)).Value = dto.FECHA_TERMINO;
-                        command.Parameters.Add(new OracleParameter("P_RUT_USU", OracleType.VarChar)).Value = dto.RUT_USU;
-                        command.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar, 50)).Value = System.Data.ParameterDirection.Output;
-                        command.ExecuteNonQuery();
-                        result = Convert.ToString(command.Parameters["P_RESULT"].Value);
+                        OracleDataReader _reader = cmd.ExecuteReader();
+                        while (_reader.Read())
+                        {
+                            dto = new estado();
+                            dto.ID = Convert.ToInt32(_reader["ID_ESTADO"]);
+                            dto.NOMBRE = Convert.ToString(_reader["NOMBRE"]);
+                            dto.DESCRIPCION = Convert.ToString(_reader["DESCRIPCION"]);
+                            list.Add(dto);
+                        }
                     }
-                    cn.Close();
                 }
             }
             catch (Exception ex)
             {
-
-                new Exception("ERROR EN METODO ACTUALIZAR" + ex.Message);
+                new Exception("Error en metodo listar" + ex.Message);
             }
-            return result;
+            return list;
         }
 
-   
-    }
-
-  
+        public List<TAREA> ObtenerTareas(int rut , int rut_empresa , int tipo_busqueda)
+        {
+            List<TAREA> list = new List<TAREA>();
+            TAREA dto = null;
+            try
+            {
+                using (OracleConnection cn = new OracleConnection(strOracle))
+                {
+                    cn.Open();
+                    using (OracleCommand cmd = new OracleCommand("SELECT IDTAREA, " +
+                                                                    "NOMBRETAREA " +
+                                                                    "FROM TAREA " +
+                                                                    "WHERE RUT_EM = " + rut_empresa  + 
+                                                                    "AND ESTADO_TAREA NOT IN (13)", cn))
+                    {
+                        OracleDataReader _reader = cmd.ExecuteReader();
+                        while (_reader.Read())
+                        {
+                            dto = new TAREA();
+                            dto.IDTAREA = Convert.ToInt32(_reader["IDTAREA"]);
+                            dto.NOMBRETAREA = Convert.ToString(_reader["NOMBRETAREA"]);
+                            list.Add(dto);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                new Exception("Error en metodo listar" + ex.Message);
+            }
+            return list;
+        }
+    }  
 }

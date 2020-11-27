@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace DataAcces
 {
-    class RUT_UTILS
+    public class RUT_UTILS
     {
 
-		public static int ObtenerNumeroRutSinDv(String rut)
+		public int ObtenerNumeroRutSinDv(String rut)
 		{
 			rut = rut.Replace(".", "").ToUpper();
 			rut = rut.Replace("-", "").ToUpper();
@@ -24,7 +24,7 @@ namespace DataAcces
 		/// </summary>
 		/// <param name="rut">string</param>
 		/// <returns>booleano</returns>
-		public static bool ValidaRut(string rut)
+		public bool ValidaRut(string rut)
 		{
 			rut = rut.Replace(".", "").ToUpper();
 			Regex expresion = new Regex("^([0-9]+-[0-9K])$");
@@ -50,7 +50,7 @@ namespace DataAcces
 		/// <param name="rut">integer</param>
 		/// <param name="dv">char</param>
 		/// <returns>booleano</returns>
-		public static bool ValidaRut(string rut, string dv)
+		public bool ValidaRut(string rut, string dv)
 		{
 			return ValidaRut(rut + "-" + dv);
 		}
@@ -61,7 +61,7 @@ namespace DataAcces
 		/// </summary>
 		/// <param name="rut"></param>
 		/// <returns></returns>
-		public static string Digito(int rut)
+		public string Digito(int rut)
 		{
 			int suma = 0;
 			int multiplicador = 1;

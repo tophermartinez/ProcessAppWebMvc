@@ -10,25 +10,29 @@ using DataAcces;
 using System.Web.Security;
 using System.Web.UI;
 
+
 namespace ProcessAppWebMvc.Controllers
 {
     public class TareaController : Controller
     {
         
-
         // GET: Tarea
         [HttpPost]
-        public ActionResult Insert(TAREA dto)
+        public ActionResult Insert(FormCollection fc)
         {
-            TAREA ta = new TAREA();
-            NegocioTarea obj = new NegocioTarea();
+            TAREA dto = new TAREA();
+            dto.NOMBRETAREA = fc["NOMBRETAREA"];
+            dto.RUT_USU = Convert.ToInt32(fc["RUT_USU"]);
+            dto.FechaEstimada = fc["FechaEstimada"];
+            dto.ESTADO_TAREA = Convert.ToInt32(fc["ESTADO_TAREA"]);
+            dto.RUT_EM = Convert.ToInt32(Session["rutempresa"]);
 
-           //dto.RUT_EM = (int)Session["rutempresa"];
-          // dto.RUT_USU = (int)Session["rut"];
-            obj.Insert(dto);
-        
+            NegocioTarea tar = new NegocioTarea();
+            tar.Insert(dto);
+            // return View("Insert", obj);
             return RedirectToAction("Read");
         }
+
         [HttpPost]
         public ActionResult Update(TAREA dto)
         {
@@ -57,58 +61,21 @@ namespace ProcessAppWebMvc.Controllers
 
         public ActionResult Insert()
         {
-            DataAcces.DaoEmpresa de = new DataAcces.DaoEmpresa();
+            DataAcces.DaoCliente dc = new DataAcces.DaoCliente();
+            DataAcces.DaoTarea dt = new DataAcces.DaoTarea();
             try
             {
-                List<estado> list = de.ObtenerEstadoUsuario();
-                ViewBag.EstadosUsuario = list;
-            } 
+                int rut_empresa = Convert.ToInt32(Session["rutempresa"]);
+                List<estado> list = dt.ObtenerEstadoTarea();
+                List<USUARIO> list2 = dc.ObtenerListaUsuarios(0, rut_empresa, 1);
+                ViewBag.EstadosTarea = list;
+                ViewBag.ListaUsuarios = list2;
+            }
             catch (Exception ex)
             {
                 new Exception("ERROR EN METODO LISTAR" + ex.Message);
             }
             return View("Insert", new TAREA());
-        }
-
-
-
-        // GET: TareaF
-        [HttpPost]
-        public ActionResult InsertF(TAREA dto)
-        {
-            NegocioTarea obj = new NegocioTarea();
-           
-            obj.InsertF(dto);
-            return RedirectToAction("ReadF");
-        }
-        [HttpPost]
-        public ActionResult UpdateF(TAREA dto)
-        {
-            NegocioTarea obj = new NegocioTarea();
-            obj.UpdateF(dto);
-            return RedirectToAction("ReadF");
-        }
-        //public ActionResult DeleteF(string IDTAREA)
-        //{
-        //    NegocioTarea obj = new NegocioTarea();
-        //    obj.DeleteF(IDTAREA);
-        //    return RedirectToAction("ReadF");
-        //}
-        public ActionResult ReadF()
-        {
-            NegocioTarea obj = new NegocioTarea();
-            return View(obj.ReadF());
-        }
-        public ActionResult UpdateF(int IDTAREA)
-        {
-            NegocioTarea obj = new NegocioTarea();
-            TAREA dto = obj.ReadF().FirstOrDefault(a => a.IDTAREA == IDTAREA);
-            return View("UpdateF", dto);
-        }
-
-        public ActionResult InsertF()
-        {
-            return View("InsertF", new TAREA());
         }
     }
 }

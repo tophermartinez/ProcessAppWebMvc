@@ -12,8 +12,13 @@ namespace ProcessAppWebMvc.Controllers
     {
         // GET: UNIDADDETALLE
         [HttpPost]
-        public ActionResult Insert(UNIDAD_DETALLE dto)
+        public ActionResult Insert(FormCollection fc)
         {
+            UNIDAD_DETALLE dto = new UNIDAD_DETALLE();
+            dto.ID_UNIDAD = Convert.ToInt32(fc["ID_UNIDAD"]);
+            dto.ID_TAREA = Convert.ToInt32(fc["ID_TAREA"]);
+            dto.ESTADO = Convert.ToInt32(fc["ESTADO"]);
+            dto.FECHA_ESTIMADA = fc["FECHA_ESTIMADA"];
             if (Session["Perfil"] != null)
             {
                 NegocioUNIDADDET obj = new NegocioUNIDADDET();
@@ -86,6 +91,23 @@ namespace ProcessAppWebMvc.Controllers
         {
             if (Session["Perfil"] != null)
             {
+                DataAcces.DaoUnidad du = new DataAcces.DaoUnidad();
+                DataAcces.DaoTarea dt = new DataAcces.DaoTarea();
+                try
+                {
+                    int rut_empresa = Convert.ToInt32(Session["rutempresa"]);
+                    List<UNIDAD> list = du.ListarUnidades(rut_empresa);
+                    List<TAREA> list2= dt.ObtenerTareas(0, rut_empresa, 0);
+                    List<estado> list3 = dt.ObtenerEstadoTarea();
+
+                    ViewBag.ListaUnidades = list;
+                    ViewBag.ListaTareas = list2;
+                    ViewBag.ListaEstados = list3;
+                }
+                catch (Exception ex)
+                {
+                    new Exception("ERROR EN METODO LISTAR" + ex.Message);
+                }
                 return View("Insert", new UNIDAD_DETALLE());
             }
             else
