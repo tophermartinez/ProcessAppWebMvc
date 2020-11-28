@@ -1,12 +1,12 @@
 ﻿
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewData["Title"] = "Contact";
-}
-
-@{
     ViewBag.Title = "Dashboard";
 }
+<style>
+    h2{
+        font-weight:bold;
+    }
+</style>
 <br />
 @if (Session["perfil"] != null && Convert.ToInt32(Session["perfil"]) == 1)
 {
@@ -19,147 +19,54 @@
 }
 else
 {
-    <h3>Bienvenido</h3>
+    <h2>Empresa : @Session["nombreemp"]</h2>
+    <h3>Bienvenido @Session["nombre"] @Session["apellido"],</h3>
+    <p>tienes tareas asignadas en estos flujos :</p>
     <br />
 
     if (Convert.ToInt32(Session["perfil"]) == 1)
     {
 
 
-        <h5>este es el resumen de tus últimas acciones :</h5>
-        <div class="table-responsive-sm table-responsive-md">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Nombre Tarea</th>
-                        <th scope="col">Fecha inicio</th>
-                        <th scope="col">Fecha estimada</th>
-                        <th scope="col">Subtareas</th>
-                        <th scope="col">Estado</th>
-                        <th scope="col">Usuario Asignado</th>
-                        <th scope="col">Completado</th>
-                        <th scope="col">%</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">205</th>
-                        <td>Aumentar velocidad totem sucursal</td>
-                        <td>03-11-2020</td>
-                        <td>15-11-2020</td>
-                        <td>4</td>
-                        <td>Asignado</td>
-                        <td>Topher</td>
-                        <td>0</td>
-                        <td>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100">0%</div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">156</th>
-                        <td>Reparar teclado OF-844</td>
-                        <td>25-09-2020</td>
-                        <td>26-09-2020</td>
-                        <td>1</td>
-                        <td>Completado</td>
-                        <td>Ruben</td>
-                        <td>1</td>
-                        <td>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100">100%</div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">55</th>
-                        <td>Formatear VMS</td>
-                        <td>22-10-2020</td>
-                        <td>15-11-2020</td>
-                        <td>4</td>
-                        <td>En progreso</td>
-                        <td>Maria</td>
-                        <td>2</td>
-                        <td>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">50%</div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">98</th>
-                        <td>Reiniciar Clusters Desarrollo</td>
-                        <td>01-10-2020</td>
-                        <td>15-10-2020</td>
-                        <td>7</td>
-                        <td>Completado</td>
-                        <td>Andres</td>
-                        <td>7</td>
-                        <td>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">100%</div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">156</th>
-                        <td>Reparar teclado OF-844</td>
-                        <td>25-09-2020</td>
-                        <td>26-09-2020</td>
-                        <td>1</td>
-                        <td>Completado</td>
-                        <td>Topher</td>
-                        <td>1</td>
-                        <td>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100">100%</div>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+
     }
-    else if (Convert.ToInt32(Session["perfil"]) == 2)
+    else if (Convert.ToInt32(Session["perfil"]) == 2 || Convert.ToInt32(Session["perfil"]) == 3)
     {
         @model IEnumerable<Entity_Layer.Dashboard_Gen>
         <div class="table-responsive-sm table-responsive-md">
-            <table class="table table-hover">
-                <tr>
-
-                    <th>
-                        @Html.DisplayNameFor(model => model.NOMBRE_UNIDAD)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.FECHACREACION)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.FECHA_ESTIMADA)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.FECHA_TERMINO)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Tareas_ter)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Cant_tareas_tot)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ESTADO)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.nombre_usurio)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.procentaje)
-                    </th>
-                    <th></th>
-                    <th></th>
-                </tr>
-
+            <table class="table table-hover" id="tabla">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NOMBRE_UNIDAD)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FECHACREACION)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FECHA_ESTIMADA)
+                        </th>
+                        <th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FECHA_TERMINO)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Tareas_ter)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Cant_tareas_tot)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ESTADO)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.nombre_usurio)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.procentaje)
+                        </th>
+                    </tr>
+                </thead>
                 @foreach (var item in Model)
                 {
                     <tr>
@@ -171,15 +78,22 @@ else
                             @Html.DisplayFor(modelItem => item.FECHACREACION)
                         </td>
                         <td>
-
                             @if (item.ATRASO == 1)
                             {
-                                <p style="color:red;">@item.FECHA_ESTIMADA</p>
-                                <p title="Esta tarea se encuentra fuera de plazo" style="color:red;" data-toggle="tooltip">(!)</p>
+                                if (item.ESTADO != "Terminado")
+                                {
+                                    <p style="color:red;">@item.FECHA_ESTIMADA</p>
+                                }
                             }
                             else
                             {
                                 @Html.DisplayFor(modelItem => item.FECHA_ESTIMADA)
+                            }
+                        </td>
+                        <td>
+                            @if (item.ATRASO == 1 && item.ESTADO != "Terminado")
+                            {
+                                <i class="fa fa-exclamation-triangle" title="@item.NOMBRE_UNIDAD fuera de plazo" style="color:red;font-size:15px;" data-toggle="tooltip"></i>
                             }
                         </td>
                         <td>
@@ -198,9 +112,19 @@ else
                             @Html.DisplayFor(modelItem => item.nombre_usurio)
                         </td>
                         <td>
-                            <div style="background:#808080;border-radius:5%;"> 
-                                <div class="progress-bar" role="progressbar" style="width: @item.procentaje%;border-radius:5%; " aria-valuenow="@item.procentaje" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" title="Esta tarea tiene de progreso @item.procentaje %">@item.procentaje%</div>
-                            </div>    
+                            @if (item.procentaje == 100)
+                            {
+                                <div style="background:#808080;border-radius:5%;">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: @item.procentaje%;border-radius:5%;" aria-valuenow="@item.procentaje" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" title="@item.NOMBRE_UNIDAD terminado">@item.procentaje%</div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div style="background:#808080;border-radius:5%;">
+                                    <div class="progress-bar" role="progressbar" style="width: @item.procentaje%;border-radius:5%; " aria-valuenow="@item.procentaje" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" title="@item.NOMBRE_UNIDAD lleva un @item.procentaje% de progreso">@item.procentaje%</div>
+                                </div>
+                            }
+
                         </td>
                         @*<td>
                                 <p class="btn btn-warning btn-mant"> @Html.ActionLink("Editar", "Update", new { id = item.id })</p>
@@ -217,6 +141,5 @@ else
 
     }
 }
-
 
 

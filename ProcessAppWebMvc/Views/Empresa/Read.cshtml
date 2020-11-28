@@ -34,34 +34,35 @@
 @if (Session["usu"] != null)
 {
     <div class="table-responsive-sm table table-responsive-md">
-        <table class="table table-hover">
-            <tr>
-                <th hidden>
-                    @Html.DisplayNameFor(model => model.ID)
-                </th>
-                <th hidden>
-                    @Html.DisplayNameFor(model => model.RUT)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.NOMBRE)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DIRECCION)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CORREO_CONTACTO)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TELEFONO_CONTACTO)
-                </th>
-                <th>
-                    @*@Html.DisplayNameFor(model => model.ESTADO)*@
-                    <label for="ESTADO">Estado</label>
-                </th>
-                <th></th>
-                <th></th>
-            </tr>
-
+        <table class="table table-hover" id="tabla">
+            <thead>
+                <tr>
+                    <th hidden>
+                        @Html.DisplayNameFor(model => model.ID)
+                    </th>
+                    <th hidden>
+                        @Html.DisplayNameFor(model => model.RUT)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NOMBRE)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DIRECCION)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CORREO_CONTACTO)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TELEFONO_CONTACTO)
+                    </th>
+                    <th>
+                        @*@Html.DisplayNameFor(model => model.ESTADO)*@
+                        <label for="ESTADO">Estado</label>
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
             @foreach (var item in Model)
             {
                 <tr>

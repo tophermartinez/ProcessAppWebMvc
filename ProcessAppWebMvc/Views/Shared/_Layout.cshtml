@@ -7,8 +7,17 @@
     <title>Process S.A </title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script src="~/Scripts/Rut.js"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/b-1.6.5/datatables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/b-1.6.5/b-html5-1.6.5/datatables.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/b-1.6.5/b-flash-1.6.5/b-html5-1.6.5/datatables.min.js"></script>
+    <link href=”//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css” rel=”stylesheet”>
+    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
 </head>
 <style>
     body {
@@ -77,6 +86,11 @@
         font-size: 12px;
         padding-left: 1px;
         padding-right: 2px;
+    }
+
+    .fa-file-pdf, .fa-file-csv, .fa-file-excel, .fa-clipboard{
+        font-size:25px;
+    }
     }
 </style>
 <body>
@@ -205,7 +219,6 @@
                 }
             </div>
 
-
         }
     </nav>
     <div class="container body-content">
@@ -215,9 +228,6 @@
             <p>&copy; @DateTime.Now.Year - Process S.A</p>
         </footer>
     </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>
@@ -258,3 +268,34 @@
     });
 
 </script>
+<script>
+    $(document).ready(function () {
+        $('#tabla').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                { "extend" : 'copyHtml5', "text": '', "className": 'fa fa-clipboard btn btn-outline-info', "title": 'Copiar a portapaeles' },
+                { "extend": 'excelHtml5', "text": '', "className": 'fa fa-file-excel btn btn-outline-success', "title": 'export_to_excel' },
+                { "extend": 'csvHtml5', "text": '', "className": 'fa fa-file-csv btn btn-outline-success', "title": 'export_to_csv' },
+                { "extend": 'pdfHtml5', "text": '', "className": 'fa fa-file-pdf btn btn-outline-danger', "title": 'export_to_pdf' }
+            ],
+            "oLanguage": {
+
+                "sSearch": "Filtrar por:"
+
+            },
+            "language": {
+                "info": " ",
+                "paginate": {
+                    "previous": "Atras",
+                    "next": "Siguiente"
+                }
+                
+
+            }
+
+           
+        });
+        $('')
+    });
+</script>
+
