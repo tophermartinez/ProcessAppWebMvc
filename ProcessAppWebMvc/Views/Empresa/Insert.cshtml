@@ -1,9 +1,4 @@
 ﻿@model Entity_Layer.EMPRESA
-
-@{
-    ViewBag.Title = "Insert";
-}
-
 <style>
     input, select, textarea {
         max-width: 2000px;
@@ -17,12 +12,6 @@
         margin-bottom: 5px;
     }
 </style>
-
-@*@using (Html.BeginForm())
-
-    </form>
-         {
-*@
 <form id="mant_conexion" method="post" action="@Url.Action("Insert", "Empresa")">
     @Html.AntiForgeryToken()
 
@@ -32,7 +21,7 @@
         <hr />
         @if (Session["usu"] != null)
         {
-            <div class="card col-lg-6">
+            <div class="card col-lg-4">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-12">

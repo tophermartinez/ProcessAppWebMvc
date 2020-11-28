@@ -36,10 +36,10 @@
         <table class="table table-hover">
             <tr>
 
-                <th>
+                <th hidden>
                     @Html.DisplayNameFor(model => model.id)
                 </th>
-                <th>
+                <th hidden>
                     @Html.DisplayNameFor(model => model.ID_UNIDAD)
                 </th>
                 <th>
@@ -73,10 +73,10 @@
             @foreach (var item in Model)
             {
         <tr>
-            <td>
+            <td hidden>
                 @Html.DisplayFor(modelItem => item.id)
             </td>
-            <td>
+            <td hidden>
                 @Html.DisplayFor(modelItem => item.ID_UNIDAD)
             </td>
             <td>

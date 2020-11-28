@@ -55,10 +55,9 @@ namespace DataAcces
                     using (OracleCommand command = new OracleCommand("INSERT_TAREA", cn))
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
-                       
                         command.Parameters.Add(new OracleParameter("P_NOMBRETAREA", OracleType.VarChar)).Value = dto.NOMBRETAREA;
                         command.Parameters.Add(new OracleParameter("P_ESTADO_TAREA", OracleType.Number)).Value = dto.ESTADO_TAREA;
-                        //command.Parameters.Add(new OracleParameter("p_RutEmp", OracleType.Number)).Value = dto.RUT_EM;
+                        command.Parameters.Add(new OracleParameter("p_RutEmp", OracleType.Number)).Value = dto.RUT_EM;
                         command.Parameters.Add(new OracleParameter("p_Rutusu", OracleType.Number)).Value = dto.RUT_USU;
                         if (dto.FechaEstimada != "")
                         {
@@ -116,7 +115,7 @@ namespace DataAcces
                                 dto.FechaEstimada = Convert.ToString(dr["fecha_estimada"]);
                                 dto.RUT_USU = Convert.ToInt32(dr["rut_usu"]);
                                 dto.nombre_usuario = Convert.ToString(dr["nombre_usuario"]);
-
+                                dto.NOMBRE_ESTADO = Convert.ToString(dr["NOMBRE_ESTADO"]);
                                 list.Add(dto);
                             }
                         }

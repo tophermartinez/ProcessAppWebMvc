@@ -4,19 +4,19 @@
     ViewBag.Title = "Read";
 }
 <style>
-    a {
-        color: white;
-    }
+        a {
+            color: white;
+        }
 
         a:hover {
             color: white;
             text-decoration: none;
         }
 
-    .btn-mant {
-        width: 60px;
-        font-size: 10px;
-    }
+        .btn-mant {
+            width: 60px;
+            font-size: 10px;
+        }
 </style>
 <br />
 <h3>Mantenedor de Tareas</h3>
@@ -36,7 +36,7 @@
     <div class="table-responsive-sm table-responsive-md">
         <table class="table table-hover">
             <tr>
-                <th>
+                <th hidden>
                     @Html.DisplayNameFor(model => model.IDTAREA)
                 </th>
                 <th>
@@ -67,7 +67,7 @@
             @foreach (var item in Model)
             {
         <tr>
-            <td>
+            <td hidden>
                 @Html.DisplayFor(modelItem => item.IDTAREA)
             </td>
             <td>
@@ -77,7 +77,7 @@
                 @Html.DisplayFor(modelItem => item.FECHACREACION)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ESTADO_TAREA)
+                @Html.DisplayFor(modelItem => item.NOMBRE_ESTADO)
             </td>
             <td>
                 @if (item.FechaEstimada != null)
@@ -88,7 +88,6 @@
                 {
                     @Html.DisplayFor(modelItem => "")
                 }
-
             </td>
             <td>
                 @if (item.FECHA_TERMINO != null)
@@ -122,9 +121,7 @@
 }
 else
 {
-
     <h1>Debe logearse para acceder a esta opcion, no te creas vivo ctm</h1>
-
     @Html.ActionLink("Volver a Home", "Login")
 }
 

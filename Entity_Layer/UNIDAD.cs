@@ -10,7 +10,7 @@ namespace Entity_Layer
     public class UNIDAD
     {
         public int ID_UNIDAD { get; set; }
-        [Display(Name = "Flujo")]
+        [Display(Name = "Nombre")]
         public string NOMBRE { get; set; }
         [Display(Name = "Detalle")]
         public string DETALLE { get; set; }
@@ -22,11 +22,12 @@ namespace Entity_Layer
         public string FECHA_ACTUAL { get; set; }
         [Display(Name = "Estado")]
         public int ESTADO { get; set;  }
-        [Display(Name = "Responsable")]
         public string nombre_usuario { get; set; }
 
         public int RUT_EM { get; set; }
+        [Display(Name = "Asignado a")]
         public int RUT_USU { get; set; }
+        [Display(Name = "Fecha Estimada")]
         public string FechaEstimada { get; set; }
     }
 }

@@ -29,9 +29,7 @@ namespace Entity_Layer
         [Display(Name = "Asignado a")]
         public int RUT_USU { get; set; }
         [Display(Name = "Fecha estimada")]
-        public string FechaEstimada { get; set; }
-
-
-
+        public string FechaEstimada { get; set;}
+        public string NOMBRE_ESTADO { get; set;}
     }
 }

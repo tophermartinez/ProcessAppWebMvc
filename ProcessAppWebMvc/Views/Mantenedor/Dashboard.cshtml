@@ -164,14 +164,23 @@ else
                 {
                     <tr>
                         <td>
-                            @*@Html.DisplayFor(modelItem => item.NOMBRE_UNIDAD)*@
-                            <a href=" @Url.Action("Update", "Unidades" , new { ID_UNIDAD="4"})">@item.NOMBRE_UNIDAD</a>
+                            @Html.DisplayFor(modelItem => item.NOMBRE_UNIDAD)
+                            @*<a href=" @Url.Action("Update", "Unidades" , new { ID_UNIDAD="4"})">@item.NOMBRE_UNIDAD</a>*@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.FECHACREACION)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.FECHA_ESTIMADA)
+
+                            @if (item.ATRASO == 1)
+                            {
+                                <p style="color:red;">@item.FECHA_ESTIMADA</p>
+                                <p title="Esta tarea se encuentra fuera de plazo" style="color:red;" data-toggle="tooltip">(!)</p>
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => item.FECHA_ESTIMADA)
+                            }
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.FECHA_TERMINO)
@@ -190,7 +199,7 @@ else
                         </td>
                         <td>
                             <div style="background:#808080;border-radius:5%;"> 
-                                <div class="progress-bar" role="progressbar" style="width: @item.procentaje%;border-radius:5%; " aria-valuenow="@item.procentaje" aria-valuemin="0" aria-valuemax="100">@item.procentaje%</div>
+                                <div class="progress-bar" role="progressbar" style="width: @item.procentaje%;border-radius:5%; " aria-valuenow="@item.procentaje" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" title="Esta tarea tiene de progreso @item.procentaje %">@item.procentaje%</div>
                             </div>    
                         </td>
                         @*<td>

@@ -21,7 +21,7 @@ namespace Entity_Layer
 
         public string FECHA_ESTIMADA { get; set; }
 
-        public int ESTADO { get; set; }
+        public string ESTADO { get; set; }
 
         public int Rut_Usu { get; set; }
 
@@ -30,7 +30,7 @@ namespace Entity_Layer
 
         public int procentaje { get; set; }
         public string nombre_usurio { get; set; }
-
+        public int ATRASO { get; set; }
         public List<Dashboard_Gen> listgen {get;set;}
     }
 }

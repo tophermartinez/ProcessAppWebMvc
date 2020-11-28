@@ -241,7 +241,7 @@ namespace ProcessAppWebMvc.Controllers
             {
                 DataAcces.DaoDashboard ds = new DaoDashboard();
 
-                List<Dashboard_Gen> dsGen = ds.DashBoard(Convert.ToInt32(Session["rut"]));
+                List<Dashboard_Gen> dsGen = ds.DashBoard(Convert.ToInt32(Session["rut"]) , Convert.ToString(Session["rutempresa"]));
 
                 ViewBag.Daslist = dsGen;
                 return View(dsGen);
