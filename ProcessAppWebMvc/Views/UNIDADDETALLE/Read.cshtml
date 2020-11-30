@@ -18,7 +18,7 @@
     }
 </style>
 <br />
-<h3>Mantenedor de Unidad Detalle</h3>
+<h3>Mantenedor Tareas Flujo</h3>
 <hr />
 <br />
 @if (Session["perfil"] != null)
@@ -45,24 +45,28 @@
                     <th>
                         @Html.DisplayNameFor(model => model.NOMBRE_UNIDAD)
                     </th>
-                    <th>
+                    <th hidden>
                         @Html.DisplayNameFor(model => model.ID_TAREA)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.NOMBRE_TAREA)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.FECHA_TERMINO)
-                    </th>
-                    <th>
                         @Html.DisplayNameFor(model => model.FECHACREACION)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ESTADO)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.FECHA_ESTIMADA)
                     </th>
+                    <th colspan="2">
+                        @Html.DisplayNameFor(model => model.DIAS_DIF)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FECHA_TERMINO)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NOMBRE_ESTADO)
+                    </th>
+
                     <th>
                         @Html.DisplayNameFor(model => model.NOMBRE_USUARIO)
                     </th>
@@ -82,23 +86,63 @@
             <td>
                 @Html.DisplayFor(modelItem => item.NOMBRE_UNIDAD)
             </td>
-            <td>
+            <td hidden>
                 @Html.DisplayFor(modelItem => item.ID_TAREA)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NOMBRE_TAREA)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FECHA_TERMINO)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.FECHACREACION)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ESTADO)
+                @if (item.ATRASO == 1)
+                {
+                    if (item.ESTADO != 13)
+                    {
+                        <p style="color:red;"><b>@item.FECHA_ESTIMADA</b></p>
+                    }
+
+                }
+                else if (item.ESTADO != 13 && item.ATRASO == 0 && item.DIAS_DIF < 10)
+                {
+                    <p style="color:orange;"><b>@item.FECHA_ESTIMADA</b></p>
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.FECHA_ESTIMADA)
+                }
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FECHA_ESTIMADA)
+                @if (item.ESTADO != 13 && item.ATRASO == 0 && item.DIAS_DIF < 10)
+                {
+                    <p style="color:orange"><b>@item.DIAS_DIF</b></p>
+
+                }
+                else if (item.ESTADO != 13 && item.ATRASO == 1)
+                {
+                    <p style="color:red"><b>@item.DIAS_DIF</b></p>
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.DIAS_DIF)
+                }
+            </td>
+            <td>
+                @if (item.ATRASO == 0 && item.DIAS_DIF < 10)
+                {
+                    <i class="fa fa-exclamation-triangle" title="Quedan menos de 10 días para terminar" style="color:orange;font-size:15px;" data-toggle="tooltip"></i>
+                }
+                else if (item.ATRASO == 1)
+                {
+                    <i class="fa fa-exclamation-triangle" title="@item.NOMBRE_UNIDAD fuera de plazo" style="color:red;font-size:15px;" data-toggle="tooltip"></i>
+                }      
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FECHA_TERMINO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NOMBRE_ESTADO)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NOMBRE_USUARIO)

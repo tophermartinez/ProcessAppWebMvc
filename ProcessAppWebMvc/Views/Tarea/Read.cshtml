@@ -26,6 +26,7 @@
 {
     if (Convert.ToInt32(Session["perfil"]) == 3)
     {
+        <div class=""></div>
         <div class="col-lg-6">
             <p class="btn btn-success btn-create">
                 @Html.ActionLink("Nueva tarea", "Insert")
@@ -47,16 +48,10 @@
                         @Html.DisplayNameFor(model => model.FECHACREACION)
                     </th>
                     <th>
+                        @Html.DisplayNameFor(model => model.FECHA_ACTUAL)
+                    </th>
+                    <th>
                         @Html.DisplayNameFor(model => model.ESTADO_TAREA)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.FechaEstimada)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.FECHA_TERMINO)
-                    </th>
-                    <th hidden>
-                        @Html.DisplayNameFor(model => model.RUT_USU)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.nombre_usuario)
@@ -78,31 +73,10 @@
                 @Html.DisplayFor(modelItem => item.FECHACREACION)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.FECHA_ACTUAL)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.NOMBRE_ESTADO)
-            </td>
-            <td>
-                @if (item.FechaEstimada != null)
-                {
-                    @Html.DisplayFor(modelItem => item.FechaEstimada)
-                }
-                else
-                {
-                    @Html.DisplayFor(modelItem => "")
-                }
-            </td>
-            <td>
-                @if (item.FECHA_TERMINO != null)
-                {
-                    @Html.DisplayFor(modelItem => item.FECHA_TERMINO)
-                }
-                else
-                {
-                    @Html.DisplayFor(modelItem => "")
-                }
-
-            </td>
-            <td hidden>
-                @Html.DisplayFor(modelItem => item.RUT_USU)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.nombre_usuario)

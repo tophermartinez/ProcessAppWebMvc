@@ -18,10 +18,11 @@ namespace Entity_Layer
         public string FECHA_TERMINO { get; set; }
         [Display(Name = "Fecha Creación")]
         public DateTime FECHACREACION { get; set; }
-
+        [Display(Name = "Última Actualización")]
         public string FECHA_ACTUAL { get; set; }
         [Display(Name = "Estado")]
         public int ESTADO { get; set;  }
+        [Display(Name = "Asignado a")]
         public string nombre_usuario { get; set; }
 
         public int RUT_EM { get; set; }

@@ -190,7 +190,7 @@ namespace DataAcces
                 using (OracleConnection cn = new OracleConnection(strOracle))
                 {
                     cn.Open();
-                    using (OracleCommand cmd = new OracleCommand("SELECT ID_ESTADO, NOMBRE, DESCRIPCION FROM estado where Descripcion = 'Usuario'", cn))
+                    using (OracleCommand cmd = new OracleCommand("SELECT ID_ESTADO, NOMBRE, DESCRIPCION FROM estado where Descripcion = 'General'", cn))
                     {
                         OracleDataReader _reader = cmd.ExecuteReader();
                         while (_reader.Read())

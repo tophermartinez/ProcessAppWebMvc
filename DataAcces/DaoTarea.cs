@@ -59,14 +59,6 @@ namespace DataAcces
                         command.Parameters.Add(new OracleParameter("P_ESTADO_TAREA", OracleType.Number)).Value = dto.ESTADO_TAREA;
                         command.Parameters.Add(new OracleParameter("p_RutEmp", OracleType.Number)).Value = dto.RUT_EM;
                         command.Parameters.Add(new OracleParameter("p_Rutusu", OracleType.Number)).Value = dto.RUT_USU;
-                        if (dto.FechaEstimada != "")
-                        {
-                            command.Parameters.Add(new OracleParameter("p_FechaEst", OracleType.DateTime)).Value = dto.FechaEstimada;
-                        }
-                        else
-                        {
-                            command.Parameters.Add(new OracleParameter("p_FechaEst", OracleType.DateTime)).Value = DBNull.Value;
-                        }
                         command.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar, 500)).Direction = System.Data.ParameterDirection.Output;
                         command.ExecuteNonQuery();
                         result = Convert.ToString(command.Parameters["P_RESULT"].Value);
@@ -111,8 +103,7 @@ namespace DataAcces
                                 dto.NOMBRETAREA = Convert.ToString(dr["NOMBRETAREA"]);
                                 dto.FECHACREACION = Convert.ToDateTime(dr["FECHACREACION"]);
                                 dto.ESTADO_TAREA = Convert.ToInt32(dr["ESTADO_TAREA"]);
-                                dto.FECHA_TERMINO = Convert.ToString(dr["fecha_termino"]);
-                                dto.FechaEstimada = Convert.ToString(dr["fecha_estimada"]);
+                                dto.FECHA_ACTUAL = Convert.ToString(dr["FECHA_ACTUAL"]);
                                 dto.RUT_USU = Convert.ToInt32(dr["rut_usu"]);
                                 dto.nombre_usuario = Convert.ToString(dr["nombre_usuario"]);
                                 dto.NOMBRE_ESTADO = Convert.ToString(dr["NOMBRE_ESTADO"]);
@@ -144,15 +135,6 @@ namespace DataAcces
                         command.Parameters.Add(new OracleParameter("P_IDTAREA", OracleType.Number)).Value = dto.IDTAREA;
                         command.Parameters.Add(new OracleParameter("P_NOMBRETAREA", OracleType.VarChar)).Value = dto.NOMBRETAREA;
                         command.Parameters.Add(new OracleParameter("P_IDESTADO", OracleType.Number)).Value = dto.ESTADO_TAREA;
-                        command.Parameters.Add(new OracleParameter("p_Rutusu", OracleType.Number)).Value = dto.RUT_USU;
-                        if (dto.FechaEstimada != null)
-                        {
-                            command.Parameters.Add(new OracleParameter("p_FechaEst", OracleType.DateTime)).Value = dto.FechaEstimada;
-                        }
-                        else
-                        {
-                            command.Parameters.Add(new OracleParameter("p_FechaEst", OracleType.DateTime)).Value = DBNull.Value;
-                        }
                         command.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar, 50)).Value = System.Data.ParameterDirection.Output;
                         command.ExecuteNonQuery();
                         result = Convert.ToString(command.Parameters["P_RESULT"].Value);
@@ -163,7 +145,7 @@ namespace DataAcces
             catch (Exception ex)
             {
 
-                new Exception("ERROR EN METODO ACTUALIZAR" + ex.Message);
+                    new Exception("ERROR EN METODO ACTUALIZAR" + ex.Message);
             }
             return result;
         }
@@ -219,6 +201,71 @@ namespace DataAcces
                             dto = new TAREA();
                             dto.IDTAREA = Convert.ToInt32(_reader["IDTAREA"]);
                             dto.NOMBRETAREA = Convert.ToString(_reader["NOMBRETAREA"]);
+                            list.Add(dto);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                new Exception("Error en metodo listar" + ex.Message);
+            }
+            return list;
+        }
+       
+        public string InsertMessage(TAREA dto)
+        {
+            string result = string.Empty;
+            try
+            {
+                using (OracleConnection cn = new OracleConnection(strOracle))
+                {
+                    cn.Open();
+                    using (OracleCommand command = new OracleCommand("SP_INSERT_POST", cn))
+                    {
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.Parameters.Add(new OracleParameter("P_ID_TAREA", OracleType.Number)).Value = dto.IDTAREA;
+                        command.Parameters.Add(new OracleParameter("P_RUT_EMPRESA", OracleType.Number)).Value = dto.RUT_EM;
+                        command.Parameters.Add(new OracleParameter("P_RUT_USUARIO", OracleType.Number)).Value = dto.RUT_USU;
+                        command.Parameters.Add(new OracleParameter("P_MENSAJE", OracleType.VarChar)).Value = dto.MENSAJE;                        
+                        command.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar, 500)).Direction = System.Data.ParameterDirection.Output;
+                        command.ExecuteNonQuery();
+                        result = Convert.ToString(command.Parameters["P_RESULT"].Value);
+                    }
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                new Exception("ERROR EN METODO INSERTAR" + ex.Message);
+            }
+            return result;
+        }
+
+        public List<TAREA> ObtenerPosts(int id_tarea)
+        {
+            List<TAREA> list = new List<TAREA>();
+            TAREA dto = null;
+            try
+            {
+                using (OracleConnection cn = new OracleConnection(strOracle))
+                {
+                    cn.Open();
+                    using (OracleCommand cmd = new OracleCommand("SELECT FECHA, " +
+                        "NOMBRE_USUARIO, " +
+                        "MENSAJE" +
+                        " FROM POST_TAREA " +
+                        "where ID_TAREA = " + id_tarea + " " +
+                        "ORDER BY FECHA DESC", cn))
+                    {
+                        OracleDataReader _reader = cmd.ExecuteReader();
+                        while (_reader.Read())
+                        {
+                            dto = new TAREA();
+                            dto.FECHACREACION = Convert.ToDateTime(_reader["FECHA"]);
+                            dto.nombre_usuario = Convert.ToString(_reader["NOMBRE_USUARIO"]);
+                            dto.MENSAJE = Convert.ToString(_reader["MENSAJE"]);
                             list.Add(dto);
                         }
                     }

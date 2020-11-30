@@ -1,5 +1,17 @@
 ﻿@model Entity_Layer.UNIDAD_DETALLE
+<style>
+    input, select, textarea {
+        max-width: 2000px;
+    }
 
+    form label {
+        margin-bottom: 0px;
+    }
+
+    form input, select {
+        margin-bottom: 5px;
+    }
+</style>
 @{
     ViewBag.Title = "Update";
 }
@@ -18,142 +30,188 @@
 </style>
 
 
-@using (Html.BeginForm())
+
+@Html.AntiForgeryToken()
+
+<br>
+<h4>Editar Tareas Flujo</h4>
+<hr />
+@if (Session["usu"] != null)
 {
-    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="form-horizontal col-lg-6">
+            @using (Html.BeginForm())
+            {
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ID_UNIDAD, htmlAttributes: new { @class = "control-label col-md-2" })
+                   
+                        @*@Html.EditorFor(model => model.ID_UNIDAD, new { htmlAttributes = new { @class = "form-control" } })*@
+                        <select name="ID_UNIDAD" id="ID_UNIDAD" class="form-control">
+                            @foreach (var item in ViewBag.ListaUnidades)
+                            {
+                                if (ViewBag.Unidad == item.ID_UNIDAD)
+                                {
+                                    <option value="@item.ID_UNIDAD" selected>
+                                        @item.NOMBRE
+                                    </option>
+                                }
+                                else
+                                {
+                                    <option value="@item.ID_UNIDAD">
+                                        @item.NOMBRE
+                                    </option>
+                                }
+                            }
+                        </select>
+                        @Html.ValidationMessageFor(model => model.ID_UNIDAD, "", new { @class = "text-danger" })
+                  
+                </div>
 
-    <br>
-    <h4>UNIDAD DETALLE</h4>
-    <hr />
-    if (Session["usu"] != null)
-    {
-<div class="form-horizontal">
-    <div class="form-group">
-        @Html.LabelFor(model => model.ID_UNIDAD, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @*@Html.EditorFor(model => model.ID_UNIDAD, new { htmlAttributes = new { @class = "form-control" } })*@
-            <select name="ID_UNIDAD" id="ID_UNIDAD" class="form-control">
-                @foreach (var item in ViewBag.ListaUnidades)
-                {
-                    if (ViewBag.Unidad == item.ID_UNIDAD)
-                    {
-                        <option value="@item.ID_UNIDAD" selected>
-                            @item.NOMBRE
-                        </option>
-                    }
-                    else
-                    {
-                        <option value="@item.ID_UNIDAD">
-                            @item.NOMBRE
-                        </option>
-                    }
-                }
-            </select>
-            @Html.ValidationMessageFor(model => model.ID_UNIDAD, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ID_TAREA, htmlAttributes: new { @class = "control-label" })
+            
+                        @*@Html.EditorFor(model => model.ID_TAREA, new { htmlAttributes = new { @class = "form-control" } })*@
+                        <select name="ID_TAREA" id="ID_TAREA" class="form-control">
+                            @foreach (var item in ViewBag.ListaTareas)
+                            {
+                                if (ViewBag.Tarea == item.IDTAREA)
+                                {
+                                    <option value="@item.IDTAREA" selected>
+                                        @item.NOMBRETAREA
+                                    </option>
+                                }
+                                else
+                                {
+                                    <option value="@item.IDTAREA">
+                                        @item.NOMBRETAREA
+                                    </option>
+                                }
+                            }
+                        </select>
+                        @Html.ValidationMessageFor(model => model.ID_TAREA, "", new { @class = "text-danger" })
+               
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ESTADO, htmlAttributes: new { @class = "control-label" })
+          
+                        @*@Html.EditorFor(model => model.ESTADO, new { htmlAttributes = new { @class = "form-control" } })*@
+                        <select name="ESTADO" id="ESTADO" class="form-control">
+                            @foreach (var item in ViewBag.ListaEstados)
+                            {
+                                if (ViewBag.Estado == item.ID)
+                                {
+                                    <option value="@item.ID" selected>
+                                        @item.NOMBRE
+                                    </option>
+                                }
+                                else
+                                {
+                                    <option value="@item.ID">
+                                        @item.NOMBRE
+                                    </option>
+                                }
+                            }
+                        </select>
+                        @Html.ValidationMessageFor(model => model.ESTADO, "", new { @class = "text-danger" })
+               
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Rut_Usu, htmlAttributes: new { @class = "control-label" })
+              
+                        @*@Html.EditorFor(model => model.RUT_USU, new { htmlAttributes = new { @class = "form-control" } })*@
+                        <select name="Rut_Usu" id="Rut_Usu" class="form-control">
+                            @foreach (var item in ViewBag.ListaUsuarios)
+                            {
+                                if (ViewBag.Usuario == Convert.ToInt32(item.RUT))
+                                {
+                                    <option value="@item.RUT" selected>
+                                        @(item.NOMBRES +" " + item.APELLIDO_PATERNO)
+                                    </option>
+                                }
+                                else
+                                {
+                                    <option value="@item.RUT">
+                                        @(item.NOMBRES +" " + item.APELLIDO_PATERNO)
+                                    </option>
+                                }
+
+                            }
+                        </select>
+                        @Html.ValidationMessageFor(model => model.Rut_Usu, "", new { @class = "text-danger" })
+          
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FECHA_ESTIMADA, htmlAttributes: new { @class = "control-label" })
+               
+                        @Html.EditorFor(model => model.FECHA_ESTIMADA, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                        @Html.ValidationMessageFor(model => model.FECHA_ESTIMADA, "", new { @class = "text-danger" })
+               
+                </div>
+
+                <div class="form-group">
+                    <div class="">
+                        <input type="submit" value="Editar Subtarea" class="btn btn-success btn-block" />
+                    </div>
+                </div>
+
+            }
+        </div>
+        <div class="col-lg-6">
+            <form style="margin-left:30px;" id="tarea_comentarios" method="post" action="@Url.Action("Comentar", "UNIDADDETALLE")">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div hidden>
+                    @Html.EditorFor(model => model.ID_TAREA, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <label class="control-label">Comentarios</label>
+                <textarea class="form-control" name="MENSAJE" id="MENSAJE" required placeholder="Ingrese mensaje"></textarea>
+
+                <button type="submit" class="btn btn-info fa fa-paper-plane class="fa fa-send" style="width:max-content;margin-top:5px;margin-top:5px;margin-top:5px;margin-bottom:7px;"> </button>
+                <br />
+                <div class="table table-responsive" style="overflow:auto; height:200px;">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr hidden>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ViewBag.ListaPosts)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.FECHACREACION
+                                    </td>
+                                    <td>
+                                        @item.nombre_usuario
+                                    </td>
+                                    <td style="max-width:300px;">
+                                        @item.MENSAJE
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </form>
         </div>
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.ID_TAREA, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @*@Html.EditorFor(model => model.ID_TAREA, new { htmlAttributes = new { @class = "form-control" } })*@
-            <select name="ID_TAREA" id="ID_TAREA" class="form-control">
-                @foreach (var item in ViewBag.ListaTareas)
-                {
-                    if (ViewBag.Tarea == item.IDTAREA)
-                    {
-                        <option value="@item.IDTAREA" selected>
-                            @item.NOMBRETAREA
-                        </option>
-                    }
-                    else
-                    {
-                        <option value="@item.IDTAREA">
-                            @item.NOMBRETAREA
-                        </option>
-                    }
-                }
-            </select>
-            @Html.ValidationMessageFor(model => model.ID_TAREA, "", new { @class = "text-danger" })
-        </div>
-    </div>
 
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.ESTADO, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @*@Html.EditorFor(model => model.ESTADO, new { htmlAttributes = new { @class = "form-control" } })*@
-            <select name="ESTADO" id="ESTADO" class="form-control">
-                @foreach (var item in ViewBag.ListaEstados)
-                {
-                    if (ViewBag.Estado == item.ID)
-                    {
-                        <option value="@item.ID" selected>
-                            @item.NOMBRE
-                        </option>
-                    }
-                    else
-                    {
-                        <option value="@item.ID">
-                            @item.NOMBRE
-                        </option>
-                    }
-                }
-            </select>
-            @Html.ValidationMessageFor(model => model.ESTADO, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Rut_Usu, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @*@Html.EditorFor(model => model.RUT_USU, new { htmlAttributes = new { @class = "form-control" } })*@
-            <select name="Rut_Usu" id="Rut_Usu" class="form-control">
-                @foreach (var item in ViewBag.ListaUsuarios)
-                {
-                    if (ViewBag.Usuario == Convert.ToInt32(item.RUT))
-                    {
-                        <option value="@item.RUT" selected>
-                            @(item.NOMBRES +" " + item.APELLIDO_PATERNO)
-                        </option>
-                    }
-                    else
-                    {
-                        <option value="@item.RUT">
-                            @(item.NOMBRES +" " + item.APELLIDO_PATERNO)
-                        </option>
-                    }
-
-                }
-            </select>
-            @Html.ValidationMessageFor(model => model.Rut_Usu, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.FECHA_ESTIMADA, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FECHA_ESTIMADA, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
-                @Html.ValidationMessageFor(model => model.FECHA_ESTIMADA, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-    }
-    else
-    {
+}
+else
+{
     <h1>Debe logearse para acceder a esta opcion, no te creas vivo ctm</h1>
-    }
-    }
+}
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
 
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

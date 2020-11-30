@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Bussines_Layer;
+using DataAcces;
 using Entity_Layer;
 
 namespace ProcessAppWebMvc.Controllers
@@ -93,10 +94,13 @@ namespace ProcessAppWebMvc.Controllers
                     List<TAREA> list2 = dt.ObtenerTareas(0, rut_empresa, 0);
                     List<estado> list3 = dt.ObtenerEstadoTarea();
                     List<USUARIO> list4 = dc.ObtenerListaUsuarios(0, rut_empresa, 1);
+                    List<TAREA> list5 = dt.ObtenerPosts(aux.ID_TAREA);
+                  
                     ViewBag.ListaUnidades = list;
                     ViewBag.ListaTareas = list2;
                     ViewBag.ListaEstados = list3;
                     ViewBag.ListaUsuarios = list4;
+                    ViewBag.ListaPosts = list5;
                 }
                 catch (Exception ex)
                 {
@@ -141,6 +145,29 @@ namespace ProcessAppWebMvc.Controllers
                 return View("../Mantenedor/LoginProcess");
             }
            
+        }
+
+        [HttpPost]
+        public ActionResult Comentar(FormCollection fc)
+        {
+            TAREA dto = new TAREA();
+            dto.IDTAREA = Convert.ToInt32(fc["ID_TAREA"]);
+            dto.RUT_USU = Convert.ToInt32(Session["rut"]);  
+            dto.RUT_EM = Convert.ToInt32(Session["rutempresa"]);
+            dto.MENSAJE = Convert.ToString(fc["MENSAJE"]);
+            DaoTarea dt = new DaoTarea();
+            try
+            {
+                dt.InsertMessage(dto);
+            }
+            catch (Exception ex)
+            {
+                new Exception("ERROR EN COMENTAR" + ex.Message);
+            }
+
+
+            // return View("Insert", obj);
+            return Redirect(Request.UrlReferrer.PathAndQuery);
         }
     }
 }

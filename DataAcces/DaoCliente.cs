@@ -226,10 +226,10 @@ namespace DataAcces
                                                               "emp.nombre, " +
                                                               "per.nombre " +
                                                               "FROM USUARIO us " +
-                                                              "INNER JOIN empresa emp ON us.empresa = emp.id_empresa " +
+                                                              "INNER JOIN empresa emp ON us.empresa = emp.id_empresa and emp.estado = 1 " +
                                                               "INNER JOIN perfil per ON per.id_perfil =  us.id_perfil " +
                                                               "WHERE NOMBRE_USUARIO = :usu " +
-                                                              "AND CONTRASENA = :pass", cn);
+                                                              "AND CONTRASENA = :pass and us.estado = 1", cn);
 
                     comando.Parameters.AddWithValue(":usu", usu);
                     comando.Parameters.AddWithValue(":pass", pass);

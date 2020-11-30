@@ -133,10 +133,9 @@
                         @Html.DisplayFor(modelItem => item.NOMBRE_EMPRESA)
                     </td>
                     <td>
-                        @if (item.ID_PERFIL != 1)
-                        {
+                     
                             <p class="btn btn-warning btn-mant">@Html.ActionLink("Editar", "Update", new { ID = item.ID })</p>
-                        }
+                    
 
                         @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })*@
                     </td>

@@ -43,11 +43,7 @@ namespace DataAcces
             return result;
         }
 
-        public string DeleteF(string dto)
-        {
-            throw new NotImplementedException();
-        }
-
+      
         public string Insert(UNIDAD_DETALLE dto)
         {
             string result = string.Empty;
@@ -90,11 +86,7 @@ namespace DataAcces
             return result;
         }
 
-        public string InsertF(UNIDAD_DETALLE dto)
-        {
-            throw new NotImplementedException();
-        }
-
+ 
         public List<UNIDAD_DETALLE> Read()
         {
             List<UNIDAD_DETALLE> list = new List<UNIDAD_DETALLE>();
@@ -127,6 +119,9 @@ namespace DataAcces
                                 dto.FECHA_ESTIMADA = Convert.ToString(dr["FECHA_ESTIMADA"]);
                                 dto.Rut_Usu = Convert.ToInt32(dr["rut_usu"]);
                                 dto.NOMBRE_USUARIO = Convert.ToString(dr["NOMBRE_USUARIO"]);
+                                dto.NOMBRE_ESTADO = Convert.ToString(dr["NOMBRE_ESTADO"]);
+                                dto.DIAS_DIF = Convert.ToInt32(dr["DIAS_DIF"]);
+                                dto.ATRASO = Convert.ToInt32(dr["Atraso"]);
                                 list.Add(dto);
                             }
 
@@ -144,10 +139,7 @@ namespace DataAcces
             return list;
         }
 
-        public List<UNIDAD_DETALLE> ReadF()
-        {
-            throw new NotImplementedException();
-        }
+    
 
         public string Update(UNIDAD_DETALLE dto)
         {
@@ -181,9 +173,6 @@ namespace DataAcces
             return result;
         }
 
-        public string UpdateF(UNIDAD_DETALLE dto)
-        {
-            throw new NotImplementedException();
-        }
+  
     }
 }

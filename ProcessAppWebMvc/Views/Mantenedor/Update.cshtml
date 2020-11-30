@@ -24,8 +24,6 @@
     <hr />
     @if (Session["usu"] != null)
     {   
-        <div class="card">
-            <div class="card-body">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="row">
                     <div class="col-lg-6 col-md-12 col-sm-12" hidden>
@@ -151,8 +149,7 @@
                         <input type="submit" value="Editar usuario" class="btn btn-success btn-block" />
                     </div>
                 </div>
-            </div>
-        </div>
+  
     }
     else
     {
@@ -162,7 +159,7 @@
 }
 
 <div>
-    @Html.ActionLink("Volver a Lista", "Read")
+    @*@Html.ActionLink("Volver a Lista", "Read")*@
 </div>
 
 @section Scripts {

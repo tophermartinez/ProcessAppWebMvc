@@ -45,6 +45,7 @@ namespace DataAcces
                                 uni.procentaje = Convert.ToInt32(dr["Porcentaje"]);
                                 uni.ESTADO = Convert.ToString(dr["ESTADO"]);
                                 uni.ATRASO = Convert.ToInt32(dr["Atraso"]);
+                                uni.DIAS_DIF = Convert.ToInt32(dr["DIAS_DIF"]);
                                 uni.nombre_usurio = Convert.ToString(dr["nombre_usuario"]);
 
                                 list.Add(uni);

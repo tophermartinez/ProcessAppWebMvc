@@ -35,6 +35,8 @@ namespace Entity_Layer
         [Display(Name = "Responsable")]
         public string nombre_usurio { get; set; }
         public int ATRASO { get; set; }
+        [Display(Name = "Días restantes")]
+        public int DIAS_DIF { get; set; }
         public List<Dashboard_Gen> listgen {get;set;}
     }
 }

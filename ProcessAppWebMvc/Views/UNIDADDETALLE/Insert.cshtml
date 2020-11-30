@@ -1,5 +1,17 @@
 ﻿@model Entity_Layer.UNIDAD_DETALLE
+<style>
+    input, select, textarea {
+        max-width: 2000px;
+    }
 
+    form label {
+        margin-bottom: 0px;
+    }
+
+    form input, select {
+        margin-bottom: 5px;
+    }
+</style>
 
 @using (Html.BeginForm())
 {
@@ -7,14 +19,15 @@
 
     if (Session["usu"] != null)
     {
-<div class="form-horizontal">
-    <h4>UNIDAD_DETALLE</h4>
+<div class="form-horizontal col-lg-6">
+    <br>
+    <h4>Asignar Tareas </h4>
     <hr />
 
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
-        @Html.LabelFor(model => model.ID_UNIDAD, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
+        @Html.LabelFor(model => model.ID_UNIDAD, htmlAttributes: new { @class = "control-label" })
+   
             @*@Html.EditorFor(model => model.ID_UNIDAD, new { htmlAttributes = new { @class = "form-control" } })*@
             <select name="ID_UNIDAD" id="ID_UNIDAD" class="form-control">
                 @foreach (var item in ViewBag.ListaUnidades)
@@ -25,11 +38,11 @@
                 }
             </select>
             @Html.ValidationMessageFor(model => model.ID_UNIDAD, "", new { @class = "text-danger" })
-        </div>
+ 
     </div>
     <div class="form-group">
-        @Html.LabelFor(model => model.ID_TAREA, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
+        @Html.LabelFor(model => model.ID_TAREA, htmlAttributes: new { @class = "control-label" })
+       
             @*@Html.EditorFor(model => model.ID_TAREA, new { htmlAttributes = new { @class = "form-control" } })*@
             <select name="ID_TAREA" id="ID_TAREA" class="form-control">
                 @foreach (var item in ViewBag.ListaTareas)
@@ -40,12 +53,12 @@
                 }
             </select>
             @Html.ValidationMessageFor(model => model.ID_TAREA, "", new { @class = "text-danger" })
-        </div>
+    
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.ESTADO, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
+        @Html.LabelFor(model => model.ESTADO, htmlAttributes: new { @class = "control-label" })
+      
             @*@Html.EditorFor(model => model.ESTADO, new { htmlAttributes = new { @class = "form-control" } })*@
             <select name="ESTADO" id="ESTADO" class="form-control">
                 @foreach (var item in ViewBag.ListaEstados)
@@ -56,11 +69,11 @@
                 }
             </select>
             @Html.ValidationMessageFor(model => model.ESTADO, "", new { @class = "text-danger" })
-        </div>
+    
     </div>
     <div class="form-group">
-        @Html.LabelFor(model => model.Rut_Usu, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
+        @Html.LabelFor(model => model.Rut_Usu, htmlAttributes: new { @class = "control-label" })
+
             @*@Html.EditorFor(model => model.RUT_USU, new { htmlAttributes = new { @class = "form-control" } })*@
             <select name="Rut_Usu" id="Rut_Usu" class="form-control">
                 @foreach (var item in ViewBag.ListaUsuarios)
@@ -71,19 +84,20 @@
                 }
             </select>
             @Html.ValidationMessageFor(model => model.Rut_Usu, "", new { @class = "text-danger" })
-        </div>
+
     </div>
     <div class="form-group">
-        @Html.LabelFor(model => model.FECHA_ESTIMADA, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
+        @Html.LabelFor(model => model.FECHA_ESTIMADA, htmlAttributes: new { @class = "control-label" })
+     
             @Html.EditorFor(model => model.FECHA_ESTIMADA, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
             @Html.ValidationMessageFor(model => model.FECHA_ESTIMADA, "", new { @class = "text-danger" })
-        </div>
+
     </div>
 
     <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+        <div class="">
+            <input type="reset" value="Limpiar" class="btn btn-info" />
+            <input type="submit" value="Añadir Subtarea" class="btn btn-success" />
         </div>
     </div>
 

@@ -22,8 +22,7 @@ namespace ProcessAppWebMvc.Controllers
         {
             TAREA dto = new TAREA();
             dto.NOMBRETAREA = fc["NOMBRETAREA"];
-            dto.RUT_USU = Convert.ToInt32(fc["RUT_USU"]);
-            dto.FechaEstimada = fc["FechaEstimada"];
+            dto.RUT_USU = Convert.ToInt32(Session["rut"]);
             dto.ESTADO_TAREA = Convert.ToInt32(fc["ESTADO_TAREA"]);
             dto.RUT_EM = Convert.ToInt32(Session["rutempresa"]);
 
@@ -60,15 +59,16 @@ namespace ProcessAppWebMvc.Controllers
         
             ViewBag.Estado = aux.ESTADO_TAREA;
             ViewBag.Usuario = aux.RUT_USU;
-            DataAcces.DaoCliente dc = new DataAcces.DaoCliente();
+            DataAcces.DaoEmpresa de = new DataAcces.DaoEmpresa();
             DataAcces.DaoTarea dt = new DataAcces.DaoTarea();
             try
             {
                 int rut_empresa = Convert.ToInt32(Session["rutempresa"]);
-                List<estado> list = dt.ObtenerEstadoTarea();
-                List<USUARIO> list2 = dc.ObtenerListaUsuarios(0, rut_empresa, 1);
+                 List<estado> list = de.ObtenerEstadoUsuario();
+                   
+                List<TAREA> list3 = dt.ObtenerPosts(aux.IDTAREA);
                 ViewBag.EstadosTarea = list;
-                ViewBag.ListaUsuarios = list2;
+                ViewBag.ListaPosts = list3;
             }
             catch (Exception ex)
             {
@@ -79,21 +79,44 @@ namespace ProcessAppWebMvc.Controllers
 
         public ActionResult Insert()
         {
-            DataAcces.DaoCliente dc = new DataAcces.DaoCliente();
-            DataAcces.DaoTarea dt = new DataAcces.DaoTarea();
+            DataAcces.DaoEmpresa de = new DataAcces.DaoEmpresa();
+        
             try
             {
                 int rut_empresa = Convert.ToInt32(Session["rutempresa"]);
-                List<estado> list = dt.ObtenerEstadoTarea();
-                List<USUARIO> list2 = dc.ObtenerListaUsuarios(0, rut_empresa, 1);
+                List<estado> list = de.ObtenerEstadoUsuario();
+     
                 ViewBag.EstadosTarea = list;
-                ViewBag.ListaUsuarios = list2;
+
             }
             catch (Exception ex)
             {
                 new Exception("ERROR EN METODO LISTAR" + ex.Message);
             }
             return View("Insert", new TAREA());
+        }
+
+        [HttpPost]
+        public ActionResult Comentar(FormCollection fc)
+        {
+            TAREA dto = new TAREA();
+            dto.IDTAREA = Convert.ToInt32(fc["IDTAREA"]);
+            dto.RUT_USU = Convert.ToInt32(Session["rut"]);
+            dto.RUT_EM = Convert.ToInt32(Session["rutempresa"]);
+            dto.MENSAJE = Convert.ToString(fc["MENSAJE"]);
+            DaoTarea dt = new DaoTarea();
+            try
+            {
+                dt.InsertMessage(dto);
+            }
+            catch (Exception ex)
+            {
+                new Exception("ERROR EN COMENTAR" + ex.Message);
+            }
+
+
+            // return View("Insert", obj);
+            return Redirect(Request.UrlReferrer.PathAndQuery);
         }
     }
 }

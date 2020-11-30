@@ -47,6 +47,9 @@ else
                             @Html.DisplayNameFor(model => model.FECHA_ESTIMADA)
                         </th>
                         <th>
+                            @Html.DisplayNameFor(model => model.DIAS_DIF)
+                        </th>
+                        <th>
                         <th>
                             @Html.DisplayNameFor(model => model.FECHA_TERMINO)
                         </th>
@@ -69,71 +72,101 @@ else
                 </thead>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NOMBRE_UNIDAD)
-                            @*<a href=" @Url.Action("Update", "Unidades" , new { ID_UNIDAD="4"})">@item.NOMBRE_UNIDAD</a>*@
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FECHACREACION)
-                        </td>
-                        <td>
-                            @if (item.ATRASO == 1)
-                            {
-                                if (item.ESTADO != "Terminado")
-                                {
-                                    <p style="color:red;">@item.FECHA_ESTIMADA</p>
-                                }
-                            }
-                            else
-                            {
-                                @Html.DisplayFor(modelItem => item.FECHA_ESTIMADA)
-                            }
-                        </td>
-                        <td>
-                            @if (item.ATRASO == 1 && item.ESTADO != "Terminado")
-                            {
-                                <i class="fa fa-exclamation-triangle" title="@item.NOMBRE_UNIDAD fuera de plazo" style="color:red;font-size:15px;" data-toggle="tooltip"></i>
-                            }
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FECHA_TERMINO)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Tareas_ter)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Cant_tareas_tot)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ESTADO)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.nombre_usurio)
-                        </td>
-                        <td>
-                            @if (item.procentaje == 100)
-                            {
-                                <div style="background:#808080;border-radius:5%;">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: @item.procentaje%;border-radius:5%;" aria-valuenow="@item.procentaje" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" title="@item.NOMBRE_UNIDAD terminado">@item.procentaje%</div>
-                                </div>
-                            }
-                            else
-                            {
-                                <div style="background:#808080;border-radius:5%;">
-                                    <div class="progress-bar" role="progressbar" style="width: @item.procentaje%;border-radius:5%; " aria-valuenow="@item.procentaje" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" title="@item.NOMBRE_UNIDAD lleva un @item.procentaje% de progreso">@item.procentaje%</div>
-                                </div>
-                            }
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NOMBRE_UNIDAD)
+                    @*<a href=" @Url.Action("Update", "Unidades" , new { ID_UNIDAD="4"})">@item.NOMBRE_UNIDAD</a>*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FECHACREACION)
+                </td>
+                <td>
+                    @if (item.ATRASO == 1)
+                    {
+                        if (item.ESTADO != "Terminado")
+                        {
+                            <p style="color:red;"><b>@item.FECHA_ESTIMADA</b></p>
+                        }
 
-                        </td>
-                        @*<td>
-                                <p class="btn btn-warning btn-mant"> @Html.ActionLink("Editar", "Update", new { id = item.id })</p>
-                            </td>
-                            <td>
-                                <p class="btn btn-danger btn-mant">  @Html.ActionLink("Eliminar", "Delete", new { id = item.id })</p>
+                    }
+                    else if (item.ESTADO != "Terminado" && item.ATRASO == 0 && item.DIAS_DIF < 10)
+                    {
+                        <p style="color:orange;"><b>@item.FECHA_ESTIMADA</b></p>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.FECHA_ESTIMADA)
+                    }
+                </td>
+                <td>
+                    @if (item.ATRASO == 0 && item.DIAS_DIF < 10)
+                    {
+                        <p style="color:orange"><b>@item.DIAS_DIF</b></p>
 
-                            </td>*@
-                    </tr>
+                    }
+                    else if (item.ATRASO == 1)
+                    {
+                        <p style="color:red"><b>@item.DIAS_DIF</b></p>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.DIAS_DIF)
+                    }
+
+
+                </td>
+                <td>
+                    @if (item.ATRASO == 0 && item.DIAS_DIF < 10)
+                    {
+                        <i class="fa fa-exclamation-triangle" title="Quedan menos de 10 días para terminar" style="color:orange;font-size:15px;" data-toggle="tooltip"></i>
+                    }
+                    else if (item.ATRASO == 1)
+                    {
+                        <i class="fa fa-exclamation-triangle" title="@item.NOMBRE_UNIDAD fuera de plazo" style="color:red;font-size:15px;" data-toggle="tooltip"></i>
+                    }
+                    else
+                    {
+
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FECHA_TERMINO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tareas_ter)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cant_tareas_tot)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ESTADO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre_usurio)
+                </td>
+                <td>
+                    @if (item.procentaje == 100)
+                    {
+                        <div style="background:#808080;border-radius:5%;">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: @item.procentaje%;border-radius:5%;" aria-valuenow="@item.procentaje" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" title="@item.NOMBRE_UNIDAD terminado">@item.procentaje%</div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div style="background:#808080;border-radius:5%;">
+                            <div class="progress-bar" role="progressbar" style="width: @item.procentaje%;border-radius:5%; " aria-valuenow="@item.procentaje" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" title="@item.NOMBRE_UNIDAD lleva un @item.procentaje% de progreso">@item.procentaje%</div>
+                        </div>
+                    }
+
+                </td>
+                @*<td>
+            <p class="btn btn-warning btn-mant"> @Html.ActionLink("Editar", "Update", new { id = item.id })</p>
+        </td>
+        <td>
+            <p class="btn btn-danger btn-mant">  @Html.ActionLink("Eliminar", "Delete", new { id = item.id })</p>
+
+        </td>*@
+            </tr>
                 }
 
             </table>

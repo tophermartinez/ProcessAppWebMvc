@@ -16,7 +16,7 @@ namespace Entity_Layer
         public DateTime FECHACREACION { get; set; }
         [Display(Name = "Estado")]
         public int ESTADO_TAREA { get; set; }
-
+        [Display(Name = "Última actualización")]
         public string FECHA_ACTUAL { get; set; }
         [Display(Name = "Fecha termino")]
         public string FECHA_TERMINO { get; set; }
@@ -31,5 +31,6 @@ namespace Entity_Layer
         [Display(Name = "Fecha estimada")]
         public string FechaEstimada { get; set;}
         public string NOMBRE_ESTADO { get; set;}
+        public string MENSAJE { get; set;}
     }
 }

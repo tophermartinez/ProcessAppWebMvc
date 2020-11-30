@@ -108,6 +108,7 @@ namespace DataAcces
                                 dto.DETALLE = Convert.ToString(dr["DETALLE"]);
                                 dto.FECHACREACION = Convert.ToDateTime(dr["FECHACREACION"]);
                                 dto.FechaEstimada = Convert.ToString(dr["FECHA_ESTIMADA"]);
+                                dto.FECHA_ACTUAL = Convert.ToString(dr["fecha_actual"]);
                                 dto.FECHA_TERMINO = Convert.ToString(dr["FECHA_TERMINO"]);
                                 dto.nombre_usuario = Convert.ToString(dr["nombre_usuario"]);
                                 dto.RUT_USU = Convert.ToInt32(dr["rut_usu"]);
