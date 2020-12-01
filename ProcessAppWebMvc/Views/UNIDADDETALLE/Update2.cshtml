@@ -34,16 +34,16 @@
 @Html.AntiForgeryToken()
 
 <br>
-<h4>Editar Tareas Flujo2</h4>
+<h4>Editar Tareas Flujo</h4>
 <hr />
 @if (Session["usu"] != null)
 {
     <div class="row">
         <div class="form-horizontal col-lg-6">
             <form id="udet_update2" method="post" action="@Url.Action("Update2", "UNIDADDETALLE" , new { id=Model.id})">
-                @Html.EditorFor(model => model.id, new { htmlAttributes = new { @class = "form-control" } })
                 <div class="form-group">
-                    @Html.LabelFor(model => model.ID_UNIDAD, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div hidden>  @Html.EditorFor(model => model.id, new { htmlAttributes = new { @class = "form-control" } })</div>
+                    @Html.LabelFor(model => model.ID_UNIDAD, htmlAttributes: new { @class = "control-label" })
 
                     @*@Html.EditorFor(model => model.ID_UNIDAD, new { htmlAttributes = new { @class = "form-control" } })*@
                     <select name="ID_UNIDAD" id="ID_UNIDAD" class="form-control">
@@ -163,9 +163,7 @@
             <form style="margin-left:30px;" id="tarea_comentarios" method="post" action="@Url.Action("Comentar", "UNIDADDETALLE")">
 
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div hidden>
-                    @Html.EditorFor(model => model.ID_TAREA, new { htmlAttributes = new { @class = "form-control" } })
-                </div>
+                <div hidden>  @Html.EditorFor(model => model.id, new { htmlAttributes = new { @class = "form-control" } })</div>
                 <label class="control-label">Comentarios</label>
                 <textarea class="form-control" name="MENSAJE" id="MENSAJE" required placeholder="Ingrese mensaje"></textarea>
 

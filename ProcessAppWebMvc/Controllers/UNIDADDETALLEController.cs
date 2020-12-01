@@ -105,6 +105,7 @@ namespace ProcessAppWebMvc.Controllers
             {
                 NegocioUNIDADDET obj = new NegocioUNIDADDET();
                 UNIDAD_DETALLE aux = obj.Read().FirstOrDefault(a => a.id == id);
+
                 ViewBag.Unidad = aux.ID_UNIDAD;
                 ViewBag.Tarea = aux.ID_TAREA;
                 ViewBag.Estado = aux.ESTADO;
@@ -119,7 +120,7 @@ namespace ProcessAppWebMvc.Controllers
                     List<TAREA> list2 = dt.ObtenerTareas(0, rut_empresa, 0);
                     List<estado> list3 = dt.ObtenerEstadoTarea();
                     List<USUARIO> list4 = dc.ObtenerListaUsuarios(0, rut_empresa, 1);
-                    List<TAREA> list5 = dt.ObtenerPosts(aux.ID_TAREA);
+                    List<TAREA> list5 = dt.ObtenerPosts(aux.id);
                   
                     ViewBag.ListaUnidades = list;
                     ViewBag.ListaTareas = list2;
@@ -160,7 +161,7 @@ namespace ProcessAppWebMvc.Controllers
                     List<TAREA> list2 = dt.ObtenerTareas(0, rut_empresa, 0);
                     List<estado> list3 = dt.ObtenerEstadoTarea();
                     List<USUARIO> list4 = dc.ObtenerListaUsuarios(0, rut_empresa, 1);
-                    List<TAREA> list5 = dt.ObtenerPosts(aux.ID_TAREA);
+                    List<TAREA> list5 = dt.ObtenerPosts(aux.id);
 
                     ViewBag.ListaUnidades = list;
                     ViewBag.ListaTareas = list2;
@@ -217,7 +218,7 @@ namespace ProcessAppWebMvc.Controllers
         public ActionResult Comentar(FormCollection fc)
         {
             TAREA dto = new TAREA();
-            dto.IDTAREA = Convert.ToInt32(fc["ID_TAREA"]);
+            dto.IDTAREA = Convert.ToInt32(fc["id"]);
             dto.RUT_USU = Convert.ToInt32(Session["rut"]);  
             dto.RUT_EM = Convert.ToInt32(Session["rutempresa"]);
             dto.MENSAJE = Convert.ToString(fc["MENSAJE"]);

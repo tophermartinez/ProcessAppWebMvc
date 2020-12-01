@@ -96,7 +96,15 @@
 </style>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a href="@Url.Action("Index", "Home")"><img src="~/Imagenes/processsalogo.png" alt="Italian Trulli" id="nav_processsa_logo"></a>
+        @if (Session["perfil"] != null)
+        {
+            <a href="@Url.Action("Dashboard", "Mantenedor")"><img src="~/Imagenes/processsalogo.png" alt="Italian Trulli" id="nav_processsa_logo"></a>
+        }
+        else
+        {
+            <a href="@Url.Action("Index", "Home")"><img src="~/Imagenes/processsalogo.png" alt="Italian Trulli" id="nav_processsa_logo"></a>
+        }
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -152,7 +160,7 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="@Url.Action("Insert", "Unidades")">Crear Flujo</a>
                                 <a class="dropdown-item" href="@Url.Action("Read", "Unidades")">Mantenedor Flujos</a>
-                                <a class="dropdown-item" href="@Url.Action("Insert", "UNIDADDETALLE")">Asignar Tarea</a>
+                                <a class="dropdown-item" href="@Url.Action("Insert", "UNIDADDETALLE")">Añadir Tarea</a>
                                 <a class="dropdown-item" href="@Url.Action("Read", "UNIDADDETALLE")">Mantenedor Tareas Flujo</a>
                             </div>
                         </li>
@@ -162,12 +170,22 @@
                     {
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Tarea
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="@Url.Action("Insert", "Tarea")">Crear Tarea</a>
+                                <a class="dropdown-item" href="@Url.Action("Read", "Tarea")">Mantenedor Tareas</a>
+                            </div>
+
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Flujos
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="@Url.Action("Insert", "Unidades")">Crear Flujo</a>
                                 <a class="dropdown-item" href="@Url.Action("Read", "Unidades")">Mantenedor Flujos</a>
-                                <a class="dropdown-item" href="@Url.Action("Insert", "UNIDADDETALLE")">Asignar Tarea</a>
+                                <a class="dropdown-item" href="@Url.Action("Insert", "UNIDADDETALLE")">Añadir Tarea</a>
                                 <a class="dropdown-item" href="@Url.Action("Read", "UNIDADDETALLE")">Mantenedor Tareas Flujo</a>
                             </div>
                         </li>
@@ -257,10 +275,11 @@
         $('#tabla').DataTable({
             dom: 'Bfrtip',
             buttons: [
-                { "extend" : 'copyHtml5', "text": '', "className": 'fa fa-clipboard btn btn-outline-info', "title": 'Copiar a portapaeles' },
-                { "extend": 'excelHtml5', "text": '', "className": 'fa fa-file-excel btn btn-outline-success', "title": 'export_to_excel' },
-                { "extend": 'csvHtml5', "text": '', "className": 'fa fa-file-csv btn btn-outline-success', "title": 'export_to_csv' },
-                { "extend": 'pdfHtml5', "text": '', "className": 'fa fa-file-pdf btn btn-outline-danger', "title": 'export_to_pdf' }
+                { "extend" : 'copyHtml5', "text": '', "className": 'fa fa-clipboard btn btn-outline-info', "title": '' },
+                { "extend": 'excelHtml5', "text": '', "className": 'fa fa-file-excel btn btn-outline-success', "title": '' },
+                { "extend": 'csvHtml5', "text": '', "className": 'fa fa-file-csv btn btn-outline-success', "title": '' },
+                { "extend": 'pdfHtml5', "text": '', "className": 'fa fa-file-pdf btn btn-outline-danger', "title": '', "orientation": 'landscape' }
+
             ],
             "oLanguage": {
 
@@ -273,11 +292,11 @@
                     "previous": "Atras",
                     "next": "Siguiente"
                 }
-                
+
 
             }
 
-           
+
         });
         $('')
     });

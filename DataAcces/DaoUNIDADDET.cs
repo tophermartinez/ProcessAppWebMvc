@@ -139,7 +139,6 @@ namespace DataAcces
             return list;
         }
 
-    
 
         public string Update(UNIDAD_DETALLE dto)
         {
@@ -156,8 +155,8 @@ namespace DataAcces
                         command.Parameters.Add(new OracleParameter("P_ID_TAREA", OracleType.Number)).Value = dto.ID_TAREA;
                         command.Parameters.Add(new OracleParameter("p_ESTADO", OracleType.VarChar)).Value = dto.ESTADO;
                         command.Parameters.Add(new OracleParameter("p_FECHA_ES", OracleType.DateTime)).Value = dto.FECHA_ESTIMADA; 
-                         command.Parameters.Add(new OracleParameter("p_rutusu", OracleType.VarChar)).Value = Convert.ToInt32(dto.Rut_Usu); 
-                         command.Parameters.Add(new OracleParameter("P_ID_UNIDAD", OracleType.Int32)).Value = dto.ID_UNIDAD; 
+                        command.Parameters.Add(new OracleParameter("p_rutusu", OracleType.VarChar)).Value = Convert.ToInt32(dto.Rut_Usu); 
+                        command.Parameters.Add(new OracleParameter("P_ID_UNIDAD", OracleType.Int32)).Value = dto.ID_UNIDAD; 
                         command.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar, 50)).Value = System.Data.ParameterDirection.Output;
                         command.ExecuteNonQuery();
                         result = Convert.ToString(command.Parameters["P_RESULT"].Value);
@@ -167,7 +166,6 @@ namespace DataAcces
             }
             catch (Exception ex)
             {
-
                 new Exception("ERROR EN METODO ACTUALIZAR" + ex.Message);
             }
             return result;
@@ -210,9 +208,7 @@ namespace DataAcces
             }
             catch (Exception ex)
             {
-
                 new Exception("Usuario o Contraseña incorrecta " + ex.Message);
-
             }
             return result;
 

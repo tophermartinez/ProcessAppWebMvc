@@ -122,17 +122,11 @@ else
                     }
                 </td>
                 <td>
-                    @if (item.ATRASO == 0 && item.DIAS_DIF < 10)
+                    @if (item.ATRASO == 0 && item.DIAS_DIF < 10 && item.ESTADO != "Terminado" )
                     {
-                        if (item.ESTADO != "Terminado")
-                        {
-                            if (item.ESTADO != "Terminado")
-                            {
-                                <i class="fa fa-exclamation-triangle" title="Quedan menos de 10 días para terminar" style="color:orange;font-size:15px;" data-toggle="tooltip"></i>
-                            }
-                        }
+                       <i class="fa fa-exclamation-triangle" title="Quedan menos de 10 días para terminar" style="color:orange;font-size:15px;" data-toggle="tooltip"></i>
                     }
-                    else if (item.ATRASO == 1)
+                    else if (item.ATRASO == 1 && item.ESTADO != "Terminado")
                     {
                         <i class="fa fa-exclamation-triangle" title="@item.NOMBRE_UNIDAD fuera de plazo" style="color:red;font-size:15px;" data-toggle="tooltip"></i>
                     }
@@ -150,8 +144,14 @@ else
                 <td>
                     @Html.DisplayFor(modelItem => item.Cant_tareas_tot)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ESTADO)
+                <td style="padding:7px 0px;">
+                    @if(item.ESTADO == "En Proceso")
+                    {
+                        <p style="color:orange;">En Proceso <i class="fa fa-arrow-circle-right"></i></p>
+                    }else if (item.ESTADO == "Terminado")
+                    {
+                        <p style="color:green;">Terminado <i class="fa fa-check-circle"></i></p>
+                    }
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.nombre_usurio)

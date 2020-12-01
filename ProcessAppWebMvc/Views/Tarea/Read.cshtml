@@ -24,15 +24,14 @@
 <br />
 @if (Session["perfil"] != null)
 {
-    if (Convert.ToInt32(Session["perfil"]) == 3)
-    {
+    
         <div class=""></div>
         <div class="col-lg-6">
             <p class="btn btn-success btn-create">
                 @Html.ActionLink("Nueva tarea", "Insert")
             </p>
         </div>
-    }
+    
     <br />
     <div class="table-responsive-sm table-responsive-md">
         <table class="table table-hover" id="tabla">

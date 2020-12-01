@@ -27,7 +27,7 @@
     {
         <div class="col-lg-6">
             <p class="btn btn-success btn-create">
-                @Html.ActionLink("Nueva Unidad Detalle ", "Insert")
+                @Html.ActionLink("Asignar Tarea", "Insert")
             </p>
         </div>
     }
@@ -127,12 +127,13 @@
                         {
                             <p style="color:red"><b>@item.DIAS_DIF</b></p>
                         }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.DIAS_DIF)
+                        }
 
                     }
-                    else
-                    {
-                        @Html.DisplayFor(modelItem => item.DIAS_DIF)
-                    }
+
 
                 }
 
@@ -154,7 +155,22 @@
                 @Html.DisplayFor(modelItem => item.FECHA_TERMINO)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NOMBRE_ESTADO)
+                @if (item.NOMBRE_ESTADO == "En Proceso")
+                {
+                    <p style="color:orange;">En Proceso <i class="fa fa-arrow-circle-right"></i></p>
+                }
+                else if (item.NOMBRE_ESTADO == "Completado")
+                {
+                    <p style="color:green;">Completado <i class="fa fa-check-circle"></i></p>
+                }
+                else if (item.NOMBRE_ESTADO == "Detenido")
+                {
+                    <p style="color:red;">Detenido <i class="fa fa-pause-circle"></i></p>
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.NOMBRE_ESTADO)
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NOMBRE_USUARIO)
