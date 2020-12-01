@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using DataAcces;
 using System.Web.Security;
 using System.Web.UI;
+using Newtonsoft.Json;
 
 namespace ProcessAppWebMvc.Controllers
 {
@@ -239,10 +240,18 @@ namespace ProcessAppWebMvc.Controllers
         {
             if (Session["Perfil"] != null)
             {
+
+                List<DataPoint> dataPoints = new List<DataPoint>();
+           
                 DataAcces.DaoDashboard ds = new DaoDashboard();
 
                 List<Dashboard_Gen> dsGen = ds.DashBoard(Convert.ToInt32(Session["rut"]) , Convert.ToString(Session["rutempresa"]));
+                foreach (Dashboard_Gen item in dsGen)
+                {
+                    dataPoints.Add(new DataPoint(item.NOMBRE_UNIDAD, item.Cant_tareas_tot));
+                }
 
+                ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
                 ViewBag.Daslist = dsGen;
                 return View(dsGen);
             }

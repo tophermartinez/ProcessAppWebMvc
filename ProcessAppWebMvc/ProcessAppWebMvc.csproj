@@ -264,6 +264,11 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="lib\canvasjs\canvasjs.js" />
+    <Content Include="lib\canvasjs\canvasjs.min.js" />
+    <Content Include="lib\canvasjs\excanvas.js" />
+    <Content Include="lib\canvasjs\jquery.canvasjs.js" />
+    <Content Include="lib\canvasjs\jquery.canvasjs.min.js" />
     <Content Include="lib\font-awesome\css\all.css" />
     <Content Include="lib\font-awesome\css\all.min.css" />
     <Content Include="lib\font-awesome\css\brands.css" />
