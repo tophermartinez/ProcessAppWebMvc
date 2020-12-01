@@ -11,6 +11,7 @@ namespace Entity_Layer
     {
        public int IDTAREA { get; set; }
         [Display(Name = "Tarea")]
+        [Required(ErrorMessage = "Nombre Tarea requerido.")]
         public string NOMBRETAREA { get; set; }
         [Display(Name = "Creación")]
         public DateTime FECHACREACION { get; set; }

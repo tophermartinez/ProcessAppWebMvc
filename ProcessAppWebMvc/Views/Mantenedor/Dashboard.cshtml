@@ -50,7 +50,7 @@ else
                             @Html.DisplayNameFor(model => model.DIAS_DIF)
                         </th>
                         <th>
-                        <th>
+                        <th hidden>
                             @Html.DisplayNameFor(model => model.FECHA_TERMINO)
                         </th>
                         <th>
@@ -74,8 +74,8 @@ else
                 {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NOMBRE_UNIDAD)
-                    @*<a href=" @Url.Action("Update", "Unidades" , new { ID_UNIDAD="4"})">@item.NOMBRE_UNIDAD</a>*@
+                    @*@Html.DisplayFor(modelItem => item.NOMBRE_UNIDAD)*@
+                    <a href="@Url.Action("Read2", "UNIDADDETALLE" , new { ID_UNIDAD=item.ID_UNIDAD})">@item.NOMBRE_UNIDAD</a>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.FECHACREACION)
@@ -91,7 +91,10 @@ else
                     }
                     else if (item.ESTADO != "Terminado" && item.ATRASO == 0 && item.DIAS_DIF < 10)
                     {
-                        <p style="color:orange;"><b>@item.FECHA_ESTIMADA</b></p>
+                        if (item.ESTADO != "Terminado")
+                        {
+                            <p style="color:orange;"><b>@item.FECHA_ESTIMADA</b></p>
+                        }
                     }
                     else
                     {
@@ -101,24 +104,33 @@ else
                 <td>
                     @if (item.ATRASO == 0 && item.DIAS_DIF < 10)
                     {
-                        <p style="color:orange"><b>@item.DIAS_DIF</b></p>
-
+                        if (item.ESTADO != "Terminado")
+                        {
+                            <p style="color:orange"><b>@item.DIAS_DIF</b></p>
+                        }
                     }
                     else if (item.ATRASO == 1)
                     {
-                        <p style="color:red"><b>@item.DIAS_DIF</b></p>
+                        if (item.ESTADO != "Terminado")
+                        {
+                            <p style="color:red"><b>@item.DIAS_DIF</b></p>
+                        }
                     }
                     else
                     {
                         @Html.DisplayFor(modelItem => item.DIAS_DIF)
                     }
-
-
                 </td>
                 <td>
                     @if (item.ATRASO == 0 && item.DIAS_DIF < 10)
                     {
-                        <i class="fa fa-exclamation-triangle" title="Quedan menos de 10 días para terminar" style="color:orange;font-size:15px;" data-toggle="tooltip"></i>
+                        if (item.ESTADO != "Terminado")
+                        {
+                            if (item.ESTADO != "Terminado")
+                            {
+                                <i class="fa fa-exclamation-triangle" title="Quedan menos de 10 días para terminar" style="color:orange;font-size:15px;" data-toggle="tooltip"></i>
+                            }
+                        }
                     }
                     else if (item.ATRASO == 1)
                     {
@@ -129,7 +141,7 @@ else
 
                     }
                 </td>
-                <td>
+                <td hidden>
                     @Html.DisplayFor(modelItem => item.FECHA_TERMINO)
                 </td>
                 <td>

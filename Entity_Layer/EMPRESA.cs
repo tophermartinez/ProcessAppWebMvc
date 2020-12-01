@@ -11,30 +11,27 @@ namespace Entity_Layer
     public class EMPRESA
     {
         public int ID { get; set; }
-        //[Display(Name = "RUT")]
-        //[Required(ErrorMessage = "Este campo es requerido.")]
-        //[StringLength(9,ErrorMessage ="Rut inválido")]
-        //[MinLength(8,ErrorMessage ="Rut inválido")]
         [DataType(DataType.Text)]
+        [Required(ErrorMessage = "RUT Inválido")]
+        [MinLength(11, ErrorMessage ="RUT Inválido")]
+        [MaxLength(12, ErrorMessage = "RUT Inválido")]
         public String RUT { get; set; }
         [Display(Name = "Nombre")]
-        [Required(ErrorMessage = "Este campo es requerido.")]
-        
+        [Required(ErrorMessage = "Nombre requerido.")]
         public string NOMBRE { get; set; }
         [Display(Name = "Dirección")]
+        [Required(ErrorMessage = "Dirección requerido.")]
         public string DIRECCION { get; set; }
         [Display(Name = "Correo electrónico")]
-        [Required(ErrorMessage = "Este campo es requerido.")]
+        [Required(ErrorMessage = "Correo requerido.")]
         [RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*",
             ErrorMessage = "Dirección de Correo electrónico incorrecta.")]
-            [StringLength(100, ErrorMessage = "Longitud máxima 100")]
-        [DataType(DataType.EmailAddress)]
         public string CORREO_CONTACTO { get; set; }
         [Display(Name = "Telefono Contacto")]
-        //[StringLength(8, ErrorMessage = "Numero no puede contener mas de 8 digitos")]
-        //[MinLength(8, ErrorMessage = "Numero no puede contener menos de 8 digitos")]
+        [Range(10000000, 99999999, ErrorMessage = "Debe tener 8 dígitos")]
         public long  TELEFONO_CONTACTO { get; set; }
         [Display(Name = "Estado")]
+        [Required(ErrorMessage = "Estado requerido.")]
         public int ESTADO { get; set; }
         public string NOMBRE_ESTADO { get; set; }
 

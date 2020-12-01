@@ -18,7 +18,6 @@ namespace ProcessAppWebMvc.Controllers
             dto.NOMBRE = fc["NOMBRE"];
             dto.DETALLE = fc["DETALLE"];  
             dto.RUT_USU = Convert.ToInt32(fc["RUT_USU"]);  
-            dto.RUT_USU = Convert.ToInt32(fc["RUT_USU"]);  
             dto.FechaEstimada = fc["FechaEstimada"];
 
             if (Session["Perfil"] != null)
@@ -123,47 +122,30 @@ namespace ProcessAppWebMvc.Controllers
             }
             
         }
+        [HttpGet]
+        public ActionResult Replicar(int ID_UNIDAD)
+        {
+            if (Session["Perfil"] != null)
+            {
+                NegocioUnidad obj = new NegocioUnidad();
+                UNIDAD aux = obj.Read().FirstOrDefault(a => a.ID_UNIDAD == ID_UNIDAD);
+                DataAcces.DaoUnidad du = new DataAcces.DaoUnidad();
+                try
+                {
+                    du.Replicar(aux.ID_UNIDAD);
+                }
+                catch (Exception ex)
+                {
+                    new Exception("ERROR EN METODO LISTAR" + ex.Message);
+                }
+                return RedirectToAction("Read");
+            }
+            else
+            {
+                return View("../Mantenedor/LoginProcess");
+            }
+        }
 
-
-
-        /*
-        // GET: UnidadesF}
-        [HttpPost]
-        public ActionResult InsertF(UNIDAD dto)
-        {
-            NegocioUnidad obj = new NegocioUnidad();
-            obj.InsertF(dto);
-            return RedirectToAction("ReadF");
-        }
-        [HttpPost]
-        public ActionResult UpdateF(UNIDAD dto)
-        {
-            NegocioUnidad obj = new NegocioUnidad();
-            obj.UpdateF(dto);
-            return RedirectToAction("ReadF");
-        }
-        public ActionResult DeleteF(string ID_UNIDAD)
-        {
-            NegocioUnidad obj = new NegocioUnidad();
-            obj.DeleteF(ID_UNIDAD);
-            return RedirectToAction("ReadF");
-        }
-        public ActionResult ReadF()
-        {
-            NegocioUnidad obj = new NegocioUnidad();
-            return View(obj.ReadF());
-        }
-        public ActionResult UpdateF(int ID_UNIDAD)
-        {
-            NegocioUnidad obj = new NegocioUnidad();
-            UNIDAD dto = obj.ReadF().FirstOrDefault(a => a.ID_UNIDAD == ID_UNIDAD);
-            return View("UpdateF", dto);
-        }
-        */
-        public ActionResult InsertF()
-        {
-            return View("InsertF", new UNIDAD());
-        }
     }
 
 }

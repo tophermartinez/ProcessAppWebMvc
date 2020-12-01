@@ -58,7 +58,7 @@ namespace DataAcces
                         command.Parameters.Add(new OracleParameter("NOMBRE", OracleType.VarChar)).Value = dto.NOMBRE;
                         command.Parameters.Add(new OracleParameter("DETALLE", OracleType.VarChar)).Value = dto.DETALLE;
                         command.Parameters.Add(new OracleParameter("p_Rutusu", OracleType.Number)).Value = dto.RUT_USU;
-                        if (dto.FechaEstimada != null)
+                        if (dto.FechaEstimada != "")
                         {
                             command.Parameters.Add(new OracleParameter("p_FechaEst", OracleType.DateTime)).Value = dto.FechaEstimada;
                         }
@@ -339,6 +339,32 @@ namespace DataAcces
         }
 
 
+        public string Replicar(int id_unidad)
+        {
+            string result = string.Empty;
+            try
+            {
+                using (OracleConnection cn = new OracleConnection(strOracle))
+                {
+                    cn.Open();
+                    using (OracleCommand command = new OracleCommand("SP_UNIDAD_REPLICAR", cn))
+                    {
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        // command.Parameters.Add(new OracleParameter("IDTAREA", OracleType.Number)).Value = dto.IDTAREA;
+                        command.Parameters.Add(new OracleParameter("P_ID_UNIDAD", OracleType.Number)).Value = id_unidad;
+                        command.Parameters.Add(new OracleParameter("P_RESULT", OracleType.VarChar, 500)).Value = System.Data.ParameterDirection.Output;
+                        command.ExecuteNonQuery();
+                        result = Convert.ToString(command.Parameters["P_RESULT"].Value);
+                    }
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                new Exception("ERROR EN METODO INSERTAR" + ex.Message);
+            }
+            return result;
+        }
 
 
 

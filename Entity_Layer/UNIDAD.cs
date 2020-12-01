@@ -9,10 +9,14 @@ namespace Entity_Layer
 {
     public class UNIDAD
     {
+        [Display(Name = "ID")]
         public int ID_UNIDAD { get; set; }
+        [Required]
         [Display(Name = "Nombre")]
         public string NOMBRE { get; set; }
+        [Required]
         [Display(Name = "Detalle")]
+  
         public string DETALLE { get; set; }
         [Display(Name = "Fecha Termino")]
         public string FECHA_TERMINO { get; set; }

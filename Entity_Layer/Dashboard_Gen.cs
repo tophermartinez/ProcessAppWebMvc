@@ -12,7 +12,8 @@ namespace Entity_Layer
         [Display(Name = "Flujo")]
         public string NOMBRE_UNIDAD { get; set; }
         public int ID_TAREA { get; set; }
-
+        
+        public int ID_UNIDAD { get; set; }
         public string NOMBRE_TAREA { get; set; }
         [Display(Name = "Fecha termino")]
         public string FECHA_TERMINO { get; set; }

@@ -8,7 +8,7 @@
         margin-bottom: 0px;
     }
 
-    form input, select   {
+    form input, select {
         margin-bottom: 5px;
     }
 </style>
@@ -22,42 +22,42 @@
             <br>
             <h4>Editar Flujo</h4>
             <hr />
-                    <div class="row">
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        <div class="col-lg-12">
-                            @Html.LabelFor(model => model.NOMBRE, htmlAttributes: new { @class = "control-label" })
-                            @Html.EditorFor(model => model.NOMBRE, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.NOMBRE, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="col-lg-12">
-                            @Html.LabelFor(model => model.DETALLE, htmlAttributes: new { @class = "control-label" })
-                            @Html.EditorFor(model => model.DETALLE, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.DETALLE, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="col-lg-12">
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            @Html.LabelFor(model => model.RUT_USU, htmlAttributes: new { @class = "control-label" })
-                            @*@Html.EditorFor(model => model.RUT_USU, new { htmlAttributes = new { @class = "form-control" } })*@
-                            <select name="RUT_USU" id="RUT_USU" class="form-control">
-                                @foreach (var item in ViewBag.ListaUsuarios)
-                                {
-                                    <option value="@item.RUT">
-                                        @(item.NOMBRES +" " + item.APELLIDO_PATERNO)
-                                    </option>
-                                }
-                            </select>
-                            @Html.ValidationMessageFor(model => model.RUT_USU, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="col-lg-12">
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            @Html.LabelFor(model => model.FechaEstimada, htmlAttributes: new { @class = "control-label" })
-                            @Html.EditorFor(model => model.FechaEstimada, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
-                            @Html.ValidationMessageFor(model => model.FechaEstimada, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="col-lg-12">
-                            <br />
-                            <input type="submit" value="Editar Flujo" class="btn btn-success btn-block" />
-                        </div>
+            <div class="row">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="col-lg-12">
+                    @Html.LabelFor(model => model.NOMBRE, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.NOMBRE, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NOMBRE, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-12">
+                    @Html.LabelFor(model => model.DETALLE, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.DETALLE, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DETALLE, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-12">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.RUT_USU, htmlAttributes: new { @class = "control-label" })
+                    @*@Html.EditorFor(model => model.RUT_USU, new { htmlAttributes = new { @class = "form-control" } })*@
+                    <select name="RUT_USU" id="RUT_USU" class="form-control">
+                        @foreach (var item in ViewBag.ListaUsuarios)
+                        {
+                            <option value="@item.RUT">
+                                @(item.NOMBRES +" " + item.APELLIDO_PATERNO)
+                            </option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(model => model.RUT_USU, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-12">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.FechaEstimada, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.FechaEstimada, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                    @Html.ValidationMessageFor(model => model.FechaEstimada, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-12">
+                    <br />
+                    <input type="submit" value="Editar Flujo" class="btn btn-success btn-block" />
+                </div>
             </div>
         </div>
     }
@@ -67,7 +67,10 @@
     }
 
 }
-
-@*<div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>*@
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+@*
+    @*<div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>*@

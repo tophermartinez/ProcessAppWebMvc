@@ -37,6 +37,7 @@ namespace DataAcces
                             {
                                 uni = new Dashboard_Gen();
                                 uni.NOMBRE_UNIDAD = Convert.ToString(dr["NOMBRE_UNIDAD"]);
+                                uni.ID_UNIDAD = Convert.ToInt32(dr["ID_UNIDAD"]);
                                 uni.FECHACREACION = Convert.ToDateTime(dr["FECHACREACION"]);
                                 uni.FECHA_ESTIMADA = Convert.ToString(dr["FECHA_ESTIMADA"]);
                                 uni.FECHA_TERMINO = Convert.ToString(dr["FECHA_TERMINO"]);

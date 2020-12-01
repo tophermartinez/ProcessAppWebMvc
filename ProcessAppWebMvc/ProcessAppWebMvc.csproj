@@ -478,6 +478,8 @@
     <Content Include="Views\UNIDADDETALLE\Read.cshtml" />
     <Content Include="Views\UNIDADDETALLE\Insert.cshtml" />
     <Content Include="Views\UNIDADDETALLE\Update.cshtml" />
+    <Content Include="Views\UNIDADDETALLE\Read2.cshtml" />
+    <Content Include="Views\UNIDADDETALLE\Update2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

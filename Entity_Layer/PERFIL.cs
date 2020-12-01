@@ -12,8 +12,10 @@ namespace Entity_Layer
 
         public int ID_PERFIL { get; set; }
         [Display(Name = "Nombre Rol")]
+        [Required(ErrorMessage = "Nombre Rol requerido.")]
         public string NOMBRE { get; set; }
         [Display(Name = "Descripción")]
+        [Required(ErrorMessage = "Descripción requerido.")]
         public string DESCRIPCION { get; set; }
 
     }

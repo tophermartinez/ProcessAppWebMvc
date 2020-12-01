@@ -15,39 +15,38 @@ namespace Entity_Layer
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Column("ID")]
-        //public int IdLibro { get; set; }
-        //[Column("Titulo")]
-        //public String Titulo { get; set; }
-        //[Column("Autor")]
-        //public String Autor { get; set; }
-
         public int ID { get; set; }
-        [Required(ErrorMessage = "Este campo es requerido.")]
+        [Required(ErrorMessage = "RUT Inválido")]
+        [MinLength(11, ErrorMessage = "RUT Inválido")]
+        [MaxLength(12, ErrorMessage = "RUT Inválido")]
         public String RUT { get; set; }
         public char DV { get; set; }
-        [Required(ErrorMessage = "Este campo es requerido.")]
+        [Required(ErrorMessage = "Nombre requerido.")]
         [Display(Name = "Nombres")]
         public string NOMBRES { get; set; }
         [Display(Name = "Apellido paterno")]
+        [Required(ErrorMessage = "Apellido paterno requerido.")]
         public string APELLIDO_PATERNO { get; set; }
-        [Display(Name = "Apellido Materno")]
+        [Display(Name = "Apellido materno")]
+        [Required(ErrorMessage = "Apellido materno requerido.")]
         public string APELIIDO_MATERNO { get; set; }
         [Display(Name = "Correo electrónico")]
-        [Required(ErrorMessage = "Este campo es requerido.")]
+        [Required(ErrorMessage = "Correo requerido.")]
         [RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*",
-            ErrorMessage = "Dirección de Correo electrónico incorrecta.")]
-        [StringLength(100, ErrorMessage = "Longitud máxima 100")]
-        [DataType(DataType.EmailAddress)]
+        ErrorMessage = "Dirección de Correo electrónico incorrecta.")]
         public string CORREO { get; set; }
-        [Display(Name = "Teléfono Contacto")]
-        //[StringLength(8, ErrorMessage = "Numero no puede contener mas de 8 digitos")]
-        //[MinLength(8, ErrorMessage = "Numero no puede contener menos de 8 digitos")]
-        public int NUMERO { get; set; }
+        [Display(Name = "Telefono Contacto")]
+        [Range(10000000, 99999999, ErrorMessage = "Debe tener 8 dígitos")]
+        public long NUMERO { get; set; }
         [Display(Name = "Dirección")]
+        [Required(ErrorMessage = "Dirección requerido.")]
         public string DIRECCION { get; set; }
         [Display(Name = "Usuario")]
+        [Required(ErrorMessage = "Usuario requerido.")]
         public string NOMBRE_USUARIO { get; set; }
         [Display(Name = "Contraseña")]
+        [Required(ErrorMessage = "Contraseña requerido.")]
+        [DataType("Password")]
         public string CONTRASENA { get; set; }
         [Display(Name = "Perfil")]
         public int ID_PERFIL { get; set; }

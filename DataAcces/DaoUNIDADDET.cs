@@ -173,6 +173,49 @@ namespace DataAcces
             return result;
         }
 
-  
+        public List<UNIDAD_DETALLE> obtenerUnidadDetalle(int id_unidad)  //( USUARIO dto)
+        {
+            List<UNIDAD_DETALLE> result = new List<UNIDAD_DETALLE>();
+            try
+            {
+                UNIDAD_DETALLE dto = null;
+                using (OracleConnection cn = new OracleConnection(strOracle))
+                {
+                    cn.Open();
+
+                    OracleCommand cmd = new OracleCommand(" SELECT   ud.ID,ud.ID_UNIDAD,ud.NOMBRE_UNIDAD,ud.ID_TAREA,ud.NOMBRE_TAREA,ud.FECHA_TERMINO,ud.FECHACREACION,ud.ESTADO_TAREA,TO_CHAR(ud.FECHA_ESTIMADA, 'yyyy-mm-dd') AS FECHA_ESTIMADA,ud.rut_usuario as rut_usu,us.NOMBRE_USUARIO,es.nombre as NOMBRE_ESTADO,(case when ud.FECHA_ESTIMADA < SYSDATE then 1 else 0 end) as Atraso,nvl((case when (to_date(ud.fecha_estimada, 'dd-MM-yyyy') - to_date(SYSDATE, 'dd-mm-yyyy')) < 0 then 0 else to_date(ud.fecha_estimada, 'dd-MM-yyyy') - to_date(SYSDATE, 'dd-mm-yyyy') end), 0) AS DIAS_DIF FROM UNIDAD_DETALLE ud LEFT JOIN USUARIO us ON us.RUT = ud.rut_usuario inner join estado es on es.id_estado = ud.estado_tarea where ud.id_unidad = " + id_unidad , cn);
+
+                    OracleDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        dto = new UNIDAD_DETALLE();
+                        dto.id = Convert.ToInt32(dr["id"]);
+                        dto.ID_UNIDAD = Convert.ToInt32(dr["ID_UNIDAD"]);
+                        dto.NOMBRE_UNIDAD = Convert.ToString(dr["NOMBRE_UNIDAD"]);
+                        dto.ID_TAREA = Convert.ToInt32(dr["ID_TAREA"]);
+                        dto.NOMBRE_TAREA = Convert.ToString(dr["NOMBRE_TAREA"]);
+                        dto.FECHA_TERMINO = Convert.ToString(dr["FECHA_TERMINO"]);
+                        dto.FECHACREACION = Convert.ToDateTime(dr["FECHACREACION"]);
+                        dto.ESTADO = Convert.ToInt32(dr["ESTADO_TAREA"]);
+                        dto.FECHA_ESTIMADA = Convert.ToString(dr["FECHA_ESTIMADA"]);
+                        dto.Rut_Usu = Convert.ToInt32(dr["rut_usu"]);
+                        dto.NOMBRE_USUARIO = Convert.ToString(dr["NOMBRE_USUARIO"]);
+                        dto.NOMBRE_ESTADO = Convert.ToString(dr["NOMBRE_ESTADO"]);
+                        dto.DIAS_DIF = Convert.ToInt32(dr["DIAS_DIF"]);
+                        dto.ATRASO = Convert.ToInt32(dr["Atraso"]);
+                        result.Add(dto);
+                    }
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                new Exception("Usuario o Contraseña incorrecta " + ex.Message);
+
+            }
+            return result;
+
+        }
     }
 }

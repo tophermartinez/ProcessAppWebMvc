@@ -92,7 +92,7 @@ namespace ProcessAppWebMvc.Controllers
         [HttpGet]
         public ActionResult Update(string ID)
         {
-            if (Session["Perfil"] != null)
+             if (Session["Perfil"] != null)
             {
                 NegocioEmpresa emp = new NegocioEmpresa();
                 EMPRESA aux = emp.Read().FirstOrDefault(a => a.ID == int.Parse(ID));

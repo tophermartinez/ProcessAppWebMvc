@@ -31,7 +31,7 @@
 <table class="table table-hover" id="tabla">
     <thead>
         <tr>
-            <th hidden>
+            <th>
                 @Html.DisplayNameFor(model => model.ID_UNIDAD)
             </th>
             <th>
@@ -48,7 +48,7 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FechaEstimada)
-   
+
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FECHA_TERMINO)
@@ -61,12 +61,13 @@
             </th>
             <th></th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
     @foreach (var item in Model)
     {
 <tr>
-    <td hidden>
+    <td >
         @Html.DisplayFor(modelItem => item.ID_UNIDAD)
     </td>
     <td>
@@ -98,6 +99,13 @@
     </td>
     <td>
         <p class="btn btn-danger btn-mant">  @Html.ActionLink("Eliminar", "Delete", new { ID_UNIDAD = item.ID_UNIDAD })</p>
+
+    </td>
+    <td>
+        @if (item.RUT_USU > 0 && item.RUT_USU != 99)
+        {
+            <p class="btn btn-info btn-mant">  @Html.ActionLink("Replicar", "Replicar", new { ID_UNIDAD = item.ID_UNIDAD })</p>
+        }
 
     </td>
 </tr>

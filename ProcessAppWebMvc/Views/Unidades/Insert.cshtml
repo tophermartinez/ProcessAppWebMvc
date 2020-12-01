@@ -12,9 +12,10 @@
         margin-bottom: 5px;
     }
 </style>
+@Html.AntiForgeryToken()
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
+
 
     if (Session["usu"] != null)
     {
@@ -69,7 +70,9 @@
     }
 
 }
-
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
 @*<div>
         @Html.ActionLink("Back to List", "Index")
     </div>*@

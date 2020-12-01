@@ -39,5 +39,11 @@ namespace Bussines_Layer
             return dao.Read();
         }
 
+        public List<UNIDAD_DETALLE> Read2(int id_Tarea)
+        {
+            DaoUNIDADDET dao = new DaoUNIDADDET();
+            return dao.obtenerUnidadDetalle(id_Tarea);
+        }
+
     }
 }
